@@ -41,11 +41,15 @@ yarn-error.log*
 frontend/dist/
 frontend/node_modules/
 
-# OS / Editor
+# OS / Editor / Temp
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
 *.swp
 *.swo
-~$*.docx
+~$*
+~*
+*.tmp
+extracted_docx_text.txt
+
