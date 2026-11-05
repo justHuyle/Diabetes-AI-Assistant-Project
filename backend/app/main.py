@@ -1,5 +1,6 @@
 import os
 import uuid
+import json
 from datetime import datetime
 from contextlib import asynccontextmanager
 from typing import Any, Dict
@@ -292,6 +293,24 @@ async def contact_doctor(request: DoctorContactRequest):
         "status": "received"
     }
     DOCTOR_REFERRAL_STORE[referral_id] = record
+    
+    # Ghi nhận và lưu vết hồ sơ vào tệp data/referrals.json
+    try:
+        data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+        os.makedirs(data_dir, exist_ok=True)
+        ref_file = os.path.join(data_dir, "referrals.json")
+        saved_list = []
+        if os.path.exists(ref_file):
+            try:
+                with open(ref_file, "r", encoding="utf-8") as rf:
+                    saved_list = json.load(rf)
+            except Exception:
+                saved_list = []
+        saved_list.append(record)
+        with open(ref_file, "w", encoding="utf-8") as wf:
+            json.dump(saved_list, wf, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
 
     if request.is_emergency:
         msg = "YÊU CẦU CẤP CỨU ĐÃ ĐƯỢC CHUYỂN TỚI BÁC SĨ TRỰC VÀ KHOA CẤP CỨU LÂM SÀNG!"
@@ -308,3 +327,13 @@ async def contact_doctor(request: DoctorContactRequest):
         instructions=instructions,
         emergency_hotline="115"
     )
+
+
+@app.get("/api/doctor/referrals", status_code=status.HTTP_200_OK)
+async def get_all_doctor_referrals():
+    """Truy vấn danh sách toàn bộ hồ sơ tiếp nhận chuyển tiếp bác sĩ."""
+    return {
+        "status": "success",
+        "total": len(DOCTOR_REFERRAL_STORE),
+        "referrals": list(DOCTOR_REFERRAL_STORE.values())
+    }

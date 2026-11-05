@@ -1,0 +1,38 @@
+[
+  {
+    "referral_id": "REF-9FE73679",
+    "consultation_id": "demo-consultation-999",
+    "patient_name": "Lê Bùi Quang Huy",
+    "patient_phone": "0912345678",
+    "facility_or_doctor": "Khoa Nội tiết - Đái tháo đường, Bệnh viện Bạch Mai",
+    "patient_notes": "Tôi muốn bác sĩ tư vấn thêm về phác đồ ăn uống",
+    "clinical_summary": "Đường huyết 135.0 mg/dL, HbA1c 6.8%",
+    "is_emergency": false,
+    "created_at": "2026-11-06T02:35:22.803046",
+    "status": "received"
+  },
+  {
+    "referral_id": "REF-47959F4D",
+    "consultation_id": "consult-test-uuid",
+    "patient_name": "Trần Văn An",
+    "patient_phone": "0988776655",
+    "facility_or_doctor": "Khoa Nội tiết - Đái tháo đường, Bệnh viện Bạch Mai",
+    "patient_notes": "Tôi muốn hỏi về cách phối hợp khẩu phần ăn và lịch tái khám",
+    "clinical_summary": "Đường huyết lúc đói 125 mg/dL, HbA1c 6.5%",
+    "is_emergency": false,
+    "created_at": "2026-11-06T02:37:09.370144",
+    "status": "received"
+  },
+  {
+    "referral_id": "REF-00A06E5A",
+    "consultation_id": null,
+    "patient_name": "Bệnh nhân",
+    "patient_phone": "0911223344",
+    "facility_or_doctor": "Khoa Nội tiết - Đái tháo đường, Bệnh viện Bạch Mai",
+    "patient_notes": "",
+    "clinical_summary": "",
+    "is_emergency": true,
+    "created_at": "2026-11-06T02:37:09.371798",
+    "status": "received"
+  }
+]
