@@ -1,36 +1,36 @@
 # ==============================================================================
-# HỆ ĐA AGENT TƯ VẤN BỆNH NHÂN TIỂU ĐƯỜNG - DEPENDENCIES
-# Đã xác thực tương thích 100% trên Python 3.11 Windows/Linux
+# HE DA AGENT TU VAN BENH NHAN TIEU DUONG - DEPENDENCIES
+# Verified 100% compatible with Python 3.11 on Windows and Linux
 # ==============================================================================
 
-# Framework API & Data Validation
+# Framework API and Data Validation
 fastapi>=0.110.0
 uvicorn>=0.28.0
 pydantic>=2.5.0
 python-dotenv>=1.0.0
 pyyaml>=6.0.0
+requests>=2.31.0
 
-# Deep Learning Inference & Feature Processing
+# Deep Learning Inference and Feature Processing
 onnxruntime>=1.17.0
 numpy>=1.26.0
 scikit-learn>=1.4.0
 torch>=2.0.0
 
-# Knowledge Base & Vector Retrieval
+# Knowledge Base and Vector Retrieval
 sentence-transformers>=2.7.0
 transformers>=4.40.0
 
-# LLM Integration
+# LLM Integration (Optional)
 google-genai>=1.0.0
 
-# Testing & Quality Assurance
+# Testing, Metrics and Visualization
 pytest>=8.0.0
+matplotlib>=3.8.0
+selenium>=4.20.0
 
 # ==============================================================================
-# GHI CHÚ TƯƠNG THÍCH PHIÊN BẢN (COMPATIBILITY NOTES):
-# 1. faiss-cpu: Tùy chọn. HybridVectorIndex đã tích hợp cơ chế NumPy fallback
-#    cho phép tính toán Cosine Similarity chuẩn xác 100% mà không bị lỗi biên dịch
-#    C++ trên môi trường Windows.
-# 2. torchvision: TUYỆT ĐỐI KHÔNG cài đặt torchvision vì gây xung đột
-#    operator torchvision::nms với torch CPU hiện hành và không cần thiết cho NLP/Bảng.
+# COMPATIBILITY NOTES:
+# 1. faiss-cpu: Optional. HybridVectorIndex uses NumPy fallback on Windows.
+# 2. torchvision: DO NOT install torchvision to avoid operator conflicts on CPU.
 # ==============================================================================
