@@ -52,4 +52,6 @@ Thumbs.db
 ~*
 *.tmp
 extracted_docx_text.txt
+tools/*.exe
+
 
