@@ -1,0 +1,940 @@
+{
+  "execution_timestamp": "2026-11-05T22:46:04.149551",
+  "total_scenarios": 3,
+  "scenarios_data": [
+    {
+      "scenario_id": "scenario_1",
+      "name": "Kịch bản 1: Hỏi đáp kiến thức y khoa chuẩn mực (ADA / Bộ Y tế)",
+      "description": "Bệnh nhân tra cứu tiêu chuẩn chẩn đoán đái tháo đường dựa trên nồng độ đường huyết và HbA1c.",
+      "input": {
+        "message": "Tiêu chuẩn chẩn đoán đái tháo đường theo chỉ số đường huyết và HbA1c là gì?",
+        "metrics": null
+      },
+      "output": {
+        "consultation_id": "5d64d9a4-fcf3-49ec-a20e-6bb021c12f01",
+        "intent": "knowledge_query",
+        "status": "PASS",
+        "priority_order": "Safety > Knowledge > Recommendation > Prediction",
+        "emergency_detected": false,
+        "emergency_alert": null,
+        "summary": "📚 [TRI THỨC Y KHOA]\nHệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng]:\n> \"## Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng\nHiệp hội Đái tháo đường Hoa Kỳ (ADA) quy định tiêu chuẩn chẩn đoán đái tháo đường dựa trên một trong bốn tiêu chí cận lâm sàng sau:\n1. Chỉ số HbA1c >= 6.5% (48 mmol/mol), thực hiện bằng phương pháp chuẩn hóa theo NGSP.\n2. Nồng độ glucose huyết tương lúc đói (Fasting Plasma Glucose - FPG) >= 126 mg/dL (7.0 mmol/L) sau nhịn ăn ít nhất 8 giờ.\n3. Nồng độ glucose huyết tương 2 giờ sau nghiệm pháp dung nạp glucose đường uống 75g (OGTT) >= 200 mg/dL (11.1 mmol/L).\n4. Ở bệnh nhân có triệu chứng kinh điển của tăng đường huyết cấp tính (uống nhiều,\"\n*(Độ tương đồng ngữ nghĩa: 0.8104)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 3: Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Pr]:\n> \"## Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Prediabetes)\nTiền đái tháo đường là tình trạng rối loạn chuyển hóa glucose chưa đạt ngưỡng đái tháo đường nhưng mang nguy cơ tiến triển thành bệnh và biến chứng tim mạch cao:\n- Rối loạn đường huyết lúc đói (IFG): Glucose huyết tương lúc đói từ 100 đến 125 mg/dL (5.6 - 6.9 mmol/L).\n- Rối loạn dung nạp glucose (IGT): Glucose huyết tương 2 giờ sau nghiệm pháp OGTT từ 140 đến 199 mg/dL (7.8 - 11.0 mmol/L).\n- Chỉ số HbA1c nằm trong khoảng từ 5.7% đến 6.4% (39 - 47 mmol/mol).\"\n*(Độ tương đồng ngữ nghĩa: 0.7768)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 1: ADA Standards of Care: Phân loại và Tiêu chuẩn chẩ]:\n> \"# ADA Standards of Care: Phân loại và Tiêu chuẩn chẩn đoán Đái tháo đường\"\n*(Độ tương đồng ngữ nghĩa: 0.7575)*\n",
+        "safety_review": {
+          "status": "PASS",
+          "emergency_detected": false,
+          "emergency_message": null,
+          "triggered_rules": [],
+          "modifications_made": [],
+          "sanitized_responses": {
+            "knowledge_agent": {
+              "agent": "KnowledgeAgent",
+              "content": {
+                "answer": "Hệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng]:\n> \"## Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng\nHiệp hội Đái tháo đường Hoa Kỳ (ADA) quy định tiêu chuẩn chẩn đoán đái tháo đường dựa trên một trong bốn tiêu chí cận lâm sàng sau:\n1. Chỉ số HbA1c >= 6.5% (48 mmol/mol), thực hiện bằng phương pháp chuẩn hóa theo NGSP.\n2. Nồng độ glucose huyết tương lúc đói (Fasting Plasma Glucose - FPG) >= 126 mg/dL (7.0 mmol/L) sau nhịn ăn ít nhất 8 giờ.\n3. Nồng độ glucose huyết tương 2 giờ sau nghiệm pháp dung nạp glucose đường uống 75g (OGTT) >= 200 mg/dL (11.1 mmol/L).\n4. Ở bệnh nhân có triệu chứng kinh điển của tăng đường huyết cấp tính (uống nhiều,\"\n*(Độ tương đồng ngữ nghĩa: 0.8104)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 3: Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Pr]:\n> \"## Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Prediabetes)\nTiền đái tháo đường là tình trạng rối loạn chuyển hóa glucose chưa đạt ngưỡng đái tháo đường nhưng mang nguy cơ tiến triển thành bệnh và biến chứng tim mạch cao:\n- Rối loạn đường huyết lúc đói (IFG): Glucose huyết tương lúc đói từ 100 đến 125 mg/dL (5.6 - 6.9 mmol/L).\n- Rối loạn dung nạp glucose (IGT): Glucose huyết tương 2 giờ sau nghiệm pháp OGTT từ 140 đến 199 mg/dL (7.8 - 11.0 mmol/L).\n- Chỉ số HbA1c nằm trong khoảng từ 5.7% đến 6.4% (39 - 47 mmol/mol).\"\n*(Độ tương đồng ngữ nghĩa: 0.7768)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 1: ADA Standards of Care: Phân loại và Tiêu chuẩn chẩ]:\n> \"# ADA Standards of Care: Phân loại và Tiêu chuẩn chẩn đoán Đái tháo đường\"\n*(Độ tương đồng ngữ nghĩa: 0.7575)*\n",
+                "mode": "extractive_verbatim",
+                "citations": [
+                  {
+                    "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S02",
+                    "source_file": "doc_01_ada_standards_diagnosis.md",
+                    "section_or_page": "Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng",
+                    "similarity_score": 0.8104,
+                    "excerpt": "## Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng\nHiệp hội Đái tháo đường Hoa Kỳ (ADA) quy định tiêu chuẩn chẩn đoán đái tháo đường dựa trên một trong bốn tiêu chí cận lâm sàng sau:\n1. Chỉ số HbA1c >= 6.5% (48 mmol/mol), thực hiện bằng phương phá..."
+                  },
+                  {
+                    "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S03",
+                    "source_file": "doc_01_ada_standards_diagnosis.md",
+                    "section_or_page": "Mục 3: Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Pr",
+                    "similarity_score": 0.7768,
+                    "excerpt": "## Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Prediabetes)\nTiền đái tháo đường là tình trạng rối loạn chuyển hóa glucose chưa đạt ngưỡng đái tháo đường nhưng mang nguy cơ tiến triển thành bệnh và biến chứng tim mạch cao:\n- Rối loạn đường huyết l..."
+                  },
+                  {
+                    "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S01",
+                    "source_file": "doc_01_ada_standards_diagnosis.md",
+                    "section_or_page": "Mục 1: ADA Standards of Care: Phân loại và Tiêu chuẩn chẩ",
+                    "similarity_score": 0.7575,
+                    "excerpt": "# ADA Standards of Care: Phân loại và Tiêu chuẩn chẩn đoán Đái tháo đường"
+                  }
+                ],
+                "primary_source": "doc_01_ada_standards_diagnosis.md",
+                "primary_section": "Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng"
+              },
+              "confidence": 0.8104,
+              "evidence": [
+                {
+                  "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S02",
+                  "source_file": "doc_01_ada_standards_diagnosis.md",
+                  "section_or_page": "Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng",
+                  "similarity_score": 0.8104,
+                  "excerpt": "## Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng\nHiệp hội Đái tháo đường Hoa Kỳ (ADA) quy định tiêu chuẩn chẩn đoán đái tháo đường dựa trên một trong bốn tiêu chí cận lâm sàng sau:\n1. Chỉ số HbA1c >= 6.5% (48 mmol/mol), thực hiện bằng phương phá..."
+                },
+                {
+                  "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S03",
+                  "source_file": "doc_01_ada_standards_diagnosis.md",
+                  "section_or_page": "Mục 3: Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Pr",
+                  "similarity_score": 0.7768,
+                  "excerpt": "## Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Prediabetes)\nTiền đái tháo đường là tình trạng rối loạn chuyển hóa glucose chưa đạt ngưỡng đái tháo đường nhưng mang nguy cơ tiến triển thành bệnh và biến chứng tim mạch cao:\n- Rối loạn đường huyết l..."
+                },
+                {
+                  "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S01",
+                  "source_file": "doc_01_ada_standards_diagnosis.md",
+                  "section_or_page": "Mục 1: ADA Standards of Care: Phân loại và Tiêu chuẩn chẩ",
+                  "similarity_score": 0.7575,
+                  "excerpt": "# ADA Standards of Care: Phân loại và Tiêu chuẩn chẩn đoán Đái tháo đường"
+                }
+              ],
+              "flags": [
+                "PASS",
+                "EVIDENCE_ATTACHED"
+              ],
+              "trace": {
+                "latency_ms": 22.78,
+                "chunks_retrieved": 3,
+                "top_similarity_score": 0.8104,
+                "generation_mode": "extractive_verbatim"
+              }
+            }
+          }
+        },
+        "knowledge_response": {
+          "agent": "KnowledgeAgent",
+          "content": {
+            "answer": "Hệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng]:\n> \"## Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng\nHiệp hội Đái tháo đường Hoa Kỳ (ADA) quy định tiêu chuẩn chẩn đoán đái tháo đường dựa trên một trong bốn tiêu chí cận lâm sàng sau:\n1. Chỉ số HbA1c >= 6.5% (48 mmol/mol), thực hiện bằng phương pháp chuẩn hóa theo NGSP.\n2. Nồng độ glucose huyết tương lúc đói (Fasting Plasma Glucose - FPG) >= 126 mg/dL (7.0 mmol/L) sau nhịn ăn ít nhất 8 giờ.\n3. Nồng độ glucose huyết tương 2 giờ sau nghiệm pháp dung nạp glucose đường uống 75g (OGTT) >= 200 mg/dL (11.1 mmol/L).\n4. Ở bệnh nhân có triệu chứng kinh điển của tăng đường huyết cấp tính (uống nhiều,\"\n*(Độ tương đồng ngữ nghĩa: 0.8104)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 3: Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Pr]:\n> \"## Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Prediabetes)\nTiền đái tháo đường là tình trạng rối loạn chuyển hóa glucose chưa đạt ngưỡng đái tháo đường nhưng mang nguy cơ tiến triển thành bệnh và biến chứng tim mạch cao:\n- Rối loạn đường huyết lúc đói (IFG): Glucose huyết tương lúc đói từ 100 đến 125 mg/dL (5.6 - 6.9 mmol/L).\n- Rối loạn dung nạp glucose (IGT): Glucose huyết tương 2 giờ sau nghiệm pháp OGTT từ 140 đến 199 mg/dL (7.8 - 11.0 mmol/L).\n- Chỉ số HbA1c nằm trong khoảng từ 5.7% đến 6.4% (39 - 47 mmol/mol).\"\n*(Độ tương đồng ngữ nghĩa: 0.7768)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_01_ada_standards_diagnosis.md` | Mục 1: ADA Standards of Care: Phân loại và Tiêu chuẩn chẩ]:\n> \"# ADA Standards of Care: Phân loại và Tiêu chuẩn chẩn đoán Đái tháo đường\"\n*(Độ tương đồng ngữ nghĩa: 0.7575)*\n",
+            "mode": "extractive_verbatim",
+            "citations": [
+              {
+                "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S02",
+                "source_file": "doc_01_ada_standards_diagnosis.md",
+                "section_or_page": "Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng",
+                "similarity_score": 0.8104,
+                "excerpt": "## Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng\nHiệp hội Đái tháo đường Hoa Kỳ (ADA) quy định tiêu chuẩn chẩn đoán đái tháo đường dựa trên một trong bốn tiêu chí cận lâm sàng sau:\n1. Chỉ số HbA1c >= 6.5% (48 mmol/mol), thực hiện bằng phương phá..."
+              },
+              {
+                "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S03",
+                "source_file": "doc_01_ada_standards_diagnosis.md",
+                "section_or_page": "Mục 3: Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Pr",
+                "similarity_score": 0.7768,
+                "excerpt": "## Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Prediabetes)\nTiền đái tháo đường là tình trạng rối loạn chuyển hóa glucose chưa đạt ngưỡng đái tháo đường nhưng mang nguy cơ tiến triển thành bệnh và biến chứng tim mạch cao:\n- Rối loạn đường huyết l..."
+              },
+              {
+                "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S01",
+                "source_file": "doc_01_ada_standards_diagnosis.md",
+                "section_or_page": "Mục 1: ADA Standards of Care: Phân loại và Tiêu chuẩn chẩ",
+                "similarity_score": 0.7575,
+                "excerpt": "# ADA Standards of Care: Phân loại và Tiêu chuẩn chẩn đoán Đái tháo đường"
+              }
+            ],
+            "primary_source": "doc_01_ada_standards_diagnosis.md",
+            "primary_section": "Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng"
+          },
+          "confidence": 0.8104,
+          "evidence": [
+            {
+              "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S02",
+              "source_file": "doc_01_ada_standards_diagnosis.md",
+              "section_or_page": "Mục 2: Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng",
+              "similarity_score": 0.8104,
+              "excerpt": "## Mục 1. Tiêu chuẩn xác định đái tháo đường lâm sàng\nHiệp hội Đái tháo đường Hoa Kỳ (ADA) quy định tiêu chuẩn chẩn đoán đái tháo đường dựa trên một trong bốn tiêu chí cận lâm sàng sau:\n1. Chỉ số HbA1c >= 6.5% (48 mmol/mol), thực hiện bằng phương phá..."
+            },
+            {
+              "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S03",
+              "source_file": "doc_01_ada_standards_diagnosis.md",
+              "section_or_page": "Mục 3: Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Pr",
+              "similarity_score": 0.7768,
+              "excerpt": "## Mục 2. Tiêu chuẩn xác định tiền đái tháo đường (Prediabetes)\nTiền đái tháo đường là tình trạng rối loạn chuyển hóa glucose chưa đạt ngưỡng đái tháo đường nhưng mang nguy cơ tiến triển thành bệnh và biến chứng tim mạch cao:\n- Rối loạn đường huyết l..."
+            },
+            {
+              "doc_id": "DOC_01_ADA_STANDARDS_DIAGNOSIS_S01",
+              "source_file": "doc_01_ada_standards_diagnosis.md",
+              "section_or_page": "Mục 1: ADA Standards of Care: Phân loại và Tiêu chuẩn chẩ",
+              "similarity_score": 0.7575,
+              "excerpt": "# ADA Standards of Care: Phân loại và Tiêu chuẩn chẩn đoán Đái tháo đường"
+            }
+          ],
+          "flags": [
+            "PASS",
+            "EVIDENCE_ATTACHED"
+          ],
+          "trace": {
+            "latency_ms": 22.78,
+            "chunks_retrieved": 3,
+            "top_similarity_score": 0.8104,
+            "generation_mode": "extractive_verbatim"
+          }
+        },
+        "recommendation_response": null,
+        "prediction_response": null,
+        "trace": {
+          "consultation_id": "5d64d9a4-fcf3-49ec-a20e-6bb021c12f01",
+          "created_at": "2026-11-05T22:46:04.149551",
+          "intent": "knowledge_query",
+          "steps": [
+            {
+              "agent": "KnowledgeAgent",
+              "duration_ms": 22.81,
+              "status": "success",
+              "flags": [
+                "PASS",
+                "EVIDENCE_ATTACHED"
+              ]
+            },
+            {
+              "agent": "SafetyAgent",
+              "duration_ms": 0.06,
+              "status": "PASS",
+              "rules_triggered": [],
+              "modifications": []
+            }
+          ],
+          "agents_called": [
+            "KnowledgeAgent",
+            "SafetyAgent"
+          ],
+          "rules_triggered": [],
+          "sources_cited": [
+            "doc_01_ada_standards_diagnosis.md",
+            "doc_01_ada_standards_diagnosis.md",
+            "doc_01_ada_standards_diagnosis.md"
+          ],
+          "total_latency_ms": 22.92
+        }
+      },
+      "measured_client_latency_ms": 22.96
+    },
+    {
+      "scenario_id": "scenario_2",
+      "name": "Kịch bản 2: Nhập chỉ số lâm sàng nhận tư vấn nguy cơ và lối sống",
+      "description": "Bệnh nhân 45 tuổi, thừa cân nhẹ (BMI 27.5), HbA1c 6.8%, đường huyết 135 mg/dL. Xin tư vấn chế độ ăn và vận động.",
+      "input": {
+        "message": "Tôi 45 tuổi, BMI 27.5, HbA1c 6.8, đường huyết 135 mg/dL. Xin tư vấn chế độ ăn và vận động",
+        "metrics": {
+          "age": 45,
+          "gender": "Male",
+          "bmi": 27.5,
+          "hbA1c_level": 6.8,
+          "blood_glucose_level": 135.0,
+          "glucose_unit": "mg/dL",
+          "hypertension": 0,
+          "heart_disease": 0,
+          "smoking_history": "never",
+          "time_of_day": "morning"
+        }
+      },
+      "output": {
+        "consultation_id": "ae1bd445-10ac-4c03-8650-76997bf6d843",
+        "intent": "clinical_consultation",
+        "status": "PASS",
+        "priority_order": "Safety > Knowledge > Recommendation > Prediction",
+        "emergency_detected": false,
+        "emergency_alert": null,
+        "summary": "📚 [TRI THỨC Y KHOA]\nHệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_03_who_screening_prevention.md` | Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ]:\n> \"## Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ\nSàng lọc đái tháo đường típ 2 nên được thực hiện ở mọi cá nhân từ 35 tuổi trở lên, hoặc người ở bất kỳ lứa tuổi nào có kèm các yếu tố nguy cơ:\n- Thừa cân hoặc béo phì: Chỉ số khối cơ thể (BMI) >= 23 kg/m² đối với người châu Á (hoặc >= 25 kg/m² đối với các chủng tộc khác).\n- Tiền sử gia đình có người trực hệ (bố, mẹ, anh chị em ruột) mắc đái tháo đường.\n- Lối sống tĩnh tại, ít hoạt động thể lực.\n- Tiền sử tăng huyết áp (huyết áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride >\"\n*(Độ tương đồng ngữ nghĩa: 0.6588)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_02_moh_vn_type2_guideline.md` | Mục 2: Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa]:\n> \"## Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa\nMục tiêu điều trị chung cho người trưởng thành không mang thai:\n- Chỉ số HbA1c: < 7.0% (53 mmol/mol) nhằm giảm biến chứng vi mạch và mạch máu lớn.\n- Glucose huyết tương lúc đói và trước các bữa ăn: 80 - 130 mg/dL (4.4 - 7.2 mmol/L).\n- Glucose huyết tương đỉnh sau ăn 1 đến 2 giờ: < 180 mg/dL (< 10.0 mmol/L).\nMục tiêu HbA1c có thể nới lỏng mức an toàn (< 8.0%) đối với bệnh nhân cao tuổi, thời gian mắc bệnh kéo dài, có tiền sử hạ đường huyết nặng hoặc mang nhiều bệnh nền nghiêm trọng.\"\n*(Độ tương đồng ngữ nghĩa: 0.5964)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_05_ada_lifestyle_management.md` | Mục 1: ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho]:\n> \"# ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho bệnh nhân đái tháo đường\"\n*(Độ tương đồng ngữ nghĩa: 0.5787)*\n\n\n🏃 [KẾ HOẠCH LỐI SỐNG]\n• Dinh dưỡng: Bữa ăn mức tinh bột MODERATE\n• Vận động: Vận động thể lực vừa phải (đi bộ 20-30 phút)\n• Theo dõi: Theo dõi định kỳ\n\n📊 [DỰ BÁO RỦI RO]\nNguy cơ cao (Mắc đái tháo đường) (Xác suất rủi ro: 92.3%, Ngưỡng quyết định: 0.87)",
+        "safety_review": {
+          "status": "PASS",
+          "emergency_detected": false,
+          "emergency_message": null,
+          "triggered_rules": [],
+          "modifications_made": [],
+          "sanitized_responses": {
+            "prediction_agent": {
+              "agent": "PredictionAgent",
+              "content": {
+                "risk_probability": 0.9233,
+                "predicted_label": 1,
+                "risk_category": "Nguy cơ cao (Mắc đái tháo đường)",
+                "decision_threshold": 0.87,
+                "is_high_risk": true,
+                "clinical_metrics_evaluated": {
+                  "age": 45,
+                  "bmi": 27.5,
+                  "hbA1c_level": 6.8,
+                  "blood_glucose_level_mg_dl": 135.0
+                }
+              },
+              "confidence": 0.9233,
+              "evidence": [
+                {
+                  "model_name": "DiabetesMLP (ONNX)",
+                  "decision_threshold": 0.87,
+                  "validation_f1": 0.7993,
+                  "test_roc_auc": 0.9752
+                }
+              ],
+              "flags": [
+                "HIGH_RISK_DETECTED"
+              ],
+              "trace": {
+                "latency_ms": 0.4,
+                "feature_count_transformed": 17,
+                "status": "success"
+              }
+            },
+            "recommendation_agent": {
+              "agent": "RecommendationAgent",
+              "content": {
+                "recommendation_summary": "Dinh dưỡng: MODERATE Carb | Vận động: MODERATE | Nhắc đo: Bình thường",
+                "state_mapping": {
+                  "state_id": 8,
+                  "glucose_evaluated_mg_dl": 135.0,
+                  "glucose_evaluated_mmol_l": 7.49,
+                  "time_slot": "Sáng (Trước/Sau ăn)"
+                },
+                "lifestyle_plan": {
+                  "nutrition": {
+                    "level": "MODERATE",
+                    "label": "Bữa ăn mức tinh bột MODERATE",
+                    "rationale": "Đường huyết trong ngưỡng kiểm soát (135.0 mg/dL); khuyến nghị khẩu phần tinh bột phức hợp cân bằng (Đĩa ăn lành mạnh: 1/4 tinh bột, 1/4 đạm nạc, 1/2 rau củ)."
+                  },
+                  "exercise": {
+                    "level": "MODERATE",
+                    "label": "Vận động thể lực vừa phải (đi bộ 20-30 phút)",
+                    "rationale": "Đường huyết nằm trong vùng an toàn (135.0 mg/dL); khuyến khích vận động vừa phải (đi bộ nhanh 20-30 phút) giúp tăng nhạy cảm insulin và tiêu hao glucose dư thừa."
+                  },
+                  "monitoring": {
+                    "required": false,
+                    "label": "Theo dõi định kỳ",
+                    "rationale": "Chỉ số đường huyết trong khoảng an toàn; duy trì lịch theo dõi đường huyết định kỳ thông thường."
+                  }
+                },
+                "action_id": 6,
+                "disclaimer": "Đề xuất lối sống chỉ mang tính hỗ trợ giáo dục sức khỏe, KHÔNG thay thế phác đồ điều trị của bác sĩ chuyên khoa."
+              },
+              "confidence": 0.95,
+              "evidence": [
+                {
+                  "policy_source": "Tabular Q-Learning (NB03)",
+                  "state_id": 8,
+                  "action_id": 6,
+                  "action_schema": "Carb:MODERATE | Ex:MODERATE | Remind:False"
+                }
+              ],
+              "flags": [
+                "PASS",
+                "LIFESTYLE_RECOMMENDATION_ACTIVE"
+              ],
+              "trace": {
+                "latency_ms": 0.02,
+                "state_id": 8,
+                "action_id": 6,
+                "status": "success"
+              }
+            },
+            "knowledge_agent": {
+              "agent": "KnowledgeAgent",
+              "content": {
+                "answer": "Hệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_03_who_screening_prevention.md` | Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ]:\n> \"## Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ\nSàng lọc đái tháo đường típ 2 nên được thực hiện ở mọi cá nhân từ 35 tuổi trở lên, hoặc người ở bất kỳ lứa tuổi nào có kèm các yếu tố nguy cơ:\n- Thừa cân hoặc béo phì: Chỉ số khối cơ thể (BMI) >= 23 kg/m² đối với người châu Á (hoặc >= 25 kg/m² đối với các chủng tộc khác).\n- Tiền sử gia đình có người trực hệ (bố, mẹ, anh chị em ruột) mắc đái tháo đường.\n- Lối sống tĩnh tại, ít hoạt động thể lực.\n- Tiền sử tăng huyết áp (huyết áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride >\"\n*(Độ tương đồng ngữ nghĩa: 0.6588)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_02_moh_vn_type2_guideline.md` | Mục 2: Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa]:\n> \"## Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa\nMục tiêu điều trị chung cho người trưởng thành không mang thai:\n- Chỉ số HbA1c: < 7.0% (53 mmol/mol) nhằm giảm biến chứng vi mạch và mạch máu lớn.\n- Glucose huyết tương lúc đói và trước các bữa ăn: 80 - 130 mg/dL (4.4 - 7.2 mmol/L).\n- Glucose huyết tương đỉnh sau ăn 1 đến 2 giờ: < 180 mg/dL (< 10.0 mmol/L).\nMục tiêu HbA1c có thể nới lỏng mức an toàn (< 8.0%) đối với bệnh nhân cao tuổi, thời gian mắc bệnh kéo dài, có tiền sử hạ đường huyết nặng hoặc mang nhiều bệnh nền nghiêm trọng.\"\n*(Độ tương đồng ngữ nghĩa: 0.5964)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_05_ada_lifestyle_management.md` | Mục 1: ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho]:\n> \"# ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho bệnh nhân đái tháo đường\"\n*(Độ tương đồng ngữ nghĩa: 0.5787)*\n",
+                "mode": "extractive_verbatim",
+                "citations": [
+                  {
+                    "doc_id": "DOC_03_WHO_SCREENING_PREVENTION_S02",
+                    "source_file": "doc_03_who_screening_prevention.md",
+                    "section_or_page": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ",
+                    "similarity_score": 0.6588,
+                    "excerpt": "## Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ\nSàng lọc đái tháo đường típ 2 nên được thực hiện ở mọi cá nhân từ 35 tuổi trở lên, hoặc người ở bất kỳ lứa tuổi nào có kèm các yếu tố nguy cơ:\n- Thừa cân hoặc béo phì: Chỉ số khối cơ thể (BMI) >= 2..."
+                  },
+                  {
+                    "doc_id": "DOC_02_MOH_VN_TYPE2_GUIDELINE_S02",
+                    "source_file": "doc_02_moh_vn_type2_guideline.md",
+                    "section_or_page": "Mục 2: Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa",
+                    "similarity_score": 0.5964,
+                    "excerpt": "## Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa\nMục tiêu điều trị chung cho người trưởng thành không mang thai:\n- Chỉ số HbA1c: < 7.0% (53 mmol/mol) nhằm giảm biến chứng vi mạch và mạch máu lớn.\n- Glucose huyết tương lúc đói và trước các bữa ăn:..."
+                  },
+                  {
+                    "doc_id": "DOC_05_ADA_LIFESTYLE_MANAGEMENT_S01",
+                    "source_file": "doc_05_ada_lifestyle_management.md",
+                    "section_or_page": "Mục 1: ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho",
+                    "similarity_score": 0.5787,
+                    "excerpt": "# ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho bệnh nhân đái tháo đường"
+                  }
+                ],
+                "primary_source": "doc_03_who_screening_prevention.md",
+                "primary_section": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ"
+              },
+              "confidence": 0.6588,
+              "evidence": [
+                {
+                  "doc_id": "DOC_03_WHO_SCREENING_PREVENTION_S02",
+                  "source_file": "doc_03_who_screening_prevention.md",
+                  "section_or_page": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ",
+                  "similarity_score": 0.6588,
+                  "excerpt": "## Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ\nSàng lọc đái tháo đường típ 2 nên được thực hiện ở mọi cá nhân từ 35 tuổi trở lên, hoặc người ở bất kỳ lứa tuổi nào có kèm các yếu tố nguy cơ:\n- Thừa cân hoặc béo phì: Chỉ số khối cơ thể (BMI) >= 2..."
+                },
+                {
+                  "doc_id": "DOC_02_MOH_VN_TYPE2_GUIDELINE_S02",
+                  "source_file": "doc_02_moh_vn_type2_guideline.md",
+                  "section_or_page": "Mục 2: Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa",
+                  "similarity_score": 0.5964,
+                  "excerpt": "## Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa\nMục tiêu điều trị chung cho người trưởng thành không mang thai:\n- Chỉ số HbA1c: < 7.0% (53 mmol/mol) nhằm giảm biến chứng vi mạch và mạch máu lớn.\n- Glucose huyết tương lúc đói và trước các bữa ăn:..."
+                },
+                {
+                  "doc_id": "DOC_05_ADA_LIFESTYLE_MANAGEMENT_S01",
+                  "source_file": "doc_05_ada_lifestyle_management.md",
+                  "section_or_page": "Mục 1: ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho",
+                  "similarity_score": 0.5787,
+                  "excerpt": "# ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho bệnh nhân đái tháo đường"
+                }
+              ],
+              "flags": [
+                "PASS",
+                "EVIDENCE_ATTACHED"
+              ],
+              "trace": {
+                "latency_ms": 21.3,
+                "chunks_retrieved": 3,
+                "top_similarity_score": 0.6588,
+                "generation_mode": "extractive_verbatim"
+              }
+            }
+          }
+        },
+        "knowledge_response": {
+          "agent": "KnowledgeAgent",
+          "content": {
+            "answer": "Hệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_03_who_screening_prevention.md` | Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ]:\n> \"## Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ\nSàng lọc đái tháo đường típ 2 nên được thực hiện ở mọi cá nhân từ 35 tuổi trở lên, hoặc người ở bất kỳ lứa tuổi nào có kèm các yếu tố nguy cơ:\n- Thừa cân hoặc béo phì: Chỉ số khối cơ thể (BMI) >= 23 kg/m² đối với người châu Á (hoặc >= 25 kg/m² đối với các chủng tộc khác).\n- Tiền sử gia đình có người trực hệ (bố, mẹ, anh chị em ruột) mắc đái tháo đường.\n- Lối sống tĩnh tại, ít hoạt động thể lực.\n- Tiền sử tăng huyết áp (huyết áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride >\"\n*(Độ tương đồng ngữ nghĩa: 0.6588)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_02_moh_vn_type2_guideline.md` | Mục 2: Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa]:\n> \"## Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa\nMục tiêu điều trị chung cho người trưởng thành không mang thai:\n- Chỉ số HbA1c: < 7.0% (53 mmol/mol) nhằm giảm biến chứng vi mạch và mạch máu lớn.\n- Glucose huyết tương lúc đói và trước các bữa ăn: 80 - 130 mg/dL (4.4 - 7.2 mmol/L).\n- Glucose huyết tương đỉnh sau ăn 1 đến 2 giờ: < 180 mg/dL (< 10.0 mmol/L).\nMục tiêu HbA1c có thể nới lỏng mức an toàn (< 8.0%) đối với bệnh nhân cao tuổi, thời gian mắc bệnh kéo dài, có tiền sử hạ đường huyết nặng hoặc mang nhiều bệnh nền nghiêm trọng.\"\n*(Độ tương đồng ngữ nghĩa: 0.5964)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_05_ada_lifestyle_management.md` | Mục 1: ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho]:\n> \"# ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho bệnh nhân đái tháo đường\"\n*(Độ tương đồng ngữ nghĩa: 0.5787)*\n",
+            "mode": "extractive_verbatim",
+            "citations": [
+              {
+                "doc_id": "DOC_03_WHO_SCREENING_PREVENTION_S02",
+                "source_file": "doc_03_who_screening_prevention.md",
+                "section_or_page": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ",
+                "similarity_score": 0.6588,
+                "excerpt": "## Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ\nSàng lọc đái tháo đường típ 2 nên được thực hiện ở mọi cá nhân từ 35 tuổi trở lên, hoặc người ở bất kỳ lứa tuổi nào có kèm các yếu tố nguy cơ:\n- Thừa cân hoặc béo phì: Chỉ số khối cơ thể (BMI) >= 2..."
+              },
+              {
+                "doc_id": "DOC_02_MOH_VN_TYPE2_GUIDELINE_S02",
+                "source_file": "doc_02_moh_vn_type2_guideline.md",
+                "section_or_page": "Mục 2: Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa",
+                "similarity_score": 0.5964,
+                "excerpt": "## Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa\nMục tiêu điều trị chung cho người trưởng thành không mang thai:\n- Chỉ số HbA1c: < 7.0% (53 mmol/mol) nhằm giảm biến chứng vi mạch và mạch máu lớn.\n- Glucose huyết tương lúc đói và trước các bữa ăn:..."
+              },
+              {
+                "doc_id": "DOC_05_ADA_LIFESTYLE_MANAGEMENT_S01",
+                "source_file": "doc_05_ada_lifestyle_management.md",
+                "section_or_page": "Mục 1: ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho",
+                "similarity_score": 0.5787,
+                "excerpt": "# ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho bệnh nhân đái tháo đường"
+              }
+            ],
+            "primary_source": "doc_03_who_screening_prevention.md",
+            "primary_section": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ"
+          },
+          "confidence": 0.6588,
+          "evidence": [
+            {
+              "doc_id": "DOC_03_WHO_SCREENING_PREVENTION_S02",
+              "source_file": "doc_03_who_screening_prevention.md",
+              "section_or_page": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ",
+              "similarity_score": 0.6588,
+              "excerpt": "## Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ\nSàng lọc đái tháo đường típ 2 nên được thực hiện ở mọi cá nhân từ 35 tuổi trở lên, hoặc người ở bất kỳ lứa tuổi nào có kèm các yếu tố nguy cơ:\n- Thừa cân hoặc béo phì: Chỉ số khối cơ thể (BMI) >= 2..."
+            },
+            {
+              "doc_id": "DOC_02_MOH_VN_TYPE2_GUIDELINE_S02",
+              "source_file": "doc_02_moh_vn_type2_guideline.md",
+              "section_or_page": "Mục 2: Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa",
+              "similarity_score": 0.5964,
+              "excerpt": "## Mục 1. Mục tiêu kiểm soát đường huyết cá nhân hóa\nMục tiêu điều trị chung cho người trưởng thành không mang thai:\n- Chỉ số HbA1c: < 7.0% (53 mmol/mol) nhằm giảm biến chứng vi mạch và mạch máu lớn.\n- Glucose huyết tương lúc đói và trước các bữa ăn:..."
+            },
+            {
+              "doc_id": "DOC_05_ADA_LIFESTYLE_MANAGEMENT_S01",
+              "source_file": "doc_05_ada_lifestyle_management.md",
+              "section_or_page": "Mục 1: ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho",
+              "similarity_score": 0.5787,
+              "excerpt": "# ADA: Khuyến cáo Dinh dưỡng và Vận động thể lực cho bệnh nhân đái tháo đường"
+            }
+          ],
+          "flags": [
+            "PASS",
+            "EVIDENCE_ATTACHED"
+          ],
+          "trace": {
+            "latency_ms": 21.3,
+            "chunks_retrieved": 3,
+            "top_similarity_score": 0.6588,
+            "generation_mode": "extractive_verbatim"
+          }
+        },
+        "recommendation_response": {
+          "agent": "RecommendationAgent",
+          "content": {
+            "recommendation_summary": "Dinh dưỡng: MODERATE Carb | Vận động: MODERATE | Nhắc đo: Bình thường",
+            "state_mapping": {
+              "state_id": 8,
+              "glucose_evaluated_mg_dl": 135.0,
+              "glucose_evaluated_mmol_l": 7.49,
+              "time_slot": "Sáng (Trước/Sau ăn)"
+            },
+            "lifestyle_plan": {
+              "nutrition": {
+                "level": "MODERATE",
+                "label": "Bữa ăn mức tinh bột MODERATE",
+                "rationale": "Đường huyết trong ngưỡng kiểm soát (135.0 mg/dL); khuyến nghị khẩu phần tinh bột phức hợp cân bằng (Đĩa ăn lành mạnh: 1/4 tinh bột, 1/4 đạm nạc, 1/2 rau củ)."
+              },
+              "exercise": {
+                "level": "MODERATE",
+                "label": "Vận động thể lực vừa phải (đi bộ 20-30 phút)",
+                "rationale": "Đường huyết nằm trong vùng an toàn (135.0 mg/dL); khuyến khích vận động vừa phải (đi bộ nhanh 20-30 phút) giúp tăng nhạy cảm insulin và tiêu hao glucose dư thừa."
+              },
+              "monitoring": {
+                "required": false,
+                "label": "Theo dõi định kỳ",
+                "rationale": "Chỉ số đường huyết trong khoảng an toàn; duy trì lịch theo dõi đường huyết định kỳ thông thường."
+              }
+            },
+            "action_id": 6,
+            "disclaimer": "Đề xuất lối sống chỉ mang tính hỗ trợ giáo dục sức khỏe, KHÔNG thay thế phác đồ điều trị của bác sĩ chuyên khoa."
+          },
+          "confidence": 0.95,
+          "evidence": [
+            {
+              "policy_source": "Tabular Q-Learning (NB03)",
+              "state_id": 8,
+              "action_id": 6,
+              "action_schema": "Carb:MODERATE | Ex:MODERATE | Remind:False"
+            }
+          ],
+          "flags": [
+            "PASS",
+            "LIFESTYLE_RECOMMENDATION_ACTIVE"
+          ],
+          "trace": {
+            "latency_ms": 0.02,
+            "state_id": 8,
+            "action_id": 6,
+            "status": "success"
+          }
+        },
+        "prediction_response": {
+          "agent": "PredictionAgent",
+          "content": {
+            "risk_probability": 0.9233,
+            "predicted_label": 1,
+            "risk_category": "Nguy cơ cao (Mắc đái tháo đường)",
+            "decision_threshold": 0.87,
+            "is_high_risk": true,
+            "clinical_metrics_evaluated": {
+              "age": 45,
+              "bmi": 27.5,
+              "hbA1c_level": 6.8,
+              "blood_glucose_level_mg_dl": 135.0
+            }
+          },
+          "confidence": 0.9233,
+          "evidence": [
+            {
+              "model_name": "DiabetesMLP (ONNX)",
+              "decision_threshold": 0.87,
+              "validation_f1": 0.7993,
+              "test_roc_auc": 0.9752
+            }
+          ],
+          "flags": [
+            "HIGH_RISK_DETECTED"
+          ],
+          "trace": {
+            "latency_ms": 0.4,
+            "feature_count_transformed": 17,
+            "status": "success"
+          }
+        },
+        "trace": {
+          "consultation_id": "ae1bd445-10ac-4c03-8650-76997bf6d843",
+          "created_at": "2026-11-05T22:46:04.172008",
+          "intent": "clinical_consultation",
+          "steps": [
+            {
+              "agent": "PredictionAgent",
+              "duration_ms": 0.42,
+              "status": "success",
+              "flags": [
+                "HIGH_RISK_DETECTED"
+              ]
+            },
+            {
+              "agent": "RecommendationAgent",
+              "duration_ms": 0.03,
+              "status": "success",
+              "flags": [
+                "PASS",
+                "LIFESTYLE_RECOMMENDATION_ACTIVE"
+              ]
+            },
+            {
+              "agent": "KnowledgeAgent",
+              "duration_ms": 21.34,
+              "status": "success",
+              "flags": [
+                "PASS",
+                "EVIDENCE_ATTACHED"
+              ]
+            },
+            {
+              "agent": "SafetyAgent",
+              "duration_ms": 0.07,
+              "status": "PASS",
+              "rules_triggered": [],
+              "modifications": []
+            }
+          ],
+          "agents_called": [
+            "PredictionAgent",
+            "RecommendationAgent",
+            "KnowledgeAgent",
+            "SafetyAgent"
+          ],
+          "rules_triggered": [],
+          "sources_cited": [
+            "doc_03_who_screening_prevention.md",
+            "doc_02_moh_vn_type2_guideline.md",
+            "doc_05_ada_lifestyle_management.md"
+          ],
+          "total_latency_ms": 21.92
+        }
+      },
+      "measured_client_latency_ms": 21.99
+    },
+    {
+      "scenario_id": "scenario_3",
+      "name": "Kịch bản 3: Chỉ số nguy hiểm kích hoạt đường rút gọn cấp cứu",
+      "description": "Bệnh nhân xuất hiện triệu chứng vã mồ hôi, run rẩy, đường huyết mao mạch giảm còn 52 mg/dL (< 70 mg/dL).",
+      "input": {
+        "message": "Tôi thấy vã mồ hôi và run tay chân, đo đường huyết chỉ còn 52 mg/dL!",
+        "metrics": {
+          "blood_glucose_level": 52.0,
+          "glucose_unit": "mg/dL",
+          "time_of_day": "morning"
+        }
+      },
+      "output": {
+        "consultation_id": "63937d64-bfab-4f70-ab91-37a2ebc676e7",
+        "intent": "emergency",
+        "status": "VETO",
+        "priority_order": "Safety > Knowledge > Recommendation > Prediction",
+        "emergency_detected": true,
+        "emergency_alert": "🚨 **CẢNH BÁO CẤP CỨU KHẨN CẤP: HẠ ĐƯỜNG HUYẾT NGUY HIỂM (< 70 mg/dL / 3.9 mmol/L)!**\n• **Xử trí ngay lập tức (Quy tắc 15-15)**: Uống ngay 1/2 cốc nước ngọt có đường (120ml), nước ép hoa quả, hoặc 3-4 viên đường/kẹo ngọt.\n• **Nghỉ ngơi tại chỗ trong 15 phút**, sau đó đo lại đường huyết mao mạch.\n• **TUYỆT ĐỐI CẤM TẬP THỂ DỤC** hoặc nhịn ăn.\n• Nếu xuất hiện dấu hiệu vã mồ hôi lạnh, run rẩy nặng, lú lẫn hoặc bất tỉnh, người nhà phải **gọi cấp cứu 115 hoặc đưa ngay đến bệnh viện**!",
+        "summary": "🚨 [CẢNH BÁO KHẨN CẤP]\n🚨 **CẢNH BÁO CẤP CỨU KHẨN CẤP: HẠ ĐƯỜNG HUYẾT NGUY HIỂM (< 70 mg/dL / 3.9 mmol/L)!**\n• **Xử trí ngay lập tức (Quy tắc 15-15)**: Uống ngay 1/2 cốc nước ngọt có đường (120ml), nước ép hoa quả, hoặc 3-4 viên đường/kẹo ngọt.\n• **Nghỉ ngơi tại chỗ trong 15 phút**, sau đó đo lại đường huyết mao mạch.\n• **TUYỆT ĐỐI CẤM TẬP THỂ DỤC** hoặc nhịn ăn.\n• Nếu xuất hiện dấu hiệu vã mồ hôi lạnh, run rẩy nặng, lú lẫn hoặc bất tỉnh, người nhà phải **gọi cấp cứu 115 hoặc đưa ngay đến bệnh viện**!\n\n📚 [TRI THỨC Y KHOA]\nHệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_04_niddk_hypoglycemia_emergency.md` | Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết]:\n> \"## Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết\nKhi bệnh nhân còn tỉnh táo và đo đường huyết < 70 mg/dL, áp dụng ngay Quy tắc 15-15:\n1. Dùng ngay 15 gram carbohydrate tác dụng nhanh: uống 1/2 cốc nước ép trái cây (khoảng 120ml), 1/2 lon nước ngọt có đường thông thường, hoặc ngậm 3-4 viên đường/kẹo.\n2. Nghỉ ngơi tại chỗ và đợi trong 15 phút.\n3. Đo lại đường huyết mao mạch sau 15 phút:\n - Nếu đường huyết vẫn dưới 70 mg/dL: tiếp tục nạp thêm 15 gram carbohydrate và đợi thêm 15 phút.\n - Nếu đường huyết đã >= 70 mg/dL: bệnh nhân nên ăn một bữa ăn phụ nhẹ (chứa tinh bột phức hợp và protein) nếu\"\n*(Độ tương đồng ngữ nghĩa: 0.6142)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_06_moh_safety_and_complications.md` | Mục 3: Mục 2. Nguyên tắc an toàn y tế và giới hạn của hệ ]:\n> \"chín, đường huyết đo được > 300 mg/dL hoặc < 70 mg/dL không hồi phục), bệnh nhân phải liên hệ cơ sở y tế gần nhất ngay lập tức.\"\n*(Độ tương đồng ngữ nghĩa: 0.6128)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_03_who_screening_prevention.md` | Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ]:\n> \"t áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride > 250 mg/dL).\n- Phụ nữ có tiền sử đái tháo đường thai kỳ hoặc hội chứng buồng trứng đa nang (PCOS).\"\n*(Độ tương đồng ngữ nghĩa: 0.5283)*\n\n\n🏃 [KẾ HOẠCH LỐI SỐNG]\n• Dinh dưỡng: Bữa ăn mức tinh bột MODERATE (Agent An toàn hiệu chỉnh: Cấm Low Carb khi đường huyết cận hạ)\n• Vận động: Tạm nghỉ thể lực\n• Theo dõi: Bắt buộc đo lại đường huyết (Agent An toàn kích hoạt do chỉ số bất thường)",
+        "safety_review": {
+          "status": "VETO",
+          "emergency_detected": true,
+          "emergency_message": "🚨 **CẢNH BÁO CẤP CỨU KHẨN CẤP: HẠ ĐƯỜNG HUYẾT NGUY HIỂM (< 70 mg/dL / 3.9 mmol/L)!**\n• **Xử trí ngay lập tức (Quy tắc 15-15)**: Uống ngay 1/2 cốc nước ngọt có đường (120ml), nước ép hoa quả, hoặc 3-4 viên đường/kẹo ngọt.\n• **Nghỉ ngơi tại chỗ trong 15 phút**, sau đó đo lại đường huyết mao mạch.\n• **TUYỆT ĐỐI CẤM TẬP THỂ DỤC** hoặc nhịn ăn.\n• Nếu xuất hiện dấu hiệu vã mồ hôi lạnh, run rẩy nặng, lú lẫn hoặc bất tỉnh, người nhà phải **gọi cấp cứu 115 hoặc đưa ngay đến bệnh viện**!",
+          "triggered_rules": [
+            "RULE_05_TRIGGERED",
+            "RULE_04_HYPO_REQUIRE_CARB",
+            "RULE_01_TRIGGERED",
+            "RULE_05_MANDATORY_MONITORING",
+            "EMERGENCY_HYPOGLYCEMIA"
+          ],
+          "modifications_made": [
+            "Kích hoạt cảnh báo cấp cứu khẩn cấp ưu tiên lên đầu toàn bộ phản hồi.",
+            "RULE_04: Nâng khẩu phần tinh bột từ LOW lên MODERATE vì đường huyết < 80 mg/dL.",
+            "RULE_05: Kích hoạt cờ nhắc đo đường huyết bắt buộc."
+          ],
+          "sanitized_responses": {
+            "recommendation_agent": {
+              "agent": "RecommendationAgent",
+              "content": {
+                "recommendation_summary": "Dinh dưỡng: LOW Carb | Vận động: NONE | Nhắc đo: Bình thường",
+                "state_mapping": {
+                  "state_id": 0,
+                  "glucose_evaluated_mg_dl": 52.0,
+                  "glucose_evaluated_mmol_l": 2.89,
+                  "time_slot": "Sáng (Trước/Sau ăn)"
+                },
+                "lifestyle_plan": {
+                  "nutrition": {
+                    "level": "MODERATE",
+                    "label": "Bữa ăn mức tinh bột MODERATE (Agent An toàn hiệu chỉnh: Cấm Low Carb khi đường huyết cận hạ)",
+                    "rationale": "Đường huyết hiện tại (52.0 mg/dL) ở mức cao; khuyến nghị giảm tinh bột nhanh để tránh làm đường huyết tăng thêm."
+                  },
+                  "exercise": {
+                    "level": "NONE",
+                    "label": "Tạm nghỉ thể lực",
+                    "rationale": "Đường huyết thấp (<100 mg/dL); tạm thời NGHỈ NGƠI, cấm tập thể dục nhằm loại bỏ nguy cơ hạ đường huyết nguy hiểm."
+                  },
+                  "monitoring": {
+                    "required": true,
+                    "label": "Bắt buộc đo lại đường huyết (Agent An toàn kích hoạt do chỉ số bất thường)",
+                    "rationale": "Chỉ số đường huyết trong khoảng an toàn; duy trì lịch theo dõi đường huyết định kỳ thông thường."
+                  }
+                },
+                "action_id": 0,
+                "disclaimer": "Đề xuất lối sống chỉ mang tính hỗ trợ giáo dục sức khỏe, KHÔNG thay thế phác đồ điều trị của bác sĩ chuyên khoa."
+              },
+              "confidence": 0.95,
+              "evidence": [
+                {
+                  "policy_source": "Tabular Q-Learning (NB03)",
+                  "state_id": 0,
+                  "action_id": 0,
+                  "action_schema": "Carb:LOW | Ex:NONE | Remind:False"
+                }
+              ],
+              "flags": [
+                "PASS",
+                "LIFESTYLE_RECOMMENDATION_ACTIVE",
+                "SAFETY_MODIFIED"
+              ],
+              "trace": {
+                "latency_ms": 0.02,
+                "state_id": 0,
+                "action_id": 0,
+                "status": "success",
+                "safety_modifications": [
+                  "Kích hoạt cảnh báo cấp cứu khẩn cấp ưu tiên lên đầu toàn bộ phản hồi.",
+                  "RULE_04: Nâng khẩu phần tinh bột từ LOW lên MODERATE vì đường huyết < 80 mg/dL.",
+                  "RULE_05: Kích hoạt cờ nhắc đo đường huyết bắt buộc."
+                ]
+              }
+            },
+            "knowledge_agent": {
+              "agent": "KnowledgeAgent",
+              "content": {
+                "answer": "Hệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_04_niddk_hypoglycemia_emergency.md` | Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết]:\n> \"## Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết\nKhi bệnh nhân còn tỉnh táo và đo đường huyết < 70 mg/dL, áp dụng ngay Quy tắc 15-15:\n1. Dùng ngay 15 gram carbohydrate tác dụng nhanh: uống 1/2 cốc nước ép trái cây (khoảng 120ml), 1/2 lon nước ngọt có đường thông thường, hoặc ngậm 3-4 viên đường/kẹo.\n2. Nghỉ ngơi tại chỗ và đợi trong 15 phút.\n3. Đo lại đường huyết mao mạch sau 15 phút:\n - Nếu đường huyết vẫn dưới 70 mg/dL: tiếp tục nạp thêm 15 gram carbohydrate và đợi thêm 15 phút.\n - Nếu đường huyết đã >= 70 mg/dL: bệnh nhân nên ăn một bữa ăn phụ nhẹ (chứa tinh bột phức hợp và protein) nếu\"\n*(Độ tương đồng ngữ nghĩa: 0.6142)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_06_moh_safety_and_complications.md` | Mục 3: Mục 2. Nguyên tắc an toàn y tế và giới hạn của hệ ]:\n> \"chín, đường huyết đo được > 300 mg/dL hoặc < 70 mg/dL không hồi phục), bệnh nhân phải liên hệ cơ sở y tế gần nhất ngay lập tức.\"\n*(Độ tương đồng ngữ nghĩa: 0.6128)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_03_who_screening_prevention.md` | Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ]:\n> \"t áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride > 250 mg/dL).\n- Phụ nữ có tiền sử đái tháo đường thai kỳ hoặc hội chứng buồng trứng đa nang (PCOS).\"\n*(Độ tương đồng ngữ nghĩa: 0.5283)*\n",
+                "mode": "extractive_verbatim",
+                "citations": [
+                  {
+                    "doc_id": "DOC_04_NIDDK_HYPOGLYCEMIA_EMERGENCY_S03",
+                    "source_file": "doc_04_niddk_hypoglycemia_emergency.md",
+                    "section_or_page": "Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết",
+                    "similarity_score": 0.6142,
+                    "excerpt": "## Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết\nKhi bệnh nhân còn tỉnh táo và đo đường huyết < 70 mg/dL, áp dụng ngay Quy tắc 15-15:\n1. Dùng ngay 15 gram carbohydrate tác dụng nhanh: uống 1/2 cốc nước ép trái cây (khoảng 120ml), 1/2 lon nước ngọt..."
+                  },
+                  {
+                    "doc_id": "DOC_06_MOH_SAFETY_AND_COMPLICATIONS_S03",
+                    "source_file": "doc_06_moh_safety_and_complications.md",
+                    "section_or_page": "Mục 3: Mục 2. Nguyên tắc an toàn y tế và giới hạn của hệ ",
+                    "similarity_score": 0.6128,
+                    "excerpt": "chín, đường huyết đo được > 300 mg/dL hoặc < 70 mg/dL không hồi phục), bệnh nhân phải liên hệ cơ sở y tế gần nhất ngay lập tức."
+                  },
+                  {
+                    "doc_id": "DOC_03_WHO_SCREENING_PREVENTION_S02",
+                    "source_file": "doc_03_who_screening_prevention.md",
+                    "section_or_page": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ",
+                    "similarity_score": 0.5283,
+                    "excerpt": "t áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride > 250 mg/dL).\n- Phụ nữ có tiền sử đái tháo đường thai kỳ hoặc hội chứng buồng trứng đa nang (PCOS)."
+                  }
+                ],
+                "primary_source": "doc_04_niddk_hypoglycemia_emergency.md",
+                "primary_section": "Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết"
+              },
+              "confidence": 0.6142,
+              "evidence": [
+                {
+                  "doc_id": "DOC_04_NIDDK_HYPOGLYCEMIA_EMERGENCY_S03",
+                  "source_file": "doc_04_niddk_hypoglycemia_emergency.md",
+                  "section_or_page": "Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết",
+                  "similarity_score": 0.6142,
+                  "excerpt": "## Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết\nKhi bệnh nhân còn tỉnh táo và đo đường huyết < 70 mg/dL, áp dụng ngay Quy tắc 15-15:\n1. Dùng ngay 15 gram carbohydrate tác dụng nhanh: uống 1/2 cốc nước ép trái cây (khoảng 120ml), 1/2 lon nước ngọt..."
+                },
+                {
+                  "doc_id": "DOC_06_MOH_SAFETY_AND_COMPLICATIONS_S03",
+                  "source_file": "doc_06_moh_safety_and_complications.md",
+                  "section_or_page": "Mục 3: Mục 2. Nguyên tắc an toàn y tế và giới hạn của hệ ",
+                  "similarity_score": 0.6128,
+                  "excerpt": "chín, đường huyết đo được > 300 mg/dL hoặc < 70 mg/dL không hồi phục), bệnh nhân phải liên hệ cơ sở y tế gần nhất ngay lập tức."
+                },
+                {
+                  "doc_id": "DOC_03_WHO_SCREENING_PREVENTION_S02",
+                  "source_file": "doc_03_who_screening_prevention.md",
+                  "section_or_page": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ",
+                  "similarity_score": 0.5283,
+                  "excerpt": "t áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride > 250 mg/dL).\n- Phụ nữ có tiền sử đái tháo đường thai kỳ hoặc hội chứng buồng trứng đa nang (PCOS)."
+                }
+              ],
+              "flags": [
+                "PASS",
+                "EVIDENCE_ATTACHED"
+              ],
+              "trace": {
+                "latency_ms": 15.72,
+                "chunks_retrieved": 3,
+                "top_similarity_score": 0.6142,
+                "generation_mode": "extractive_verbatim"
+              }
+            }
+          }
+        },
+        "knowledge_response": {
+          "agent": "KnowledgeAgent",
+          "content": {
+            "answer": "Hệ thống đang hoạt động ở chế độ Trích xuất nguyên văn (Extractive Mode) từ Cơ sở tri thức chuẩn mực:\n\n📌 **Trích dẫn 1** [Nguồn: `doc_04_niddk_hypoglycemia_emergency.md` | Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết]:\n> \"## Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết\nKhi bệnh nhân còn tỉnh táo và đo đường huyết < 70 mg/dL, áp dụng ngay Quy tắc 15-15:\n1. Dùng ngay 15 gram carbohydrate tác dụng nhanh: uống 1/2 cốc nước ép trái cây (khoảng 120ml), 1/2 lon nước ngọt có đường thông thường, hoặc ngậm 3-4 viên đường/kẹo.\n2. Nghỉ ngơi tại chỗ và đợi trong 15 phút.\n3. Đo lại đường huyết mao mạch sau 15 phút:\n - Nếu đường huyết vẫn dưới 70 mg/dL: tiếp tục nạp thêm 15 gram carbohydrate và đợi thêm 15 phút.\n - Nếu đường huyết đã >= 70 mg/dL: bệnh nhân nên ăn một bữa ăn phụ nhẹ (chứa tinh bột phức hợp và protein) nếu\"\n*(Độ tương đồng ngữ nghĩa: 0.6142)*\n\n📌 **Trích dẫn 2** [Nguồn: `doc_06_moh_safety_and_complications.md` | Mục 3: Mục 2. Nguyên tắc an toàn y tế và giới hạn của hệ ]:\n> \"chín, đường huyết đo được > 300 mg/dL hoặc < 70 mg/dL không hồi phục), bệnh nhân phải liên hệ cơ sở y tế gần nhất ngay lập tức.\"\n*(Độ tương đồng ngữ nghĩa: 0.6128)*\n\n📌 **Trích dẫn 3** [Nguồn: `doc_03_who_screening_prevention.md` | Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ]:\n> \"t áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride > 250 mg/dL).\n- Phụ nữ có tiền sử đái tháo đường thai kỳ hoặc hội chứng buồng trứng đa nang (PCOS).\"\n*(Độ tương đồng ngữ nghĩa: 0.5283)*\n",
+            "mode": "extractive_verbatim",
+            "citations": [
+              {
+                "doc_id": "DOC_04_NIDDK_HYPOGLYCEMIA_EMERGENCY_S03",
+                "source_file": "doc_04_niddk_hypoglycemia_emergency.md",
+                "section_or_page": "Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết",
+                "similarity_score": 0.6142,
+                "excerpt": "## Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết\nKhi bệnh nhân còn tỉnh táo và đo đường huyết < 70 mg/dL, áp dụng ngay Quy tắc 15-15:\n1. Dùng ngay 15 gram carbohydrate tác dụng nhanh: uống 1/2 cốc nước ép trái cây (khoảng 120ml), 1/2 lon nước ngọt..."
+              },
+              {
+                "doc_id": "DOC_06_MOH_SAFETY_AND_COMPLICATIONS_S03",
+                "source_file": "doc_06_moh_safety_and_complications.md",
+                "section_or_page": "Mục 3: Mục 2. Nguyên tắc an toàn y tế và giới hạn của hệ ",
+                "similarity_score": 0.6128,
+                "excerpt": "chín, đường huyết đo được > 300 mg/dL hoặc < 70 mg/dL không hồi phục), bệnh nhân phải liên hệ cơ sở y tế gần nhất ngay lập tức."
+              },
+              {
+                "doc_id": "DOC_03_WHO_SCREENING_PREVENTION_S02",
+                "source_file": "doc_03_who_screening_prevention.md",
+                "section_or_page": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ",
+                "similarity_score": 0.5283,
+                "excerpt": "t áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride > 250 mg/dL).\n- Phụ nữ có tiền sử đái tháo đường thai kỳ hoặc hội chứng buồng trứng đa nang (PCOS)."
+              }
+            ],
+            "primary_source": "doc_04_niddk_hypoglycemia_emergency.md",
+            "primary_section": "Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết"
+          },
+          "confidence": 0.6142,
+          "evidence": [
+            {
+              "doc_id": "DOC_04_NIDDK_HYPOGLYCEMIA_EMERGENCY_S03",
+              "source_file": "doc_04_niddk_hypoglycemia_emergency.md",
+              "section_or_page": "Mục 3: Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết",
+              "similarity_score": 0.6142,
+              "excerpt": "## Mục 2. Quy tắc 15-15 trong xử trí hạ đường huyết\nKhi bệnh nhân còn tỉnh táo và đo đường huyết < 70 mg/dL, áp dụng ngay Quy tắc 15-15:\n1. Dùng ngay 15 gram carbohydrate tác dụng nhanh: uống 1/2 cốc nước ép trái cây (khoảng 120ml), 1/2 lon nước ngọt..."
+            },
+            {
+              "doc_id": "DOC_06_MOH_SAFETY_AND_COMPLICATIONS_S03",
+              "source_file": "doc_06_moh_safety_and_complications.md",
+              "section_or_page": "Mục 3: Mục 2. Nguyên tắc an toàn y tế và giới hạn của hệ ",
+              "similarity_score": 0.6128,
+              "excerpt": "chín, đường huyết đo được > 300 mg/dL hoặc < 70 mg/dL không hồi phục), bệnh nhân phải liên hệ cơ sở y tế gần nhất ngay lập tức."
+            },
+            {
+              "doc_id": "DOC_03_WHO_SCREENING_PREVENTION_S02",
+              "source_file": "doc_03_who_screening_prevention.md",
+              "section_or_page": "Mục 2: Mục 1. Đối tượng nguy cơ cao cần sàng lọc định kỳ",
+              "similarity_score": 0.5283,
+              "excerpt": "t áp >= 140/90 mmHg hoặc đang điều trị thuốc hạ áp).\n- Tiền sử rối loạn lipid máu (HDL-C < 35 mg/dL hoặc Triglyceride > 250 mg/dL).\n- Phụ nữ có tiền sử đái tháo đường thai kỳ hoặc hội chứng buồng trứng đa nang (PCOS)."
+            }
+          ],
+          "flags": [
+            "PASS",
+            "EVIDENCE_ATTACHED"
+          ],
+          "trace": {
+            "latency_ms": 15.72,
+            "chunks_retrieved": 3,
+            "top_similarity_score": 0.6142,
+            "generation_mode": "extractive_verbatim"
+          }
+        },
+        "recommendation_response": {
+          "agent": "RecommendationAgent",
+          "content": {
+            "recommendation_summary": "Dinh dưỡng: LOW Carb | Vận động: NONE | Nhắc đo: Bình thường",
+            "state_mapping": {
+              "state_id": 0,
+              "glucose_evaluated_mg_dl": 52.0,
+              "glucose_evaluated_mmol_l": 2.89,
+              "time_slot": "Sáng (Trước/Sau ăn)"
+            },
+            "lifestyle_plan": {
+              "nutrition": {
+                "level": "MODERATE",
+                "label": "Bữa ăn mức tinh bột MODERATE (Agent An toàn hiệu chỉnh: Cấm Low Carb khi đường huyết cận hạ)",
+                "rationale": "Đường huyết hiện tại (52.0 mg/dL) ở mức cao; khuyến nghị giảm tinh bột nhanh để tránh làm đường huyết tăng thêm."
+              },
+              "exercise": {
+                "level": "NONE",
+                "label": "Tạm nghỉ thể lực",
+                "rationale": "Đường huyết thấp (<100 mg/dL); tạm thời NGHỈ NGƠI, cấm tập thể dục nhằm loại bỏ nguy cơ hạ đường huyết nguy hiểm."
+              },
+              "monitoring": {
+                "required": true,
+                "label": "Bắt buộc đo lại đường huyết (Agent An toàn kích hoạt do chỉ số bất thường)",
+                "rationale": "Chỉ số đường huyết trong khoảng an toàn; duy trì lịch theo dõi đường huyết định kỳ thông thường."
+              }
+            },
+            "action_id": 0,
+            "disclaimer": "Đề xuất lối sống chỉ mang tính hỗ trợ giáo dục sức khỏe, KHÔNG thay thế phác đồ điều trị của bác sĩ chuyên khoa."
+          },
+          "confidence": 0.95,
+          "evidence": [
+            {
+              "policy_source": "Tabular Q-Learning (NB03)",
+              "state_id": 0,
+              "action_id": 0,
+              "action_schema": "Carb:LOW | Ex:NONE | Remind:False"
+            }
+          ],
+          "flags": [
+            "PASS",
+            "LIFESTYLE_RECOMMENDATION_ACTIVE",
+            "SAFETY_MODIFIED"
+          ],
+          "trace": {
+            "latency_ms": 0.02,
+            "state_id": 0,
+            "action_id": 0,
+            "status": "success",
+            "safety_modifications": [
+              "Kích hoạt cảnh báo cấp cứu khẩn cấp ưu tiên lên đầu toàn bộ phản hồi.",
+              "RULE_04: Nâng khẩu phần tinh bột từ LOW lên MODERATE vì đường huyết < 80 mg/dL.",
+              "RULE_05: Kích hoạt cờ nhắc đo đường huyết bắt buộc."
+            ]
+          }
+        },
+        "prediction_response": null,
+        "trace": {
+          "consultation_id": "63937d64-bfab-4f70-ab91-37a2ebc676e7",
+          "created_at": "2026-11-05T22:46:04.193730",
+          "intent": "emergency",
+          "steps": [
+            {
+              "agent": "RecommendationAgent",
+              "duration_ms": 0.03,
+              "status": "success",
+              "flags": [
+                "PASS",
+                "LIFESTYLE_RECOMMENDATION_ACTIVE",
+                "SAFETY_MODIFIED"
+              ]
+            },
+            {
+              "agent": "KnowledgeAgent",
+              "duration_ms": 15.76,
+              "status": "success",
+              "flags": [
+                "PASS",
+                "EVIDENCE_ATTACHED"
+              ]
+            },
+            {
+              "agent": "SafetyAgent",
+              "duration_ms": 0.08,
+              "status": "VETO",
+              "rules_triggered": [
+                "RULE_05_TRIGGERED",
+                "RULE_04_HYPO_REQUIRE_CARB",
+                "RULE_01_TRIGGERED",
+                "RULE_05_MANDATORY_MONITORING",
+                "EMERGENCY_HYPOGLYCEMIA"
+              ],
+              "modifications": [
+                "Kích hoạt cảnh báo cấp cứu khẩn cấp ưu tiên lên đầu toàn bộ phản hồi.",
+                "RULE_04: Nâng khẩu phần tinh bột từ LOW lên MODERATE vì đường huyết < 80 mg/dL.",
+                "RULE_05: Kích hoạt cờ nhắc đo đường huyết bắt buộc."
+              ]
+            }
+          ],
+          "agents_called": [
+            "RecommendationAgent",
+            "KnowledgeAgent",
+            "SafetyAgent"
+          ],
+          "rules_triggered": [
+            "RULE_05_TRIGGERED",
+            "RULE_04_HYPO_REQUIRE_CARB",
+            "RULE_01_TRIGGERED",
+            "RULE_05_MANDATORY_MONITORING",
+            "EMERGENCY_HYPOGLYCEMIA"
+          ],
+          "sources_cited": [
+            "doc_04_niddk_hypoglycemia_emergency.md",
+            "doc_06_moh_safety_and_complications.md",
+            "doc_03_who_screening_prevention.md"
+          ],
+          "total_latency_ms": 15.93
+        }
+      },
+      "measured_client_latency_ms": 16.02
+    }
+  ]
+}

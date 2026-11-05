@@ -32,6 +32,7 @@ try:
 
     # KỊCH BẢN 1: Hỏi kiến thức chuẩn
     print("[2/5] Thực hiện Kịch bản 1: Hỏi tiêu chuẩn chẩn đoán...")
+    wait.until(EC.presence_of_element_located((By.CLASS_NAME, "btn-sample-row")))
     sample_btns = driver.find_elements(By.CLASS_NAME, "btn-sample-row")
     if sample_btns:
         sample_btns[0].click()  # Mẫu 1
@@ -42,7 +43,8 @@ try:
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "sheet-section")))
         time.sleep(1)
         driver.save_screenshot("reports/figures/screenshot_scenario_1.png")
-        print(" -> Lưu tại: reports/figures/screenshot_scenario_1.png")
+        driver.save_screenshot("reports/figures/ui_scenario_1.png")
+        print(" -> Lưu tại: reports/figures/ui_scenario_1.png")
 
     # KỊCH BẢN 2: Hồ sơ chỉ số đầy đủ
     print("[3/5] Thực hiện Kịch bản 2: Hồ sơ chỉ số đầy đủ...")
@@ -55,7 +57,8 @@ try:
         # Chờ hoàn thành
         time.sleep(2)
         driver.save_screenshot("reports/figures/screenshot_scenario_2.png")
-        print(" -> Lưu tại: reports/figures/screenshot_scenario_2.png")
+        driver.save_screenshot("reports/figures/ui_scenario_2.png")
+        print(" -> Lưu tại: reports/figures/ui_scenario_2.png")
 
     # KỊCH BẢN 3: Cấp cứu hạ đường huyết
     print("[4/5] Thực hiện Kịch bản 3: Dấu hiệu hạ đường huyết cấp cứu...")
@@ -68,16 +71,11 @@ try:
         # Chờ hoàn thành
         time.sleep(2)
         driver.save_screenshot("reports/figures/screenshot_scenario_3.png")
-        print(" -> Lưu tại: reports/figures/screenshot_scenario_3.png")
+        driver.save_screenshot("reports/figures/ui_scenario_3.png")
+        print(" -> Lưu tại: reports/figures/ui_scenario_3.png")
 
     # MÀN HÌNH LỖI 503
     print("[5/5] Kiểm tra và chụp màn hình hiển thị lỗi 503...")
-    # Điều hướng với lỗi giả lập hoặc gọi JavaScript để kích hoạt error state trong React
-    driver.execute_script("""
-        // Gọi dispatch lỗi trực tiếp hoặc render ErrorState
-        window.__TEST_TRIGGER_503__ = true;
-    """)
-    # Tạo một file HTML testbed mô phỏng hiển thị ErrorState 503 nếu cần, hoặc tiêm mã hiển thị
     driver.execute_script("""
         const errBox = document.createElement('div');
         errBox.id = 'injected-503-test';
@@ -105,7 +103,8 @@ try:
     """)
     time.sleep(1)
     driver.save_screenshot("reports/figures/screenshot_error_503.png")
-    print(" -> Lưu tại: reports/figures/screenshot_error_503.png")
+    driver.save_screenshot("reports/figures/ui_error_503.png")
+    print(" -> Lưu tại: reports/figures/ui_error_503.png")
 
 finally:
     driver.quit()

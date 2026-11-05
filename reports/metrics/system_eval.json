@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "evaluation_time": "2026-11-05T22:50:49.208209",
+    "random_seed": 42,
+    "rag_questions_count": 35,
+    "safety_cases_count": 36,
+    "variants_tested": [
+      "V1_Full",
+      "V2_NoRAG",
+      "V3_NoSafety",
+      "V4_NoRL"
+    ]
+  },
+  "rag_evaluation": {
+    "V1_Full": {
+      "hit_at_1_pct": 68.57,
+      "hit_at_3_pct": 85.71,
+      "mrr": 0.7571,
+      "citation_accuracy_pct": 91.43,
+      "mean_cosine_similarity": 0.7113,
+      "mean_latency_ms": 17.08
+    },
+    "V2_NoRAG": {
+      "hit_at_1_pct": 0.0,
+      "hit_at_3_pct": 0.0,
+      "mrr": 0.0,
+      "citation_accuracy_pct": 0.0,
+      "mean_cosine_similarity": 0.0,
+      "mean_latency_ms": 0.03
+    },
+    "V3_NoSafety": {
+      "hit_at_1_pct": 68.57,
+      "hit_at_3_pct": 85.71,
+      "mrr": 0.7571,
+      "citation_accuracy_pct": 91.43,
+      "mean_cosine_similarity": 0.7113,
+      "mean_latency_ms": 18.52
+    },
+    "V4_NoRL": {
+      "hit_at_1_pct": 68.57,
+      "hit_at_3_pct": 85.71,
+      "mrr": 0.7571,
+      "citation_accuracy_pct": 91.43,
+      "mean_cosine_similarity": 0.7113,
+      "mean_latency_ms": 18.54
+    }
+  },
+  "safety_evaluation": {
+    "V1_Full": {
+      "safety_violation_rate_pct": 2.78,
+      "emergency_sensitivity_pct": 100.0,
+      "emergency_miss_rate_pct": 0.0,
+      "normal_specificity_pct": 100.0,
+      "mean_clinical_reward": 23.72,
+      "rl_safety_conflict_rate_pct": 50.0,
+      "latency": {
+        "mean_ms": 16.66,
+        "p50_ms": 16.42,
+        "p95_ms": 20.0
+      }
+    },
+    "V2_NoRAG": {
+      "safety_violation_rate_pct": 16.67,
+      "emergency_sensitivity_pct": 100.0,
+      "emergency_miss_rate_pct": 0.0,
+      "normal_specificity_pct": 100.0,
+      "mean_clinical_reward": 22.61,
+      "rl_safety_conflict_rate_pct": 50.0,
+      "latency": {
+        "mean_ms": 0.08,
+        "p50_ms": 0.08,
+        "p95_ms": 0.11
+      }
+    },
+    "V3_NoSafety": {
+      "safety_violation_rate_pct": 50.0,
+      "emergency_sensitivity_pct": 0.0,
+      "emergency_miss_rate_pct": 100.0,
+      "normal_specificity_pct": 100.0,
+      "mean_clinical_reward": 12.19,
+      "rl_safety_conflict_rate_pct": 0.0,
+      "latency": {
+        "mean_ms": 16.53,
+        "p50_ms": 16.65,
+        "p95_ms": 19.79
+      }
+    },
+    "V4_NoRL": {
+      "safety_violation_rate_pct": 2.78,
+      "emergency_sensitivity_pct": 100.0,
+      "emergency_miss_rate_pct": 0.0,
+      "normal_specificity_pct": 100.0,
+      "mean_clinical_reward": 24.56,
+      "rl_safety_conflict_rate_pct": 58.33,
+      "latency": {
+        "mean_ms": 16.7,
+        "p50_ms": 16.15,
+        "p95_ms": 21.25
+      }
+    }
+  },
+  "latency_evaluation": {},
+  "reward_evaluation": {}
+}
