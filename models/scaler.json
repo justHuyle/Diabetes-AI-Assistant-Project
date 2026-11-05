@@ -1,0 +1,75 @@
+{
+    "framework": "scikit-learn ColumnTransformer",
+    "feature_dimensions_input": 13,
+    "feature_dimensions_transformed": 17,
+    "numerical_features": [
+        "age",
+        "bmi",
+        "hbA1c_level",
+        "blood_glucose_level"
+    ],
+    "scaler_mean": [
+        41.858765,
+        27.297406,
+        5.526093,
+        138.044958
+    ],
+    "scaler_scale": [
+        22.520828,
+        6.614157,
+        1.070871,
+        40.660407
+    ],
+    "scaler_var": [
+        507.18769,
+        43.747075,
+        1.146765,
+        1653.268672
+    ],
+    "categorical_features": [
+        "gender",
+        "smoking_history"
+    ],
+    "categories_mapping": {
+        "gender": [
+            "Female",
+            "Male"
+        ],
+        "smoking_history": [
+            "No Info",
+            "current",
+            "ever",
+            "former",
+            "never",
+            "not current"
+        ]
+    },
+    "binary_features": [
+        "hypertension",
+        "heart_disease",
+        "race:AfricanAmerican",
+        "race:Asian",
+        "race:Caucasian",
+        "race:Hispanic",
+        "race:Other"
+    ],
+    "transformed_feature_names": [
+        "num__age",
+        "num__bmi",
+        "num__hbA1c_level",
+        "num__blood_glucose_level",
+        "cat__gender_Male",
+        "cat__smoking_history_current",
+        "cat__smoking_history_ever",
+        "cat__smoking_history_former",
+        "cat__smoking_history_never",
+        "cat__smoking_history_not current",
+        "bin__hypertension",
+        "bin__heart_disease",
+        "bin__race:AfricanAmerican",
+        "bin__race:Asian",
+        "bin__race:Caucasian",
+        "bin__race:Hispanic",
+        "bin__race:Other"
+    ]
+}

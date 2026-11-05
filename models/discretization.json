@@ -1,0 +1,195 @@
+{
+    "project": "Hệ đa agent hỗ trợ tư vấn cho bệnh nhân tiểu đường - NB03 Discretization Contract",
+    "version": "1.0.0",
+    "target_module": "Lifestyle Recommendation Agent (NB03)",
+    "state_space_discretization": {
+        "cardinality": 24,
+        "mapping_formula": "state_id = glucose_bin * 4 + time_bin",
+        "glucose_bins": [
+            {
+                "bin_id": 0,
+                "label": "< 70 mg/dL",
+                "clinical_category": "Hạ đường huyết cấp tính (Severe Hypoglycemia)",
+                "range": {
+                    "min": 0.0,
+                    "max": 70.0,
+                    "inclusive_left": true,
+                    "inclusive_right": false
+                },
+                "clinical_safety_rule": "Cấm vận động thể lực (RULE_01), cấm cắt tinh bột (RULE_04), bắt buộc nhắc đo đường huyết (RULE_05)"
+            },
+            {
+                "bin_id": 1,
+                "label": "70 - 99 mg/dL",
+                "clinical_category": "Cận bình thường thấp (Borderline Low)",
+                "range": {
+                    "min": 70.0,
+                    "max": 100.0,
+                    "inclusive_left": true,
+                    "inclusive_right": false
+                },
+                "clinical_safety_rule": "Cấm vận động thể lực (RULE_01), ưu tiên ăn mức tinh bột vừa phải (Moderate Carb)"
+            },
+            {
+                "bin_id": 2,
+                "label": "100 - 140 mg/dL",
+                "clinical_category": "Khoảng mục tiêu tối ưu (Target Range - TIR)",
+                "range": {
+                    "min": 100.0,
+                    "max": 140.0,
+                    "inclusive_left": true,
+                    "inclusive_right": true
+                },
+                "clinical_safety_rule": "Duy trì lối sống cân bằng, khuyến khích rèn luyện thể lực vừa (MODERATE Exercise)"
+            },
+            {
+                "bin_id": 3,
+                "label": "141 - 180 mg/dL",
+                "clinical_category": "Đỉnh sau ăn chấp nhận được (Acceptable Postprandial)",
+                "range": {
+                    "min": 140.0,
+                    "max": 180.0,
+                    "inclusive_left": false,
+                    "inclusive_right": true
+                },
+                "clinical_safety_rule": "Cắt giảm tinh bột bữa kế tiếp (LOW Carb), vận động thể lực vừa để hỗ trợ điều hòa đường huyết"
+            },
+            {
+                "bin_id": 4,
+                "label": "181 - 250 mg/dL",
+                "clinical_category": "Tăng đường huyết cao (Elevated Hyperglycemia)",
+                "range": {
+                    "min": 180.0,
+                    "max": 250.0,
+                    "inclusive_left": false,
+                    "inclusive_right": true
+                },
+                "clinical_safety_rule": "Cấm ăn High Carb (RULE_03), ưu tiên Low Carb, vận động vừa và nhắc đo đường huyết"
+            },
+            {
+                "bin_id": 5,
+                "label": "> 250 mg/dL",
+                "clinical_category": "Tăng đường huyết rất cao (Severe Hyperglycemia / DKA Risk)",
+                "range": {
+                    "min": 250.0,
+                    "max": 1000.0,
+                    "inclusive_left": false,
+                    "inclusive_right": true
+                },
+                "clinical_safety_rule": "Cấm vận động thể lực (RULE_02: tránh nguy cơ toan ceton), cấm ăn High Carb (RULE_03), bắt buộc nhắc đo (RULE_05)"
+            }
+        ],
+        "time_slot_bins": [
+            {
+                "time_bin": 0,
+                "name": "Sáng (1)",
+                "description": "Thời điểm buổi sáng trước/sau bữa sáng"
+            },
+            {
+                "time_bin": 1,
+                "name": "Trưa (2)",
+                "description": "Thời điểm buổi trưa trước/sau bữa trưa"
+            },
+            {
+                "time_bin": 2,
+                "name": "Tối (3)",
+                "description": "Thời điểm buổi tối trước/sau bữa tối"
+            },
+            {
+                "time_bin": 3,
+                "name": "Đêm (4)",
+                "description": "Thời điểm đêm trước khi đi ngủ"
+            }
+        ]
+    },
+    "action_space_definitions": {
+        "cardinality": 12,
+        "actions": [
+            {
+                "action_id": 0,
+                "carb": "LOW",
+                "exercise": "NONE",
+                "remind": false,
+                "label": "Carb:LOW | Ex:NONE | Remind:False"
+            },
+            {
+                "action_id": 1,
+                "carb": "LOW",
+                "exercise": "NONE",
+                "remind": true,
+                "label": "Carb:LOW | Ex:NONE | Remind:True"
+            },
+            {
+                "action_id": 2,
+                "carb": "LOW",
+                "exercise": "MODERATE",
+                "remind": false,
+                "label": "Carb:LOW | Ex:MODERATE | Remind:False"
+            },
+            {
+                "action_id": 3,
+                "carb": "LOW",
+                "exercise": "MODERATE",
+                "remind": true,
+                "label": "Carb:LOW | Ex:MODERATE | Remind:True"
+            },
+            {
+                "action_id": 4,
+                "carb": "MODERATE",
+                "exercise": "NONE",
+                "remind": false,
+                "label": "Carb:MODERATE | Ex:NONE | Remind:False"
+            },
+            {
+                "action_id": 5,
+                "carb": "MODERATE",
+                "exercise": "NONE",
+                "remind": true,
+                "label": "Carb:MODERATE | Ex:NONE | Remind:True"
+            },
+            {
+                "action_id": 6,
+                "carb": "MODERATE",
+                "exercise": "MODERATE",
+                "remind": false,
+                "label": "Carb:MODERATE | Ex:MODERATE | Remind:False"
+            },
+            {
+                "action_id": 7,
+                "carb": "MODERATE",
+                "exercise": "MODERATE",
+                "remind": true,
+                "label": "Carb:MODERATE | Ex:MODERATE | Remind:True"
+            },
+            {
+                "action_id": 8,
+                "carb": "HIGH",
+                "exercise": "NONE",
+                "remind": false,
+                "label": "Carb:HIGH | Ex:NONE | Remind:False"
+            },
+            {
+                "action_id": 9,
+                "carb": "HIGH",
+                "exercise": "NONE",
+                "remind": true,
+                "label": "Carb:HIGH | Ex:NONE | Remind:True"
+            },
+            {
+                "action_id": 10,
+                "carb": "HIGH",
+                "exercise": "MODERATE",
+                "remind": false,
+                "label": "Carb:HIGH | Ex:MODERATE | Remind:False"
+            },
+            {
+                "action_id": 11,
+                "carb": "HIGH",
+                "exercise": "MODERATE",
+                "remind": true,
+                "label": "Carb:HIGH | Ex:MODERATE | Remind:True"
+            }
+        ]
+    },
+    "academic_disclaimer": "Mô hình và chính sách chỉ phục vụ mục đích nghiên cứu học thuật, không có giá trị chẩn đoán hoặc thay thế phác đồ điều trị lâm sàng."
+}

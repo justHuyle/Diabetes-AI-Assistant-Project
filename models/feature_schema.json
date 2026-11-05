@@ -1,0 +1,133 @@
+{
+    "project": "Hệ đa agent tư vấn bệnh nhân tiểu đường - NB01 Classification Contract",
+    "model_target": "diabetes (0: Nguy cơ thấp/Không mắc, 1: Nguy cơ cao/Mắc bệnh)",
+    "decision_threshold_f1_optimal": 0.87,
+    "input_features_schema": [
+        {
+            "name": "age",
+            "type": "float",
+            "unit": "tuổi (năm)",
+            "valid_range": {
+                "min": 0.08,
+                "max": 120.0
+            },
+            "description": "Tuổi của bệnh nhân tại thời điểm khảo sát"
+        },
+        {
+            "name": "bmi",
+            "type": "float",
+            "unit": "kg/m²",
+            "valid_range": {
+                "min": 10.0,
+                "max": 100.0
+            },
+            "description": "Chỉ số khối cơ thể (Body Mass Index)"
+        },
+        {
+            "name": "hbA1c_level",
+            "type": "float",
+            "unit": "%",
+            "valid_range": {
+                "min": 3.0,
+                "max": 18.0
+            },
+            "description": "Chỉ số đường huyết gắn Hemoglobin A1c (ngưỡng ADA >= 6.5% là đái tháo đường)"
+        },
+        {
+            "name": "blood_glucose_level",
+            "type": "float",
+            "unit": "mg/dL",
+            "valid_range": {
+                "min": 40.0,
+                "max": 600.0
+            },
+            "description": "Nồng độ glucose huyết ngẫu nhiên/lúc đói"
+        },
+        {
+            "name": "gender",
+            "type": "string",
+            "valid_values": [
+                "Female",
+                "Male"
+            ],
+            "description": "Giới tính sinh học của bệnh nhân"
+        },
+        {
+            "name": "smoking_history",
+            "type": "string",
+            "valid_values": [
+                "No Info",
+                "never",
+                "former",
+                "current",
+                "not current",
+                "ever"
+            ],
+            "description": "Tiền sử và thói quen hút thuốc lá"
+        },
+        {
+            "name": "hypertension",
+            "type": "int",
+            "valid_values": [
+                0,
+                1
+            ],
+            "description": "Tiền sử chẩn đoán bệnh tăng huyết áp (0: Không, 1: Có)"
+        },
+        {
+            "name": "heart_disease",
+            "type": "int",
+            "valid_values": [
+                0,
+                1
+            ],
+            "description": "Tiền sử bệnh lý tim mạch (0: Không, 1: Có)"
+        },
+        {
+            "name": "race:AfricanAmerican",
+            "type": "int",
+            "valid_values": [
+                0,
+                1
+            ],
+            "description": "Chủng tộc người Mỹ gốc Phi"
+        },
+        {
+            "name": "race:Asian",
+            "type": "int",
+            "valid_values": [
+                0,
+                1
+            ],
+            "description": "Chủng tộc người gốc Á"
+        },
+        {
+            "name": "race:Caucasian",
+            "type": "int",
+            "valid_values": [
+                0,
+                1
+            ],
+            "description": "Chủng tộc người da trắng"
+        },
+        {
+            "name": "race:Hispanic",
+            "type": "int",
+            "valid_values": [
+                0,
+                1
+            ],
+            "description": "Chủng tộc người gốc Tây Ban Nha/Mỹ Latinh"
+        },
+        {
+            "name": "race:Other",
+            "type": "int",
+            "valid_values": [
+                0,
+                1
+            ],
+            "description": "Chủng tộc khác"
+        }
+    ],
+    "academic_disclaimer": "Mô hình chỉ phục vụ dự báo rủi ro thống kê trong khuôn khổ đồ án học thuật, không có giá trị chẩn đoán lâm sàng độc lập."
+}
