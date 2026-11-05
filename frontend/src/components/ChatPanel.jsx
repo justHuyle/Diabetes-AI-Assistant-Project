@@ -166,18 +166,43 @@ export default function ChatPanel({
             }
 
             if (msg.sender === 'assistant' && msg.result) {
+              const isChitchat = msg.result.intent === 'chitchat';
+              const chitchatText =
+                msg.result.knowledge_response?.content?.answer ||
+                msg.result.summary;
+
               return (
                 <div key={msg.id} className="chat-message-row assistant-row">
                   <div className="chat-bubble assistant-bubble">
                     <div className="bubble-meta">
                       <span className="sender-badge assistant-badge">
-                        Hệ Thống Hội Chẩn Đa Tác Tử
+                        {isChitchat
+                          ? 'Trợ Lý AI Lâm Sàng'
+                          : 'Hệ Thống Hội Chẩn Đa Tác Tử'}
                       </span>
                       <span className="message-time">{msg.timestamp}</span>
                     </div>
 
-                    {/* Nhúng toàn bộ kết quả phân tích đa tác tử */}
-                    <ResultsPanel result={msg.result} isChat={true} />
+                    {isChitchat ? (
+                      <div className="chitchat-bubble-content">
+                        <div className="chitchat-text-body">
+                          {chitchatText.split('\n\n').map((paragraph, pIdx) => (
+                            <p key={pIdx} style={{ margin: '0 0 10px 0' }}>
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                        <div className="chitchat-guide-footer">
+                          <span className="hint-icon">💡</span>
+                          <span>
+                            Gợi ý: Bạn có thể nhập các chỉ số xét nghiệm ở cột bên trái hoặc hỏi về tiêu chuẩn đái tháo đường ADA/BYT để nhận phân tích chuyên sâu.
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Nhúng toàn bộ kết quả phân tích đa tác tử */
+                      <ResultsPanel result={msg.result} isChat={true} />
+                    )}
                   </div>
                 </div>
               );

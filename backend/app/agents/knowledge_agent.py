@@ -69,6 +69,51 @@ class KnowledgeAgent(BaseAgent):
             # Fallback sang chế độ extractive nếu lỗi kết nối mạng hoặc sai khóa API
             return None
 
+    def _call_gemini_conversational(self, query: str) -> Optional[str]:
+        """Gọi Gemini API để trò chuyện tự nhiên, lịch sự và hướng dẫn người dùng về bệnh đái tháo đường."""
+        if not self.api_key:
+            return None
+        try:
+            from google import genai
+            from google.genai import types
+            client = genai.Client(api_key=self.api_key, http_options=types.HttpOptions(timeout=10000))
+
+            system_instruction = (
+                "Bạn là Trợ lý AI y tế thông minh chuyên sâu về bệnh Đái tháo đường (Hệ thống Hội chẩn Đa Tác Tử - PTIT). "
+                "Người dùng đang đặt câu hỏi xã giao hoặc câu hỏi nằm ngoài phạm vi tài liệu chuyên môn về đái tháo đường. "
+                "HƯỚNG DẪN TRẢ LỜI: "
+                "1. Chào hỏi và phản hồi câu hỏi của người dùng một cách tự nhiên, lịch sự, thân thiện và súc tích (1-3 câu). "
+                "2. Sau đó, khéo léo giới thiệu rằng chuyên môn chính của bạn là hỗ trợ tư vấn chỉ số đường huyết, chế độ dinh dưỡng, vận động khoa học và đánh giá nguy cơ đái tháo đường theo chuẩn Bộ Y tế & ADA. "
+                "3. Hướng dẫn người dùng có thể nhập các chỉ số xét nghiệm ở cột bên trái hoặc đặt các câu hỏi về tiểu đường để được hỗ trợ chuyên sâu."
+            )
+
+            prompt = f"{system_instruction}\n\nCÂU HỎI NGƯỜI DÙNG: {query}"
+
+            models_to_try = ["gemini-3.5-flash-lite", "gemini-flash-lite-latest"]
+            for model_id in models_to_try:
+                try:
+                    resp = client.models.generate_content(
+                        model=model_id,
+                        contents=prompt
+                    )
+                    if resp:
+                        text_val = ""
+                        if hasattr(resp, "text") and resp.text:
+                            text_val = resp.text.strip()
+                        elif hasattr(resp, "candidates") and resp.candidates:
+                            for cand in resp.candidates:
+                                if hasattr(cand, "content") and cand.content.parts:
+                                    for part in cand.content.parts:
+                                        if hasattr(part, "text") and part.text:
+                                            text_val += part.text
+                        if text_val:
+                            return text_val.strip()
+                except Exception:
+                    continue
+            return None
+        except Exception:
+            return None
+
     def _format_extractive_answer(self, chunks: List[dict]) -> str:
         """Định dạng câu trả lời trích xuất nguyên văn khi không có API key."""
         lines = [
@@ -102,23 +147,55 @@ class KnowledgeAgent(BaseAgent):
 
         # 3. Kiểm định chất lượng căn cứ y khoa (Similarity Threshold Guardrail)
         if not retrieved_chunks or retrieved_chunks[0]["similarity_score"] < self.similarity_threshold:
+            allow_chitchat = bool(request.get("allow_chitchat", False))
             elapsed_ms = (time.perf_counter() - start_time) * 1000
             max_score = retrieved_chunks[0]["similarity_score"] if retrieved_chunks else 0.0
+
+            # Nếu không bật chitchat -> từ chối an toàn để bảo đảm nguyên tắc RAG
+            if not allow_chitchat:
+                return AgentResponse(
+                    agent=self.name,
+                    content={
+                        "message": "Không đủ căn cứ y khoa đáng tin cậy để giải đáp câu hỏi này.",
+                        "explanation": "Câu hỏi nằm ngoài phạm vi kho tài liệu chuẩn mực về đái tháo đường của Bộ Y tế và ADA (điểm tương đồng ngữ nghĩa quá thấp).",
+                        "max_similarity_score": round(max_score, 4),
+                        "threshold_required": self.similarity_threshold
+                    },
+                    confidence=round(max_score, 4),
+                    evidence=[],
+                    flags=["OUT_OF_SCOPE", "REFUSED_GROUNDING"],
+                    trace={
+                        "latency_ms": round(elapsed_ms, 2),
+                        "top_score": round(max_score, 4),
+                        "status": "refused_out_of_scope"
+                    }
+                )
+
+            # Khi cho phép hội thoại xã giao (Chitchat): gọi Gemini trả lời tự nhiên
+            chitchat_answer = self._call_gemini_conversational(query)
+            if not chitchat_answer:
+                chitchat_answer = (
+                    "Xin chào! Tôi là Trợ lý AI y tế chuyên sâu về bệnh Đái tháo đường của PTIT. "
+                    "Câu hỏi của bạn nằm ngoài tài liệu chuyên môn về tiểu đường. Bạn có thể hỏi tôi về tiêu chuẩn chẩn đoán, "
+                    "đường huyết, chế độ dinh dưỡng, vận động hoặc nhập các chỉ số ở cột bên trái để nhận tư vấn lâm sàng nhé!"
+                )
+
             return AgentResponse(
                 agent=self.name,
                 content={
-                    "message": "Không đủ căn cứ y khoa đáng tin cậy để giải đáp câu hỏi này.",
-                    "explanation": "Câu hỏi nằm ngoài phạm vi kho tài liệu chuẩn mực về đái tháo đường của Bộ Y tế và ADA (điểm tương đồng ngữ nghĩa quá thấp).",
-                    "max_similarity_score": round(max_score, 4),
-                    "threshold_required": self.similarity_threshold
+                    "answer": chitchat_answer,
+                    "mode": "conversational_chitchat",
+                    "citations": [],
+                    "message": chitchat_answer,
+                    "explanation": "Phản hồi hội thoại tự nhiên của Trợ lý AI khi câu hỏi nằm ngoài tài liệu chuẩn về đái tháo đường."
                 },
                 confidence=round(max_score, 4),
                 evidence=[],
-                flags=["OUT_OF_SCOPE", "REFUSED_GROUNDING"],
+                flags=["PASS", "CONVERSATIONAL_CHITCHAT"],
                 trace={
                     "latency_ms": round(elapsed_ms, 2),
-                    "top_score": round(max_score, 4),
-                    "status": "refused_out_of_scope"
+                    "generation_mode": "conversational_chitchat",
+                    "status": "chitchat_handled"
                 }
             )
 

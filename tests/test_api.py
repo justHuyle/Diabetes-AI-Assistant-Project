@@ -142,6 +142,25 @@ def test_scenario_c_emergency_hyperglycemia_mmol(client):
 # 4. CA NGOÀI PHẠM VI (KÊ ĐƠN THUỐC / LIỀU LƯỢNG INSULIN)
 # ==============================================================================
 
+def test_scenario_chitchat_conversational_response(client):
+    """Kiểm tra tính năng trò chuyện tự nhiên (Chitchat) khi người dùng hỏi các câu hỏi xã giao."""
+    payload = {
+        "message": "Xin chào bạn, hôm nay thế nào?",
+        "metrics": {}
+    }
+    response = client.post("/api/consult", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data["intent"] == "chitchat"
+    assert data["status"] == "PASS"
+    assert data["knowledge_response"] is not None
+    k_ans = data["knowledge_response"]["content"]["answer"]
+    assert len(k_ans) > 20
+    # Phải có lời nhắc định hướng về chuyên môn đái tháo đường
+    assert "tiểu đường" in k_ans.lower() or "đái tháo đường" in k_ans.lower() or "đường huyết" in k_ans.lower()
+
+
 def test_scenario_out_of_scope_prescription_request(client):
     """Ca ngoài phạm vi: Người bệnh yêu cầu kê đơn hoặc chỉnh liều thuốc -> từ chối lịch sự và hướng tới bác sĩ."""
     payload = {

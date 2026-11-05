@@ -75,9 +75,26 @@ class CoordinatorAgent(BaseAgent):
         if has_metrics or any(kw in q_lower for kw in consult_keywords):
             return "clinical_consultation"
 
-        # 4. Hỏi đáp tri thức y khoa chuẩn (Knowledge Query)
-        if query.strip():
+        # 4. Phân biệt Hỏi đáp tri thức y khoa chuẩn (Knowledge Query) hay Hội thoại xã giao (Chitchat)
+        diabetes_keywords = [
+            "đái tháo đường", "tiểu đường", "đường huyết", "glucose", "hba1c", "insulin",
+            "chẩn đoán", "tiền đái tháo đường", "tiền tiểu đường", "toan ceton", "dinh dưỡng",
+            "tinh bột", "carb", "tập thể dục", "vận động", "ada", "bộ y tế", "5481",
+            "chỉ số", "xét nghiệm", "biến chứng", "lúc đói", "sau ăn"
+        ]
+        if any(dk in q_lower for dk in diabetes_keywords):
             return "knowledge_query"
+
+        chitchat_keywords = [
+            "chào", "hello", "hi", "hey", "bạn là ai", "bạn tên gì", "giúp được gì",
+            "thời tiết", "kể chuyện", "hôm nay ăn gì", "hài hước", "cảm ơn", "thanks", "tạm biệt", "bye"
+        ]
+        if any(ck in q_lower for ck in chitchat_keywords):
+            return "chitchat"
+
+        if query.strip():
+            # Mặc định phân loại chitchat để Gemini trò chuyện linh hoạt khi ngoài ngữ liệu đái tháo đường
+            return "chitchat"
 
         return "clinical_consultation"
 
@@ -158,14 +175,15 @@ class CoordinatorAgent(BaseAgent):
 
         if effective_query:
             t0 = time.perf_counter()
-            kb_resp = self.knowledge_agent.run({"query": effective_query, "top_k": 3})
+            allow_cc = (intent == "chitchat" or not can_predict)
+            kb_resp = self.knowledge_agent.run({"query": effective_query, "top_k": 3, "allow_chitchat": allow_cc})
             dur = (time.perf_counter() - t0) * 1000
             agent_responses["knowledge_agent"] = kb_resp
             trace_payload["agents_called"].append("KnowledgeAgent")
             trace_payload["steps"].append({
                 "agent": "KnowledgeAgent",
                 "duration_ms": round(dur, 2),
-                "status": "success" if "PASS" in kb_resp.flags else "refused",
+                "status": "success" if "PASS" in kb_resp.flags else ("chitchat" if "CONVERSATIONAL_CHITCHAT" in kb_resp.flags else "refused"),
                 "flags": kb_resp.flags
             })
             if kb_resp.evidence:
@@ -208,7 +226,10 @@ class CoordinatorAgent(BaseAgent):
         if "knowledge_agent" in agent_responses:
             k_ans = agent_responses["knowledge_agent"].content.get("answer")
             if k_ans:
-                summary_sections.append(f"📚 [TRI THỨC Y KHOA]\n{k_ans}")
+                if intent == "chitchat" or agent_responses["knowledge_agent"].content.get("mode") == "conversational_chitchat":
+                    summary_sections.append(f"💬 [HỘI THOẠI TRỢ LÝ]\n{k_ans}")
+                else:
+                    summary_sections.append(f"📚 [TRI THỨC Y KHOA]\n{k_ans}")
 
         if "recommendation_agent" in agent_responses:
             rec_c = agent_responses["recommendation_agent"].content
@@ -227,7 +248,14 @@ class CoordinatorAgent(BaseAgent):
                     f"📊 [DỰ BÁO RỦI RO]\n{p_c['risk_category']} (Xác suất rủi ro: {p_c['risk_probability']*100:.1f}%, Ngưỡng quyết định: {p_c['decision_threshold']})"
                 )
 
-        final_summary = "\n\n".join(summary_sections) if summary_sections else "Phiên tư vấn hoàn tất."
+        if intent == "chitchat" and "knowledge_agent" in agent_responses:
+            k_ans = agent_responses["knowledge_agent"].content.get("answer")
+            if k_ans and len(summary_sections) <= 1:
+                final_summary = k_ans
+            else:
+                final_summary = "\n\n".join(summary_sections) if summary_sections else "Phiên tư vấn hoàn tất."
+        else:
+            final_summary = "\n\n".join(summary_sections) if summary_sections else "Phiên tư vấn hoàn tất."
 
         # Lưu vết vào bộ nhớ để phục vụ endpoint GET /api/trace/{id}
         TRACE_STORE[consultation_id] = trace_payload
