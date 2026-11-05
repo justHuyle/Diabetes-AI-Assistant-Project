@@ -27,10 +27,10 @@ class SafetyAgent(BaseAgent):
 
         # Danh sách từ khóa cấm kê đơn hoặc yêu cầu chỉnh liều thuốc/insulin
         self.prescription_keywords = [
-            "kê đơn", "cho đơn thuốc", "uống thuốc gì", "mua thuốc gì",
-            "chỉnh liều", "tăng liều", "giảm liều", "đổi liều",
-            "tiêm bao nhiêu", "tiêm mấy đơn vị", "liều insulin", "tiêm insulin bao nhiêu",
-            "metformin mấy viên", "uống mấy viên", "đơn thuốc"
+            "kê đơn", "cho đơn thuốc", "đơn thuốc", "uống thuốc gì", "mua thuốc gì",
+            "chỉnh liều", "tăng liều", "giảm liều", "đổi liều", "liều thuốc", "liều tiêm", "liều uống",
+            "tiêm bao nhiêu", "tiêm mấy đơn vị", "liều insulin", "tiêm insulin", "tiêm insulin bao nhiêu",
+            "metformin mấy viên", "uống mấy viên", "uống metformin", "liều metformin"
         ]
 
     def _extract_glucose(self, metrics: Dict[str, Any]) -> Optional[float]:
@@ -74,7 +74,7 @@ class SafetyAgent(BaseAgent):
         """Phát hiện câu hỏi của người dùng có chứa yêu cầu kê đơn hoặc chỉnh liều thuốc không."""
         q_lower = query.lower()
         for kw in self.prescription_keywords:
-            if re.search(r'\b' + re.escape(kw) + r'\b', q_lower):
+            if kw in q_lower:
                 return True
         return False
 

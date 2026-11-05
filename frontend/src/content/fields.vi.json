@@ -1,0 +1,245 @@
+{
+  "project_title": "Hệ Đa Agent Hỗ Trợ Tư Vấn Cho Bệnh Nhân Tiểu Đường",
+  "project_subtitle": "Đồ án môn Phát triển các hệ thống thông minh - Học viện Công nghệ Bưu chính Viễn thông (PTIT)",
+  "priority_policy": "Thứ tự ưu tiên khi xung đột: An toàn (Safety) > Tri thức (Knowledge) > Đề xuất (Recommendation) > Dự đoán (Prediction)",
+  "groups": [
+    {
+      "id": "prediction_risk_factors",
+      "title": "Yếu tố nguy cơ cho mô hình dự đoán",
+      "target_agent": "PredictionAgent (MLP ONNX)",
+      "description": "Các đặc trưng nhân khẩu học và bệnh sử dùng để tính toán xác suất nguy cơ mắc bệnh đái tháo đường (ngưỡng quyết định tối ưu F1 = 0.87).",
+      "fields": [
+        {
+          "name": "age",
+          "label": "Tuổi bệnh nhân",
+          "type": "number",
+          "unit": "tuổi (năm)",
+          "min": 0.08,
+          "max": 120.0,
+          "step": 1,
+          "required": false,
+          "placeholder": "Ví dụ: 45",
+          "helper": "Độ tuổi tại thời điểm khảo sát (hợp lệ: 0.08 - 120 tuổi)",
+          "used_by": ["PredictionAgent"]
+        },
+        {
+          "name": "gender",
+          "label": "Giới tính sinh học",
+          "type": "select",
+          "options": [
+            { "value": "Female", "label": "Nữ" },
+            { "value": "Male", "label": "Nam" }
+          ],
+          "required": false,
+          "default": "Male",
+          "helper": "Giới tính sinh học (chuẩn hóa One-Hot bỏ Female)",
+          "used_by": ["PredictionAgent"]
+        },
+        {
+          "name": "bmi",
+          "label": "Chỉ số khối cơ thể (BMI)",
+          "type": "number",
+          "unit": "kg/m²",
+          "min": 10.0,
+          "max": 100.0,
+          "step": 0.1,
+          "required": false,
+          "placeholder": "Ví dụ: 26.5",
+          "helper": "BMI = Cân nặng (kg) / [Chiều cao (m)]² (bình thường: 18.5 - 24.9; thừa cân: 25 - 29.9)",
+          "used_by": ["PredictionAgent"]
+        },
+        {
+          "name": "hbA1c_level",
+          "label": "Chỉ số HbA1c",
+          "type": "number",
+          "unit": "%",
+          "min": 3.0,
+          "max": 18.0,
+          "step": 0.1,
+          "required": false,
+          "placeholder": "Ví dụ: 6.8",
+          "helper": "Tỷ lệ hemoglobin glycated (chuẩn ADA: bình thường < 5.7%, tiền tiểu đường 5.7-6.4%, tiểu đường >= 6.5%)",
+          "used_by": ["PredictionAgent"]
+        },
+        {
+          "name": "hypertension",
+          "label": "Tiền sử tăng huyết áp",
+          "type": "select",
+          "options": [
+            { "value": 0, "label": "0 - Không có tiền sử tăng huyết áp" },
+            { "value": 1, "label": "1 - Đã được chẩn đoán tăng huyết áp" }
+          ],
+          "required": false,
+          "default": 0,
+          "helper": "Huyết áp tâm thu >= 140 mmHg hoặc tâm trương >= 90 mmHg",
+          "used_by": ["PredictionAgent"]
+        },
+        {
+          "name": "heart_disease",
+          "label": "Tiền sử bệnh lý tim mạch",
+          "type": "select",
+          "options": [
+            { "value": 0, "label": "0 - Không có bệnh tim mạch" },
+            { "value": 1, "label": "1 - Có tiền sử bệnh tim mạch (mạch vành, suy tim...)" }
+          ],
+          "required": false,
+          "default": 0,
+          "helper": "Bệnh lý mạch vành, nhồi máu cơ tim hoặc bệnh tim do xơ vữa",
+          "used_by": ["PredictionAgent"]
+        },
+        {
+          "name": "smoking_history",
+          "label": "Tiền sử hút thuốc lá",
+          "type": "select",
+          "options": [
+            { "value": "never", "label": "Chưa từng hút thuốc (never)" },
+            { "value": "current", "label": "Đang hút thuốc (current)" },
+            { "value": "former", "label": "Đã cai thuốc (former)" },
+            { "value": "ever", "label": "Từng hút trong quá khứ (ever)" },
+            { "value": "not current", "label": "Hiện không hút (not current)" },
+            { "value": "No Info", "label": "Không có thông tin (No Info)" }
+          ],
+          "required": false,
+          "default": "never",
+          "helper": "Thói quen hút thuốc lá ảnh hưởng trực tiếp tới đề kháng insulin",
+          "used_by": ["PredictionAgent"]
+        },
+        {
+          "name": "race",
+          "label": "Chủng tộc / Dân tộc",
+          "type": "select",
+          "options": [
+            { "value": "race:Asian", "label": "Châu Á (Asian - Mặc định cho bệnh nhân Việt Nam)" },
+            { "value": "race:AfricanAmerican", "label": "Mỹ gốc Phi (African American)" },
+            { "value": "race:Caucasian", "label": "Da trắng (Caucasian)" },
+            { "value": "race:Hispanic", "label": "Mỹ Latinh (Hispanic)" },
+            { "value": "race:Other", "label": "Chủng tộc khác (Other)" }
+          ],
+          "required": false,
+          "default": "race:Asian",
+          "helper": "Người châu Á có ngưỡng BMI phát triển bệnh tiểu đường thấp hơn (theo WHO/ADA)",
+          "used_by": ["PredictionAgent"]
+        }
+      ]
+    },
+    {
+      "id": "safety_clinical_metrics",
+      "title": "Chỉ số đo cho luật an toàn",
+      "target_agent": "SafetyAgent (Hệ luật lâm sàng & Phủ quyết)",
+      "description": "Nồng độ glucose hiện tại là thông số sinh mạng quyết định phát hiện cấp cứu (hạ đường huyết < 70 hoặc toan ceton > 250 mg/dL) và kích hoạt hệ luật an toàn y khoa.",
+      "fields": [
+        {
+          "name": "blood_glucose_level",
+          "label": "Nồng độ đường huyết",
+          "type": "number",
+          "unit": "mg/dL",
+          "min": 40.0,
+          "max": 600.0,
+          "step": 0.1,
+          "required": true,
+          "placeholder": "Ví dụ: 135.0 mg/dL hoặc 7.5 mmol/L",
+          "helper": "Đường huyết mao mạch ngẫu nhiên hoặc lúc đói. Mức an toàn: 70 - 180 mg/dL (3.9 - 10.0 mmol/L).",
+          "used_by": ["SafetyAgent", "RecommendationAgent", "PredictionAgent"]
+        },
+        {
+          "name": "glucose_unit",
+          "label": "Đơn vị đo đường huyết",
+          "type": "unit_switch",
+          "options": ["mg/dL", "mmol/L"],
+          "default": "mg/dL",
+          "conversion_ratio": 18.0182,
+          "helper": "1 mmol/L ≈ 18.0182 mg/dL. Hệ thống hỗ trợ chuyển đổi tự động ngay trên giao diện.",
+          "used_by": ["SafetyAgent", "RecommendationAgent", "PredictionAgent"]
+        }
+      ]
+    },
+    {
+      "id": "lifestyle_context",
+      "title": "Thông tin cho đề xuất lối sống",
+      "target_agent": "RecommendationAgent (Q-Learning RL)",
+      "description": "Thời điểm trong ngày được kết hợp với mức đường huyết để tra cứu chính sách tối ưu trong bảng Q-Table (24 trạng thái x 12 hành động lối sống).",
+      "fields": [
+        {
+          "name": "time_of_day",
+          "label": "Thời điểm trong ngày",
+          "type": "select",
+          "options": [
+            { "value": "morning", "label": "Buổi sáng (Trước / Sau ăn sáng)" },
+            { "value": "noon", "label": "Buổi trưa (Trước / Sau ăn trưa)" },
+            { "value": "afternoon", "label": "Buổi chiều / Tối (Trước / Sau ăn tối)" },
+            { "value": "bedtime", "label": "Đêm (Trước khi đi ngủ)" }
+          ],
+          "required": false,
+          "default": "morning",
+          "helper": "Dùng để xác định time_bin (0: Sáng, 1: Trưa, 2: Chiều/Tối, 3: Đêm) cho mô hình RL.",
+          "used_by": ["RecommendationAgent"]
+        }
+      ]
+    }
+  ],
+  "consult_query": {
+    "name": "message",
+    "label": "Nội dung câu hỏi hoặc yêu cầu tư vấn",
+    "type": "textarea",
+    "required": true,
+    "placeholder": "Ví dụ: Tôi muốn hỏi tiêu chuẩn chẩn đoán đái tháo đường... hoặc: Bác sĩ xem giúp tôi kết quả xét nghiệm và tư vấn thực đơn hôm nay...",
+    "helper": "Bạn có thể đặt câu hỏi kiến thức y khoa hoặc mô tả tình trạng sức khỏe hiện tại.",
+    "used_by": ["CoordinatorAgent", "KnowledgeAgent", "SafetyAgent"]
+  },
+  "sample_scenarios": [
+    {
+      "id": "scenario_a",
+      "label": "Kịch bản 1: Hỏi kiến thức chuẩn",
+      "description": "Hỏi về tiêu chuẩn chẩn đoán đái tháo đường theo ADA / Bộ Y tế",
+      "data": {
+        "message": "Tiêu chuẩn chẩn đoán đái tháo đường theo chỉ số đường huyết và HbA1c là gì?",
+        "metrics": {}
+      }
+    },
+    {
+      "id": "scenario_b",
+      "label": "Kịch bản 2: Nhập chỉ số nhận tư vấn",
+      "description": "Nhập đủ chỉ số lâm sàng để nhận dự báo nguy cơ và khuyến nghị lối sống",
+      "data": {
+        "message": "Tôi 45 tuổi, BMI 27.5, HbA1c 6.8, đường huyết 135 mg/dL. Xin tư vấn chế độ ăn và vận động",
+        "metrics": {
+          "age": 45,
+          "gender": "Male",
+          "bmi": 27.5,
+          "hbA1c_level": 6.8,
+          "blood_glucose_level": 135.0,
+          "glucose_unit": "mg/dL",
+          "hypertension": 0,
+          "heart_disease": 0,
+          "smoking_history": "never",
+          "time_of_day": "morning"
+        }
+      }
+    },
+    {
+      "id": "scenario_c",
+      "label": "Kịch bản 3: Chỉ số nguy hiểm (Cấp cứu)",
+      "description": "Đường huyết tụt thấp còn 52 mg/dL, run rẩy tay chân",
+      "data": {
+        "message": "Tôi thấy run tay chân, vã mồ hôi và tim đập nhanh, đo đường huyết chỉ còn 52 mg/dL!",
+        "metrics": {
+          "blood_glucose_level": 52.0,
+          "glucose_unit": "mg/dL",
+          "time_of_day": "morning"
+        }
+      }
+    },
+    {
+      "id": "scenario_prescription_blocked",
+      "label": "Ca kiểm tra: Yêu cầu kê đơn thuốc (Bị chặn)",
+      "description": "Yêu cầu chỉnh liều Insulin và Metformin để kiểm tra luật an toàn RULE_06",
+      "data": {
+        "message": "Đường huyết tôi 190 mg/dL, tôi nên tiêm thêm mấy đơn vị Insulin và uống Metformin liều bao nhiêu?",
+        "metrics": {
+          "blood_glucose_level": 190.0,
+          "glucose_unit": "mg/dL"
+        }
+      }
+    }
+  ]
+}

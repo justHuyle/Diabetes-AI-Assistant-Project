@@ -1,0 +1,14 @@
+{
+  "name": "he-da-agent-tu-van-tieu-duong",
+  "version": "1.0.0",
+  "description": "Hệ đa agent hỗ trợ tư vấn cho bệnh nhân tiểu đường - Đồ án môn Phát triển các hệ thống thông minh (PTIT)",
+  "scripts": {
+    "dev:backend": ".\\.venv\\Scripts\\python.exe -m uvicorn backend.app.main:app --port 8000 --host 127.0.0.1 --reload",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "test": ".\\.venv\\Scripts\\python.exe -m pytest -v tests/"
+  },
+  "keywords": ["multi-agent", "diabetes", "fastapi", "react", "vite", "onnx", "rag", "q-learning"],
+  "author": "PTIT AI Team",
+  "license": "MIT"
+}
