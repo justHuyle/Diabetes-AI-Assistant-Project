@@ -41,11 +41,20 @@ class KnowledgeAgent(BaseAgent):
             )
 
             prompt = f"{system_instruction}\n\nTÀI LIỆU NGUỒN:\n{context_text}\n\nCÂU HỎI:\n{query}"
-            resp = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=prompt
-            )
-            return resp.text.strip() if resp and resp.text else None
+            
+            # Thử các model flash khả dụng theo thứ tự ưu tiên
+            models_to_try = ["gemini-3.5-flash-lite", "gemini-3.5-flash", "gemini-3.7-flash", "gemini-3.8-flash"]
+            for model_id in models_to_try:
+                try:
+                    resp = client.models.generate_content(
+                        model=model_id,
+                        contents=prompt
+                    )
+                    if resp and resp.text:
+                        return resp.text.strip()
+                except Exception:
+                    continue
+            return None
         except Exception:
             # Fallback sang chế độ extractive nếu lỗi kết nối mạng hoặc sai khóa API
             return None
