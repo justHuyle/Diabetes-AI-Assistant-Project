@@ -1,23 +1,40 @@
-/* frontend/src/index.css - CSS thuần, thiết kế giao diện chuẩn y tế sạch sẽ, rõ ràng */
+/* frontend/src/index.css - Phần mềm ghi chép & tư vấn phòng khám lâm sàng */
+
+/* Nạp font chữ ngoại tuyến hỗ trợ đầy đủ tiếng Việt */
+@import '@fontsource/source-serif-4/vietnamese-400.css';
+@import '@fontsource/source-serif-4/vietnamese-600.css';
+@import '@fontsource/source-serif-4/vietnamese-700.css';
+@import '@fontsource/ibm-plex-sans/vietnamese-400.css';
+@import '@fontsource/ibm-plex-sans/vietnamese-500.css';
+@import '@fontsource/ibm-plex-sans/vietnamese-600.css';
+@import '@fontsource/ibm-plex-sans/vietnamese-700.css';
+
 :root {
-  --color-primary: #1565c0;
-  --color-primary-dark: #0d47a1;
-  --color-primary-light: #e3f2fd;
-  --color-success: #2e7d32;
-  --color-success-bg: #e8f5e9;
-  --color-warning: #ed6c02;
-  --color-warning-bg: #fff4e5;
-  --color-danger: #c62828;
-  --color-danger-bg: #ffebee;
-  --color-text: #212121;
-  --color-text-muted: #616161;
-  --color-border: #e0e0e0;
-  --color-bg-page: #f8fafc;
-  --color-bg-card: #ffffff;
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --border-radius: 8px;
-  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --box-shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Bảng màu chuẩn: nền giấy ấm, chữ đậm, một màu nhấn đất nung, một màu ô-liu nhạt */
+  --color-paper: #F6F3EE;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2421;
+  --color-text-muted: #575D58;
+  --color-text-dim: #7A817B;
+  
+  --color-border: #DDD8CE;
+  --color-border-dark: #B5AFA3;
+  --color-border-light: #ECE7DD;
+
+  --color-accent: #B4472A;
+  --color-accent-hover: #963B23;
+  --color-accent-bg: #FDF3F0;
+  --color-accent-border: #E8B9AE;
+
+  --color-olive: #4A6B53;
+  --color-olive-bg: #F1F6F2;
+  --color-olive-border: #B7D0BE;
+
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --radius-sm: 2px;
+  --radius-md: 4px;
 }
 
 * {
@@ -26,32 +43,46 @@
   padding: 0;
 }
 
-body {
-  font-family: var(--font-family);
-  background-color: var(--color-bg-page);
+html, body {
+  background-color: var(--color-paper);
   color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 14px;
   line-height: 1.5;
-  font-size: 15px;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Số liệu sử dụng chữ số thẳng hàng (tabular numerals) */
+.numeral, code, input[type="number"], .stat-number, .timeline-time {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Kiểu chữ tiêu đề dùng Source Serif 4 */
+h1, h2, h3, h4, .section-heading, .sheet-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;
+  color: inherit;
 }
 
-a {
-  color: var(--color-primary);
-  text-decoration: none;
+/* Loại bỏ hoàn toàn đổ bóng, gradient và hiệu ứng kính */
+* {
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  text-shadow: none !important;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* Tiện ích */
-.container {
-  max-width: 1200px;
+/* Bố cục trang */
+.app-container {
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 16px 20px 40px;
 }

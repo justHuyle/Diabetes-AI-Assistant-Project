@@ -52,24 +52,25 @@ export default function App() {
   };
 
   return (
-    <div className="app-root">
+    <div className="app-container">
       <Header
         health={health}
         healthLoading={healthLoading}
         onRefreshHealth={loadHealth}
       />
 
-      <main className="container">
-        {/* Banner chi tiết trạng thái nạp các model */}
+      <main>
+        {/* Dải kiểm tra thành phần mô hình */}
         <HealthBanner health={health} />
 
-        <div className="main-layout">
-          {/* Cột trái: Biểu mẫu nhập liệu */}
+        {/* Bố cục hai cột bất đối xứng */}
+        <div className="clinical-layout">
+          {/* Cột trái hẹp: Hồ sơ chỉ số lâm sàng */}
           <aside className="layout-sidebar">
             <ConsultForm onSubmit={handleConsultSubmit} loading={loading} />
           </aside>
 
-          {/* Cột phải: Khu vực kết quả và vết xử lý */}
+          {/* Cột phải rộng: Phiếu tư vấn lâm sàng */}
           <section className="layout-content">
             {loading ? (
               <LoadingState />

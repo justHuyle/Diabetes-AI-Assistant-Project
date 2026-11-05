@@ -5,51 +5,60 @@ export default function HealthBanner({ health }) {
   if (!health || !health.models) return null;
 
   const { models } = health;
-  const modelLabels = {
-    risk_model: 'Mô hình Dự đoán (ONNX MLP)',
-    knowledge_base: 'Cơ sở Tri thức (MiniLM RAG)',
-    rl_recommendation: 'Chính sách Đề xuất (RL Q-Table)',
-    safety_rules: 'Hệ luật An toàn (Rules Engine)',
-    gemini_api: 'Gemini API Sinh văn bản',
+  const labels = {
+    risk_model: 'Dự báo nguy cơ (ONNX)',
+    knowledge_base: 'Cơ sở tri thức (MiniLM RAG)',
+    rl_recommendation: 'Chính sách lối sống (Q-Table)',
+    safety_rules: 'Luật an toàn lâm sàng',
+    gemini_api: 'Mô hình sinh câu trả lời',
   };
 
-  const hasMissingModel = Object.values(models).some(
-    (status) => status !== 'ready' && status !== 'extractive_mode'
+  const hasMissing = Object.values(models).some(
+    (st) => st !== 'ready' && st !== 'extractive_mode'
   );
 
   return (
-    <div className="health-details-panel">
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '8px',
+        padding: '6px 10px',
+        background: '#FAF8F5',
+        border: '1px solid var(--color-border)',
+        borderRadius: 'var(--radius-sm)',
+        fontSize: '11px',
+        marginBottom: '16px',
+      }}
+    >
       <div>
-        <strong style={{ fontSize: '13px', color: '#1e293b' }}>
-          Trạng thái kiểm tra mô hình:
-        </strong>
-        {hasMissingModel && (
-          <span style={{ color: 'var(--color-danger)', fontSize: '12px', marginLeft: '8px' }}>
-            ⚠️ Phát hiện thành phần chưa sẵn sàng! Các yêu cầu liên quan sẽ trả HTTP 503.
+        <strong style={{ color: 'var(--color-text)' }}>Kiểm tra thành phần:</strong>{' '}
+        {hasMissing && (
+          <span style={{ color: 'var(--color-accent)' }}>
+            [Lưu ý: Phát hiện thành phần chưa nạp, API sẽ trả HTTP 503 khi được gọi]
           </span>
         )}
       </div>
 
-      <div className="model-badges">
-        {Object.entries(models).map(([key, status]) => {
-          const isReady = status === 'ready';
-          const isExtractive = status === 'extractive_mode';
-          const className = isReady
-            ? 'model-tag ready'
-            : isExtractive
-            ? 'model-tag extractive'
-            : 'model-tag error';
-
-          const label = modelLabels[key] || key;
-          const statusText = isReady
-            ? 'Sẵn sàng'
-            : isExtractive
-            ? 'Trích xuất (No Key)'
-            : `Chưa nạp (${status})`;
-
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        {Object.entries(models).map(([key, st]) => {
+          const isOk = st === 'ready' || st === 'extractive_mode';
+          const txt = st === 'ready' ? 'Sẵn sàng' : st === 'extractive_mode' ? 'Trích xuất (No Key)' : `Lỗi (${st})`;
           return (
-            <span key={key} className={className} title={`${label}: ${statusText}`}>
-              {label}: {statusText}
+            <span
+              key={key}
+              style={{
+                padding: '1px 5px',
+                border: '1px solid',
+                borderColor: isOk ? 'var(--color-border-dark)' : 'var(--color-accent)',
+                borderRadius: 'var(--radius-sm)',
+                background: isOk ? 'var(--color-surface)' : 'var(--color-accent-bg)',
+                color: isOk ? 'var(--color-text)' : 'var(--color-accent)',
+              }}
+            >
+              {labels[key] || key}: {txt}
             </span>
           );
         })}

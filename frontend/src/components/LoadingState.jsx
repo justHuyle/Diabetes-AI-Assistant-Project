@@ -3,11 +3,10 @@ import React from 'react';
 
 export default function LoadingState() {
   return (
-    <div className="loading-state">
-      <div className="spinner" />
-      <h3>Đang Điều Phối Các Tác Tử AI...</h3>
-      <p>
-        Điều phối viên đang phân loại ý định, truy xuất cơ sở tri thức (RAG), tra cứu chính sách lối sống (RL Q-Table) và tính toán nguy cơ (MLP ONNX). Agent An toàn sẽ kiểm duyệt lần cuối trước khi trả kết quả.
+    <div className="loading-sheet-view">
+      <div className="loading-simple-text">Đang phân tích và điều phối dữ liệu...</div>
+      <p style={{ fontSize: '13px', marginTop: '6px' }}>
+        Tác tử điều phối đang đối chiếu các quy tắc an toàn lâm sàng, tra cứu tài liệu Bộ Y tế và tính toán chỉ số rủi ro.
       </p>
     </div>
   );

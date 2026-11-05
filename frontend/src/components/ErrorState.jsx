@@ -8,49 +8,44 @@ export default function ErrorState({ error, onRetry }) {
   const isConnectionRefused = error.status === 0;
 
   return (
-    <div className="error-card">
+    <div className="error-sheet-box">
       <h3>
         {is503
-          ? '⚠️ Lỗi 503: Hệ Thống Mô Hình Chưa Sẵn Sàng (Service Unavailable)'
+          ? 'Lỗi hệ thống: Mô hình AI chưa sẵn sàng (HTTP 503 Service Unavailable)'
           : isConnectionRefused
-          ? '🔌 Không Thể Kết Nối Tới Máy Chủ Backend'
-          : `❌ Lỗi Xử Lý (Mã HTTP ${error.status || 'Unknown'})`}
+          ? 'Không thể kết nối đến máy chủ backend (Port 8000)'
+          : `Lỗi xử lý yêu cầu (HTTP ${error.status || 'Chưa xác định'})`}
       </h3>
 
       <p>{error.message}</p>
 
       {is503 && (
-        <div style={{ fontSize: '13px', background: '#fff', padding: '10px', borderRadius: '4px', border: '1px solid #fca5a5' }}>
-          <strong>Hướng dẫn khắc phục:</strong>
-          <ul style={{ paddingLeft: '18px', marginTop: '6px' }}>
-            <li>Theo quy tắc <code>docs/PROJECT_RULES.md</code>, hệ thống tuyệt đối không sinh dữ liệu giả khi thiếu file mô hình hoặc checkpoint.</li>
-            <li>Vui lòng kiểm tra thư mục <code>models/</code> để chắc chắn các tệp <code>risk_model.onnx</code>, <code>scaler.json</code>, <code>feature_schema.json</code>, <code>kb_index/</code>, <code>rl_policy.npy</code>, <code>discretization.json</code>, <code>rules.yaml</code> đã tồn tại đầy đủ.</li>
-            <li>Xem thông báo chi tiết tại thanh trạng thái mô hình trên đầu trang để biết chính xác module nào gặp sự cố.</li>
+        <div className="instruction-block">
+          <strong>Căn cứ quy tắc docs/PROJECT_RULES.md:</strong>
+          <ul style={{ paddingLeft: '18px', marginTop: '4px' }}>
+            <li>Hệ thống từ chối sinh dữ liệu giả khi thiếu file trọng số mô hình hoặc cơ sở tri thức.</li>
+            <li>Kiểm tra thư mục <code>models/</code> để xác nhận các tệp: <code>risk_model.onnx</code>, <code>scaler.json</code>, <code>feature_schema.json</code>, <code>kb_index/</code>, <code>rl_policy.npy</code>, <code>discretization.json</code>, <code>rules.yaml</code>.</li>
+            <li>Theo dõi dòng kiểm tra thành phần ở đầu trang để biết module bị thiếu.</li>
           </ul>
         </div>
       )}
 
       {isConnectionRefused && (
-        <div style={{ fontSize: '13px', background: '#fff', padding: '10px', borderRadius: '4px', border: '1px solid #fca5a5' }}>
-          <strong>Hướng dẫn khởi động Backend:</strong>
-          <ul style={{ paddingLeft: '18px', marginTop: '6px' }}>
-            <li>Mở một cửa sổ dòng lệnh tại thư mục gốc của dự án.</li>
-            <li>Kích hoạt môi trường ảo: <code>.\.venv\Scripts\Activate.ps1</code></li>
-            <li>Chạy lệnh uvicorn: <code>uvicorn backend.app.main:app --port 8000</code></li>
-            <li>Sau khi backend khởi động xong, bấm nút "Thử lại" bên dưới.</li>
+        <div className="instruction-block">
+          <strong>Quy trình khởi động dịch vụ:</strong>
+          <ul style={{ paddingLeft: '18px', marginTop: '4px' }}>
+            <li>Khởi động backend bằng lệnh: <code>uvicorn backend.app.main:app --port 8000</code></li>
+            <li>Sau khi tiến trình backend hoàn tất nạp mô hình, nhấn nút [Thử lại] bên dưới.</li>
           </ul>
         </div>
       )}
 
       {onRetry && (
-        <button
-          type="button"
-          className="btn-secondary"
-          onClick={onRetry}
-          style={{ marginTop: '12px' }}
-        >
-          🔄 Thử lại
-        </button>
+        <div style={{ marginTop: '12px' }}>
+          <button type="button" className="btn-secondary-action" onClick={onRetry}>
+            Thử lại
+          </button>
+        </div>
       )}
     </div>
   );

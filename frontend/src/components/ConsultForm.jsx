@@ -25,10 +25,8 @@ export default function ConsultForm({ onSubmit, loading }) {
     if (currentVal !== undefined && currentVal !== '' && !isNaN(Number(currentVal))) {
       const num = Number(currentVal);
       if (targetUnit === 'mmol/L') {
-        // mg/dL -> mmol/L
         convertedVal = Number((num / 18.0182).toFixed(1));
       } else {
-        // mmol/L -> mg/dL
         convertedVal = Number((num * 18.0182).toFixed(1));
       }
     }
@@ -39,11 +37,10 @@ export default function ConsultForm({ onSubmit, loading }) {
       blood_glucose_level: convertedVal ?? '',
     }));
 
-    // Kiểm tra lại tính hợp lệ
     validateField('blood_glucose_level', convertedVal, targetUnit);
   };
 
-  // Xác thực hợp lệ từng trường ngay tại ô nhập (Inline Validation)
+  // Kiểm tra tính hợp lệ số học ngay tại ô nhập
   const validateField = (name, value, unitOverride = null) => {
     let errorMsg = '';
     const unit = unitOverride || metrics.glucose_unit || 'mg/dL';
@@ -60,27 +57,26 @@ export default function ConsultForm({ onSubmit, loading }) {
     const num = Number(value);
 
     if (name === 'age') {
-      if (isNaN(num)) errorMsg = 'Tuổi phải là số học hợp lệ.';
+      if (isNaN(num)) errorMsg = 'Tuổi phải là số.';
       else if (num < 0.08 || num > 120.0)
-        errorMsg = 'Tuổi phải nằm trong khoảng từ 0.08 đến 120.0 tuổi.';
+        errorMsg = 'Khoảng hợp lệ: 0.08 đến 120 tuổi.';
     } else if (name === 'bmi') {
-      if (isNaN(num)) errorMsg = 'BMI phải là số học hợp lệ.';
+      if (isNaN(num)) errorMsg = 'BMI phải là số.';
       else if (num < 10.0 || num > 100.0)
-        errorMsg = 'Chỉ số BMI phải nằm trong khoảng từ 10.0 đến 100.0 kg/m².';
+        errorMsg = 'Khoảng hợp lệ: 10.0 đến 100.0 kg/m².';
     } else if (name === 'hbA1c_level') {
-      if (isNaN(num)) errorMsg = 'HbA1c phải là số học hợp lệ.';
+      if (isNaN(num)) errorMsg = 'HbA1c phải là số.';
       else if (num < 3.0 || num > 18.0)
-        errorMsg = 'Chỉ số HbA1c phải nằm trong khoảng từ 3.0% đến 18.0%.';
+        errorMsg = 'Khoảng hợp lệ: 3.0% đến 18.0%.';
     } else if (name === 'blood_glucose_level') {
       if (isNaN(num)) {
-        errorMsg = 'Nồng độ đường huyết phải là số học hợp lệ.';
+        errorMsg = 'Đường huyết phải là số.';
       } else if (unit === 'mg/dL') {
         if (num < 40.0 || num > 600.0)
-          errorMsg = 'Nồng độ đường huyết phải nằm trong khoảng từ 40.0 đến 600.0 mg/dL.';
+          errorMsg = 'Khoảng hợp lệ: 40.0 đến 600.0 mg/dL.';
       } else {
-        // mmol/L: 40/18.0182 ~ 2.2, 600/18.0182 ~ 33.3
         if (num < 2.2 || num > 33.3)
-          errorMsg = 'Nồng độ đường huyết phải nằm trong khoảng từ 2.2 đến 33.3 mmol/L.';
+          errorMsg = 'Khoảng hợp lệ: 2.2 đến 33.3 mmol/L.';
       }
     }
 
@@ -97,7 +93,6 @@ export default function ConsultForm({ onSubmit, loading }) {
     validateField(name, value);
   };
 
-  // Nạp nhanh kịch bản mẫu
   const handleLoadScenario = (scenario) => {
     setMessage(scenario.data.message || '');
     setMetrics({
@@ -130,22 +125,19 @@ export default function ConsultForm({ onSubmit, loading }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Kiểm tra câu hỏi bắt buộc
     if (!message.trim()) {
       setErrors((prev) => ({
         ...prev,
-        message: 'Vui lòng nhập nội dung câu hỏi hoặc yêu cầu tư vấn.',
+        message: 'Vui lòng ghi nhận câu hỏi hoặc lý do khám.',
       }));
       return;
     }
 
-    // Nếu có lỗi validation chưa sửa thì chặn submit
     if (Object.keys(errors).length > 0) {
-      alert('Vui lòng kiểm tra lại các trường nhập liệu có thông báo lỗi màu đỏ.');
+      alert('Vui lòng kiểm tra lại các trường có báo lỗi.');
       return;
     }
 
-    // Chuẩn bị payload sạch sẽ
     const cleanMetrics = {};
     Object.entries(metrics).forEach(([k, v]) => {
       if (v !== '' && v !== undefined && v !== null) {
@@ -166,110 +158,118 @@ export default function ConsultForm({ onSubmit, loading }) {
   };
 
   return (
-    <form className="card" onSubmit={handleSubmit}>
-      <div className="card-title">
-        <span>📋 Biểu Mẫu Nhập Dữ Liệu</span>
+    <form className="profile-panel" onSubmit={handleSubmit}>
+      <div className="panel-header">
+        <h2>Hồ Sơ Chỉ Số Lâm Sàng</h2>
+        <div className="panel-caption">
+          Ghi nhận thông số để chuyển tiếp tới 4 tác tử chuyên trách.
+        </div>
       </div>
-      <p className="card-subtitle">
-        Các trường được phân nhóm theo mục đích xử lý của từng Agent chuyên trách.
-      </p>
 
-      {/* Kịch bản mẫu */}
-      <div className="sample-scenarios-bar">
-        <div className="sample-title">⚡ Chọn nhanh kịch bản kiểm thử:</div>
-        <div className="sample-buttons-list">
+      {/* Mẫu hồ sơ nhanh */}
+      <div className="quick-samples">
+        <div className="quick-samples-title">Mẫu dữ liệu kiểm thử:</div>
+        <div className="sample-button-group">
           {fieldSchema.sample_scenarios.map((sc) => (
             <button
               key={sc.id}
               type="button"
-              className="btn-sample"
+              className="btn-sample-row"
               onClick={() => handleLoadScenario(sc)}
             >
               <strong>{sc.label}</strong>
-              <span>{sc.description}</span>
+              <span className="clinic-meta">{sc.description}</span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* 1. Nội dung tin nhắn / câu hỏi tư vấn */}
-      <div className="form-field">
-        <label className="form-label">
-          {fieldSchema.consult_query.label} <span className="required">*</span>
-        </label>
-        <textarea
-          rows={3}
-          className={`form-control ${errors.message ? 'error' : ''}`}
-          placeholder={fieldSchema.consult_query.placeholder}
-          value={message}
-          onChange={(e) => {
-            setMessage(e.target.value);
-            if (e.target.value.trim()) {
-              setErrors((prev) => {
-                const next = { ...prev };
-                delete next.message;
-                return next;
-              });
-            }
-          }}
-        />
-        {errors.message && <div className="field-error">{errors.message}</div>}
-        <div className="field-helper">
-          Được phân tích bởi: <strong>{fieldSchema.consult_query.used_by.join(', ')}</strong>
+      {/* 1. Ghi chép câu hỏi hoặc triệu chứng */}
+      <div className="metric-group">
+        <div className="form-item">
+          <div className="form-label-row">
+            <label htmlFor="input-message">
+              {fieldSchema.consult_query.label}
+              <span className="req">*</span>
+            </label>
+          </div>
+          <textarea
+            id="input-message"
+            rows={3}
+            className={`input-box ${errors.message ? 'error-state' : ''}`}
+            placeholder={fieldSchema.consult_query.placeholder}
+            value={message}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              if (e.target.value.trim()) {
+                setErrors((prev) => {
+                  const next = { ...prev };
+                  delete next.message;
+                  return next;
+                });
+              }
+            }}
+          />
+          {errors.message && <div className="field-error-text">{errors.message}</div>}
         </div>
       </div>
 
-      {/* 2. Các nhóm trường theo đặc tả */}
+      {/* 2. Các nhóm thông số theo đặc tả */}
       {fieldSchema.groups.map((group) => (
-        <div key={group.id} className="form-group-section">
-          <div className="section-header">
-            <div className="section-title">{group.title}</div>
-            <div className="section-agent-badge">Tác tử đích: {group.target_agent}</div>
-            <div className="field-helper" style={{ marginTop: '4px' }}>
-              {group.description}
-            </div>
+        <div key={group.id} className="metric-group">
+          <div className="group-title-row">
+            <h3>{group.title}</h3>
+            <span className="agent-tag-hint">{group.target_agent}</span>
           </div>
 
           {group.fields.map((field) => {
-            if (field.type === 'unit_switch') return null; // xử lý ghép với blood_glucose_level
+            if (field.type === 'unit_switch') return null;
 
-            const isGlucoseField = field.name === 'blood_glucose_level';
-            const unit = isGlucoseField ? metrics.glucose_unit || 'mg/dL' : field.unit;
+            const isGlucose = field.name === 'blood_glucose_level';
+            const unit = isGlucose ? metrics.glucose_unit || 'mg/dL' : field.unit;
 
             return (
-              <div key={field.name} className="form-field">
-                <label className="form-label">
-                  {field.label} {field.required && <span className="required">*</span>}
-                </label>
+              <div key={field.name} className="form-item">
+                <div className="form-label-row">
+                  <label htmlFor={`field-${field.name}`}>
+                    {field.label}
+                    {field.required && <span className="req">*</span>}
+                  </label>
+                  {field.helper && <span className="field-note">{field.helper}</span>}
+                </div>
 
                 {field.type === 'number' && (
-                  <div className="input-unit-wrapper">
+                  <div className="input-with-action">
                     <input
+                      id={`field-${field.name}`}
                       type="number"
                       step={field.step || 'any'}
-                      className={`form-control ${errors[field.name] ? 'error' : ''}`}
+                      className={`input-box numeral ${
+                        errors[field.name] ? 'error-state' : ''
+                      }`}
                       placeholder={field.placeholder || ''}
                       value={metrics[field.name] ?? ''}
                       onChange={(e) => handleMetricChange(field.name, e.target.value)}
                     />
-                    {isGlucoseField ? (
+                    {isGlucose ? (
                       <button
                         type="button"
-                        className="unit-switch-btn"
+                        className="btn-unit-toggle"
                         onClick={handleToggleGlucoseUnit}
-                        title="Bấm để đổi giữa mg/dL và mmol/L (tự động chuyển đổi giá trị)"
+                        title="Chuyển đổi giữa mg/dL và mmol/L"
                       >
-                        🔄 {metrics.glucose_unit || 'mg/dL'} (Đổi đơn vị)
+                        Đổi sang {metrics.glucose_unit === 'mg/dL' ? 'mmol/L' : 'mg/dL'}
                       </button>
                     ) : (
-                      unit && <span className="unit-tag">{unit}</span>
+                      unit && <span className="unit-addon">{unit}</span>
                     )}
                   </div>
                 )}
 
                 {field.type === 'select' && (
                   <select
-                    className="form-control"
+                    id={`field-${field.name}`}
+                    className="input-box"
                     value={metrics[field.name] ?? field.default ?? ''}
                     onChange={(e) => handleMetricChange(field.name, e.target.value)}
                   >
@@ -282,27 +282,26 @@ export default function ConsultForm({ onSubmit, loading }) {
                 )}
 
                 {errors[field.name] && (
-                  <div className="field-error">{errors[field.name]}</div>
+                  <div className="field-error-text">{errors[field.name]}</div>
                 )}
-                {field.helper && <div className="field-helper">{field.helper}</div>}
               </div>
             );
           })}
         </div>
       ))}
 
-      {/* Hành động */}
-      <div className="form-actions">
-        <button type="submit" className="btn-primary" disabled={loading}>
-          {loading ? 'Đang điều phối các Agent...' : '🚀 Gửi Yêu Cầu Tư Vấn'}
+      {/* Nút gửi */}
+      <div className="form-submit-row">
+        <button type="submit" className="btn-primary-action" disabled={loading}>
+          {loading ? 'Đang thẩm định...' : 'Gửi Phiếu Tư Vấn'}
         </button>
         <button
           type="button"
-          className="btn-secondary"
+          className="btn-secondary-action"
           onClick={handleReset}
           disabled={loading}
         >
-          Xóa biểu mẫu
+          Xóa
         </button>
       </div>
     </form>
