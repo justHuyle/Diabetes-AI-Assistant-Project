@@ -169,7 +169,9 @@ LOG_LEVEL=INFO
 ### 4.1. Khởi động Backend API Server
 ```powershell
 .\.venv\Scripts\Activate.ps1
-uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload
+python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload
+# Hoặc chỉ định trực tiếp:
+# .\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 - API Documentation (Swagger UI): `http://127.0.0.1:8000/docs`
 - Endpoint kiểm tra sức khỏe: `http://127.0.0.1:8000/api/health`
