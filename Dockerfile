@@ -5,7 +5,7 @@ WORKDIR /app
 # Thiết lập biến môi trường
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PORT=8000
+    PORT=7860
 
 # Cài đặt công cụ hệ thống tối thiểu
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -24,7 +24,11 @@ COPY backend/ ./backend/
 COPY models/ ./models/
 COPY data/ ./data/
 
-EXPOSE 8000
+# Tạo user để tương thích tốt với Hugging Face Spaces và bảo mật
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
 
-# Chạy uvicorn với cổng linh hoạt theo biến PORT của nền tảng cloud
-CMD ["sh", "-c", "uvicorn backend.app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+EXPOSE 7860
+
+# Chạy uvicorn hỗ trợ linh hoạt cả Hugging Face Spaces (7860) lẫn Render/Railway qua biến PORT
+CMD ["sh", "-c", "uvicorn backend.app.main:app --host 0.0.0.0 --port ${PORT:-7860}"]
