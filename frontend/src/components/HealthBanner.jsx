@@ -13,8 +13,13 @@ export default function HealthBanner({ health }) {
     gemini_api: 'Mô hình sinh câu trả lời',
   };
 
-  const hasMissing = Object.values(models).some(
-    (st) => st !== 'ready' && st !== 'extractive_mode'
+  const hasMissing = Object.entries(models).some(
+    ([key, st]) => {
+      if (key === 'gemini_api') {
+        return st !== 'configured' && st !== 'extractive_mode' && st !== 'ready';
+      }
+      return st !== 'ready';
+    }
   );
 
   return (
@@ -44,8 +49,16 @@ export default function HealthBanner({ health }) {
 
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
         {Object.entries(models).map(([key, st]) => {
-          const isOk = st === 'ready' || st === 'extractive_mode';
-          const txt = st === 'ready' ? 'Sẵn sàng' : st === 'extractive_mode' ? 'Trích xuất (No Key)' : `Lỗi (${st})`;
+          const isOk =
+            st === 'ready' || st === 'configured' || st === 'extractive_mode';
+          const txt =
+            st === 'ready'
+              ? 'Sẵn sàng'
+              : st === 'configured'
+              ? 'Gemini LLM (Sẵn sàng)'
+              : st === 'extractive_mode'
+              ? 'Trích xuất (No Key)'
+              : `Lỗi (${st})`;
           return (
             <span
               key={key}
