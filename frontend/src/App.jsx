@@ -3,10 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import HealthBanner from './components/HealthBanner';
 import ConsultForm from './components/ConsultForm';
-import ResultsPanel from './components/ResultsPanel';
-import LoadingState from './components/LoadingState';
-import ErrorState from './components/ErrorState';
-import EmptyState from './components/EmptyState';
+import ChatPanel from './components/ChatPanel';
 import { fetchHealth, sendConsultation } from './services/api';
 import './App.css';
 
@@ -14,8 +11,7 @@ export default function App() {
   const [health, setHealth] = useState(null);
   const [healthLoading, setHealthLoading] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
-  const [error, setError] = useState(null);
+  const [messages, setMessages] = useState([]);
 
   // Tải trạng thái các mô hình từ backend
   const loadHealth = async () => {
@@ -38,16 +34,59 @@ export default function App() {
   // Xử lý gửi yêu cầu tư vấn tới API
   const handleConsultSubmit = async (payload) => {
     setLoading(true);
-    setError(null);
+
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+
+    // Tạo tin nhắn của người bệnh
+    const userMsg = {
+      id: `user-${Date.now()}`,
+      sender: 'user',
+      text: payload.message || 'Gửi hồ sơ chỉ số xét nghiệm lâm sàng',
+      metrics: payload.metrics || null,
+      timestamp: timeStr,
+    };
+
+    setMessages((prev) => [...prev, userMsg]);
+
     try {
       const res = await sendConsultation(payload);
-      setResult(res);
+      const assistantMsg = {
+        id: `assistant-${Date.now()}`,
+        sender: 'assistant',
+        result: res,
+        timestamp: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setMessages((prev) => [...prev, assistantMsg]);
     } catch (err) {
       console.error('Lỗi khi gọi API consult:', err);
-      setError(err);
-      setResult(null);
+      const errorMsg = {
+        id: `error-${Date.now()}`,
+        sender: 'error',
+        error: err,
+        timestamp: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
+      };
+      setMessages((prev) => [...prev, errorMsg]);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSendChatMessage = (text) => {
+    handleConsultSubmit({ message: text });
+  };
+
+  const handleClearChat = () => {
+    setMessages([]);
+  };
+
+  const handleRetryError = () => {
+    const lastUserMsg = [...messages].reverse().find((m) => m.sender === 'user');
+    if (lastUserMsg) {
+      handleConsultSubmit({
+        message: lastUserMsg.text,
+        metrics: lastUserMsg.metrics,
+      });
     }
   };
 
@@ -70,17 +109,15 @@ export default function App() {
             <ConsultForm onSubmit={handleConsultSubmit} loading={loading} />
           </aside>
 
-          {/* Cột phải rộng: Phiếu tư vấn lâm sàng */}
+          {/* Cột phải rộng: Khung hội thoại tư vấn lâm sàng (Chatbot) */}
           <section className="layout-content">
-            {loading ? (
-              <LoadingState />
-            ) : error ? (
-              <ErrorState error={error} onRetry={() => setError(null)} />
-            ) : result ? (
-              <ResultsPanel result={result} />
-            ) : (
-              <EmptyState />
-            )}
+            <ChatPanel
+              messages={messages}
+              loading={loading}
+              onSendMessage={handleSendChatMessage}
+              onClearChat={handleClearChat}
+              onRetryError={handleRetryError}
+            />
           </section>
         </div>
       </main>

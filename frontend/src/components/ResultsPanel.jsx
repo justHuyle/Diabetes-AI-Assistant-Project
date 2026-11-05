@@ -102,7 +102,7 @@ function RiskProbabilityBar({ probability, threshold = 0.87 }) {
   );
 }
 
-export default function ResultsPanel({ result }) {
+export default function ResultsPanel({ result, isChat = false }) {
   const [showTrace, setShowTrace] = useState(false);
   const [expandedSidenotes, setExpandedSidenotes] = useState({});
 
@@ -135,7 +135,7 @@ export default function ResultsPanel({ result }) {
     prediction_response?.content?.clinical_metrics_evaluated?.blood_glucose_level_mg_dl;
 
   return (
-    <div className="consult-sheet">
+    <div className={`consult-sheet ${isChat ? 'in-chat' : ''}`}>
       {/* 1. ĐẦU PHIẾU TƯ VẤN */}
       <div className="sheet-header">
         <div className="sheet-header-top">

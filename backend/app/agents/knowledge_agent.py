@@ -22,7 +22,8 @@ class KnowledgeAgent(BaseAgent):
             return None
         try:
             from google import genai
-            client = genai.Client(api_key=self.api_key)
+            from google.genai import types
+            client = genai.Client(api_key=self.api_key, http_options=types.HttpOptions(timeout=10000))
 
             context_snippets = []
             for idx, c in enumerate(chunks, start=1):
@@ -41,17 +42,26 @@ class KnowledgeAgent(BaseAgent):
             )
 
             prompt = f"{system_instruction}\n\nTÀI LIỆU NGUỒN:\n{context_text}\n\nCÂU HỎI:\n{query}"
-            
-            # Thử các model flash khả dụng theo thứ tự ưu tiên
-            models_to_try = ["gemini-3.5-flash-lite", "gemini-3.5-flash", "gemini-3.7-flash", "gemini-3.8-flash"]
+
+            models_to_try = ["gemini-3.5-flash-lite", "gemini-flash-lite-latest"]
             for model_id in models_to_try:
                 try:
                     resp = client.models.generate_content(
                         model=model_id,
                         contents=prompt
                     )
-                    if resp and resp.text:
-                        return resp.text.strip()
+                    if resp:
+                        text_val = ""
+                        if hasattr(resp, "text") and resp.text:
+                            text_val = resp.text.strip()
+                        elif hasattr(resp, "candidates") and resp.candidates:
+                            for cand in resp.candidates:
+                                if hasattr(cand, "content") and cand.content.parts:
+                                    for part in cand.content.parts:
+                                        if hasattr(part, "text") and part.text:
+                                            text_val += part.text
+                        if text_val:
+                            return text_val.strip()
                 except Exception:
                     continue
             return None

@@ -20,7 +20,7 @@ FIGURES_DIR = os.path.join(BASE_DIR, "reports", "figures")
 os.makedirs(FIGURES_DIR, exist_ok=True)
 
 BACKEND_URL = "http://127.0.0.1:8000"
-FRONTEND_URL = "http://127.0.0.1:5173"
+FRONTEND_URL = "http://localhost:5173"
 
 
 def wait_for_server(url, timeout=30):
@@ -48,9 +48,12 @@ def main():
     except Exception:
         print("Đang khởi động Backend FastAPI...")
         python_exe = sys.executable
+        env = os.environ.copy()
+        env["PYTHONPATH"] = BASE_DIR
         backend_proc = subprocess.Popen(
             [python_exe, "-m", "uvicorn", "backend.app.main:app", "--port", "8000"],
             cwd=BASE_DIR,
+            env=env,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL
         )
@@ -94,7 +97,7 @@ def main():
     options.add_argument("--no-sandbox")
 
     driver = webdriver.Chrome(options=options)
-    wait = WebDriverWait(driver, 15)
+    wait = WebDriverWait(driver, 25)
 
     try:
         print("[1/4] Chụp Kịch bản 1: Hỏi kiến thức chuẩn (ui_scenario_1.png)...")
@@ -115,25 +118,31 @@ def main():
             print(f" -> Đã lưu: {target_1}")
 
         print("[2/4] Chụp Kịch bản 2: Nhập chỉ số và tư vấn lối sống (ui_scenario_2.png)...")
+        driver.get(FRONTEND_URL)
+        time.sleep(1.5)
         sample_btns = driver.find_elements(By.CLASS_NAME, "btn-sample-row")
         if len(sample_btns) > 1:
             sample_btns[1].click()
             time.sleep(0.5)
             submit_btn = driver.find_element(By.CLASS_NAME, "btn-primary-action")
             submit_btn.click()
-            time.sleep(2.5)
+            wait.until(EC.presence_of_element_located((By.CLASS_NAME, "sheet-section")))
+            time.sleep(2)
             target_2 = os.path.join(FIGURES_DIR, "ui_scenario_2.png")
             driver.save_screenshot(target_2)
             print(f" -> Đã lưu: {target_2}")
 
         print("[3/4] Chụp Kịch bản 3: Tình huống cấp cứu hạ đường huyết (ui_scenario_3.png)...")
+        driver.get(FRONTEND_URL)
+        time.sleep(1.5)
         sample_btns = driver.find_elements(By.CLASS_NAME, "btn-sample-row")
         if len(sample_btns) > 2:
             sample_btns[2].click()
             time.sleep(0.5)
             submit_btn = driver.find_element(By.CLASS_NAME, "btn-primary-action")
             submit_btn.click()
-            time.sleep(2.5)
+            wait.until(EC.presence_of_element_located((By.CLASS_NAME, "sheet-section")))
+            time.sleep(2)
             target_3 = os.path.join(FIGURES_DIR, "ui_scenario_3.png")
             driver.save_screenshot(target_3)
             print(f" -> Đã lưu: {target_3}")
