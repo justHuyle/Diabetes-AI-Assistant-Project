@@ -1,0 +1,12 @@
+# Vercel Ignore - Chỉ deploy phần Frontend React/Vite, bỏ qua Backend và ML artifacts
+backend/
+models/
+data/
+notebooks/
+tests/
+reports/
+scripts/
+docs/
+requirements.txt
+*.docx
+.venv/
