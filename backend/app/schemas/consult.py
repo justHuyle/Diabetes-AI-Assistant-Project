@@ -40,3 +40,27 @@ class ConsultResponse(BaseModel):
     recommendation_response: Optional[Dict[str, Any]] = None
     prediction_response: Optional[Dict[str, Any]] = None
     trace: Dict[str, Any]
+
+
+class DoctorContactRequest(BaseModel):
+    """Lược đồ dữ liệu gửi yêu cầu liên hệ hoặc chuyển tiếp hồ sơ tới Bác sĩ chuyên khoa."""
+    consultation_id: Optional[str] = Field(default=None, description="Mã phiên tư vấn liên quan")
+    patient_name: str = Field(default="Bệnh nhân", description="Họ và tên bệnh nhân")
+    patient_phone: str = Field(..., description="Số điện thoại liên hệ của bệnh nhân")
+    facility_or_doctor: str = Field(
+        default="Khoa Nội tiết - Đái tháo đường, Bệnh viện Bạch Mai",
+        description="Cơ sở y tế hoặc bác sĩ chuyên khoa phụ trách"
+    )
+    patient_notes: Optional[str] = Field(default="", description="Triệu chứng hoặc lời nhắn thêm của bệnh nhân")
+    clinical_summary: Optional[str] = Field(default="", description="Tóm tắt các chỉ số và đánh giá của hệ thống AI")
+    is_emergency: bool = Field(default=False, description="Cờ cảnh báo cấp cứu khẩn cấp")
+
+
+class DoctorContactResponse(BaseModel):
+    """Cấu trúc phản hồi sau khi tiếp nhận yêu cầu liên hệ bác sĩ."""
+    referral_id: str
+    status: str = "received"
+    created_at: str
+    message: str
+    instructions: str
+    emergency_hotline: Optional[str] = "115"

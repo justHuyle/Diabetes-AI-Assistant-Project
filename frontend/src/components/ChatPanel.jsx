@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ResultsPanel from './ResultsPanel';
 import ErrorState from './ErrorState';
+import DoctorContactModal from './DoctorContactModal';
 
 export default function ChatPanel({
   messages = [],
@@ -11,6 +12,9 @@ export default function ChatPanel({
   onRetryError,
 }) {
   const [inputText, setInputText] = useState('');
+  const [doctorModalOpen, setDoctorModalOpen] = useState(false);
+  const [activeConsultForDoctor, setActiveConsultForDoctor] = useState(null);
+  const [copySuccessId, setCopySuccessId] = useState(null);
   const messagesEndRef = useRef(null);
 
   // Tự động cuộn xuống tin nhắn mới nhất
@@ -32,6 +36,22 @@ export default function ChatPanel({
   const handleQuickQuestion = (qText) => {
     if (loading) return;
     onSendMessage(qText);
+  };
+
+  const handleOpenDoctorModal = (consultRes) => {
+    setActiveConsultForDoctor(consultRes);
+    setDoctorModalOpen(true);
+  };
+
+  const handleQuickCopy = (msgId, consultResult) => {
+    const summaryText =
+      consultResult?.summary ||
+      consultResult?.knowledge_response?.content?.answer ||
+      '';
+    const textToCopy = `Mã phiên tư vấn: ${consultResult?.consultation_id || ''}\n${summaryText}`;
+    navigator.clipboard.writeText(textToCopy);
+    setCopySuccessId(msgId);
+    setTimeout(() => setCopySuccessId(null), 2500);
   };
 
   return (
@@ -203,6 +223,35 @@ export default function ChatPanel({
                       /* Nhúng toàn bộ kết quả phân tích đa tác tử */
                       <ResultsPanel result={msg.result} isChat={true} />
                     )}
+
+                    {/* Thanh tác vụ liên hệ Bác sĩ & Sao chép tóm tắt bệnh án */}
+                    <div className="assistant-action-toolbar">
+                      <button
+                        type="button"
+                        className={`btn-contact-doctor ${
+                          msg.result?.emergency_detected ||
+                          msg.result?.safety_review?.status === 'VETO'
+                            ? 'emergency'
+                            : ''
+                        }`}
+                        onClick={() => handleOpenDoctorModal(msg.result)}
+                      >
+                        {msg.result?.emergency_detected ||
+                        msg.result?.safety_review?.status === 'VETO'
+                          ? '🚨 Liên hệ Bác sĩ / Cấp cứu 115'
+                          : '👨‍⚕️ Liên hệ Bác sĩ Chuyên khoa'}
+                      </button>
+                      <button
+                        type="button"
+                        className="btn-copy-summary"
+                        onClick={() => handleQuickCopy(msg.id, msg.result)}
+                        title="Sao chép toàn bộ tóm tắt tư vấn vào bộ nhớ tạm"
+                      >
+                        {copySuccessId === msg.id
+                          ? '✓ Đã sao chép'
+                          : '📋 Sao chép tóm tắt bệnh án'}
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -274,6 +323,16 @@ export default function ChatPanel({
           Hệ thống hỗ trợ tư vấn dựa trên hướng dẫn ADA và Bộ Y tế. Không tự ý thay đổi phác đồ điều trị khi chưa có ý kiến của bác sĩ chuyên khoa.
         </div>
       </form>
+
+      {/* 4. Hộp thoại Liên hệ Bác sĩ Chuyên khoa */}
+      <DoctorContactModal
+        isOpen={doctorModalOpen}
+        onClose={() => setDoctorModalOpen(false)}
+        consultResult={activeConsultForDoctor}
+        userMetrics={
+          messages.find((m) => m.sender === 'user' && m.metrics)?.metrics || null
+        }
+      />
     </div>
   );
 }

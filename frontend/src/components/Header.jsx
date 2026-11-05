@@ -1,7 +1,9 @@
 // frontend/src/components/Header.jsx
-import React from 'react';
+import React, { useState } from 'react';
+import DoctorContactModal from './DoctorContactModal';
 
 export default function Header({ health, healthLoading, onRefreshHealth }) {
+  const [doctorModalOpen, setDoctorModalOpen] = useState(false);
   const isHealthy = health?.status === 'healthy';
 
   return (
@@ -14,27 +16,38 @@ export default function Header({ health, healthLoading, onRefreshHealth }) {
           </span>
         </div>
 
-        <div className="clinic-health-status">
-          <span
-            className={`status-indicator ${
-              healthLoading ? 'error' : isHealthy ? 'ready' : 'error'
-            }`}
-          />
-          <span>
-            {healthLoading
-              ? 'Đang kiểm tra kết nối...'
-              : isHealthy
-              ? 'Hệ thống mô hình: Sẵn sàng'
-              : 'Hệ thống mô hình: Chưa sẵn sàng (HTTP 503)'}
-          </span>
+        <div className="clinic-header-actions-group">
           <button
             type="button"
-            className="btn-link-action"
-            onClick={onRefreshHealth}
-            title="Kiểm tra lại trạng thái các module"
+            className="btn-header-doctor-contact"
+            onClick={() => setDoctorModalOpen(true)}
+            title="Xem danh bạ và kết nối Bác sĩ chuyên khoa"
           >
-            [Kiểm tra lại]
+            👨‍⚕️ Danh bạ Bác sĩ
           </button>
+
+          <div className="clinic-health-status">
+            <span
+              className={`status-indicator ${
+                healthLoading ? 'error' : isHealthy ? 'ready' : 'error'
+              }`}
+            />
+            <span>
+              {healthLoading
+                ? 'Đang kiểm tra kết nối...'
+                : isHealthy
+                ? 'Hệ thống: Sẵn sàng'
+                : 'Hệ thống: Chưa sẵn sàng (HTTP 503)'}
+            </span>
+            <button
+              type="button"
+              className="btn-link-action"
+              onClick={onRefreshHealth}
+              title="Kiểm tra lại trạng thái các module"
+            >
+              [Kiểm tra lại]
+            </button>
+          </div>
         </div>
       </div>
 
@@ -44,6 +57,11 @@ export default function Header({ health, healthLoading, onRefreshHealth }) {
         </span>
         <span className="clinic-meta">Quy định y khoa số 5481/QĐ-BYT &amp; ADA Standards</span>
       </div>
+
+      <DoctorContactModal
+        isOpen={doctorModalOpen}
+        onClose={() => setDoctorModalOpen(false)}
+      />
     </header>
   );
 }

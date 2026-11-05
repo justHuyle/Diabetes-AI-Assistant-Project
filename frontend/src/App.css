@@ -1144,3 +1144,288 @@
   font-size: 14px;
   flex-shrink: 0;
 }
+
+/* ==========================================================================
+   10. THANH TÁC VỤ BÁC SĨ & MODAL LIÊN HỆ BÁC SĨ CHUYÊN KHOA
+   ========================================================================== */
+
+/* Nhóm nút tác vụ trên Header */
+.clinic-header-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-header-doctor-contact {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-header-doctor-contact:hover {
+  background: #FAF8F5;
+  border-color: var(--color-text);
+}
+
+/* Thanh tác vụ dưới mỗi phản hồi của Assistant */
+.assistant-action-toolbar {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-contact-doctor {
+  background: var(--color-surface);
+  color: var(--color-olive);
+  border: 1px solid var(--color-olive);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-contact-doctor:hover {
+  background: var(--color-olive);
+  color: #FFFFFF;
+}
+
+.btn-contact-doctor.emergency {
+  background: #FDF3F0;
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  font-weight: 700;
+  animation: pulse-border 2s infinite;
+}
+
+.btn-contact-doctor.emergency:hover {
+  background: var(--color-accent);
+  color: #FFFFFF;
+}
+
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(180, 71, 42, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(180, 71, 42, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(180, 71, 42, 0); }
+}
+
+.btn-copy-summary {
+  background: transparent;
+  color: var(--color-text-dim);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-copy-summary:hover {
+  background: #FAF8F5;
+  color: var(--color-text);
+  border-color: var(--color-border-dark);
+}
+
+/* Modal liên hệ bác sĩ */
+.modal-backdrop-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(31, 36, 33, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+  backdrop-filter: blur(2px);
+}
+
+.doctor-contact-modal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header-bar {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-border);
+  background: #FAF8F5;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.modal-main-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.modal-subtitle {
+  font-size: 11px;
+  color: var(--color-text-dim);
+  display: block;
+  margin-top: 2px;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.btn-close-modal:hover {
+  color: var(--color-accent);
+}
+
+.modal-body-content {
+  padding: 18px;
+  font-size: 13px;
+}
+
+.modal-emergency-banner {
+  background: #FDF3F0;
+  border: 1.5px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-bottom: 14px;
+  color: #721C24;
+}
+
+.banner-alert-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-accent);
+  margin-bottom: 4px;
+}
+
+.btn-call-emergency {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #FFFFFF !important;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.clinical-summary-preview {
+  background: #FAF8F5;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.preview-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.preview-text-box {
+  font-family: monospace;
+  font-size: 11px;
+  white-space: pre-wrap;
+  max-height: 100px;
+  overflow-y: auto;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  padding: 6px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.form-grid-two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .form-grid-two-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modal-actions-row {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+/* Thẻ thông báo gửi thành công */
+.contact-success-card {
+  text-align: center;
+  padding: 24px 12px;
+}
+
+.success-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #E8F2EA;
+  color: var(--color-olive);
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.success-heading {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--color-text);
+  margin: 0 0 8px 0;
+}
+
+.success-instruction {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  max-width: 460px;
+  margin: 0 auto 12px auto;
+  line-height: 1.5;
+}
+
+.referral-code-box {
+  display: inline-block;
+  background: #FAF8F5;
+  border: 1px dashed var(--color-border-dark);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--color-text);
+}

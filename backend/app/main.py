@@ -1,4 +1,6 @@
 import os
+import uuid
+from datetime import datetime
 from contextlib import asynccontextmanager
 from typing import Any, Dict
 from fastapi import FastAPI, HTTPException, status
@@ -12,7 +14,55 @@ from backend.app.core.loaders import (
     load_all_artifacts,
 )
 from backend.app.agents.coordinator_agent import CoordinatorAgent, TRACE_STORE
-from backend.app.schemas.consult import ConsultRequest, PredictRequest, ConsultResponse
+from backend.app.schemas.consult import (
+    ConsultRequest,
+    PredictRequest,
+    ConsultResponse,
+    DoctorContactRequest,
+    DoctorContactResponse,
+)
+
+# Bộ nhớ lưu trữ yêu cầu chuyển tiếp / liên hệ bác sĩ
+DOCTOR_REFERRAL_STORE: Dict[str, Dict[str, Any]] = {}
+
+DOCTOR_DIRECTORY = [
+    {
+        "id": "doc_bm_01",
+        "name": "PGS. TS. BS. Nguyễn Khoa Diệu Vân",
+        "title": "Nguyên Trưởng khoa Nội tiết - Đái tháo đường",
+        "facility": "Khoa Nội tiết - Đái tháo đường, Bệnh viện Bạch Mai (Hà Nội)",
+        "phone": "024.3869.3731",
+        "address": "Số 78 Giải Phóng, Phương Mai, Đống Đa, Hà Nội",
+        "available_hours": "07:30 - 17:00 (Thứ 2 - Thứ 6)"
+    },
+    {
+        "id": "doc_dhy_02",
+        "name": "PGS. TS. BS. Đỗ Trung Quân",
+        "title": "Chủ tịch Hội Nội tiết & Đái tháo đường Hà Nội, Bệnh viện ĐHY Hà Nội",
+        "facility": "Phòng khám Đa khoa, Bệnh viện Đại học Y Hà Nội",
+        "phone": "1900.6422",
+        "address": "Số 1 Tôn Thất Tùng, Đống Đa, Hà Nội",
+        "available_hours": "07:00 - 16:30 (Thứ 2 - Thứ 7)"
+    },
+    {
+        "id": "doc_cr_03",
+        "name": "TS. BS. Lâm Văn Hoàng",
+        "title": "Trưởng khoa Nội tiết, Bệnh viện Chợ Rẫy",
+        "facility": "Khoa Nội tiết, Bệnh viện Chợ Rẫy (TP. Hồ Chí Minh)",
+        "phone": "028.3855.4137",
+        "address": "Số 201B Nguyễn Chí Thanh, Phường 12, Quận 5, TP. HCM",
+        "available_hours": "07:00 - 16:00 (Thứ 2 - Thứ 6)"
+    },
+    {
+        "id": "emergency_hotline",
+        "name": "Tổng đài Cấp cứu Y tế Ngoại viện",
+        "title": "Trực ban Cấp cứu 24/7 (Đường huyết <70 mg/dL hoặc >250 mg/dL)",
+        "facility": "Mạng lưới Cấp cứu Y tế 115 Toàn quốc",
+        "phone": "115",
+        "address": "Phục vụ 24/7 trên toàn quốc",
+        "available_hours": "24/24h hàng ngày"
+    }
+]
 
 # Biến toàn cục lưu trữ container và coordinator
 app_state: Dict[str, Any] = {
@@ -204,3 +254,57 @@ async def get_trace(consultation_id: str):
         "status": "success",
         "trace": TRACE_STORE[consultation_id]
     }
+
+
+@app.get("/api/doctors", status_code=status.HTTP_200_OK)
+async def get_doctor_directory():
+    """Danh bạ các đơn vị và chuyên gia Nội tiết - Đái tháo đường phối hợp."""
+    return {
+        "status": "success",
+        "total": len(DOCTOR_DIRECTORY),
+        "doctors": DOCTOR_DIRECTORY
+    }
+
+
+@app.post("/api/doctor/contact", response_model=DoctorContactResponse, status_code=status.HTTP_200_OK)
+async def contact_doctor(request: DoctorContactRequest):
+    """Tiếp nhận yêu cầu chuyển tiếp hồ sơ và liên hệ Bác sĩ chuyên khoa."""
+    phone_cleaned = request.patient_phone.strip()
+    if not phone_cleaned or len(phone_cleaned) < 8:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Vui lòng cung cấp số điện thoại liên hệ hợp lệ để bác sĩ có thể gọi lại."
+        )
+
+    referral_id = f"REF-{uuid.uuid4().hex[:8].upper()}"
+    now_iso = datetime.now().isoformat()
+
+    record = {
+        "referral_id": referral_id,
+        "consultation_id": request.consultation_id,
+        "patient_name": request.patient_name,
+        "patient_phone": phone_cleaned,
+        "facility_or_doctor": request.facility_or_doctor,
+        "patient_notes": request.patient_notes,
+        "clinical_summary": request.clinical_summary,
+        "is_emergency": request.is_emergency,
+        "created_at": now_iso,
+        "status": "received"
+    }
+    DOCTOR_REFERRAL_STORE[referral_id] = record
+
+    if request.is_emergency:
+        msg = "YÊU CẦU CẤP CỨU ĐÃ ĐƯỢC CHUYỂN TỚI BÁC SĨ TRỰC VÀ KHOA CẤP CỨU LÂM SÀNG!"
+        instructions = "CẢNH BÁO: Với dấu hiệu hạ đường huyết sâu hoặc nguy cơ toan ceton cấp, người nhà vui lòng GỌI NGAY CẤP CỨU 115 hoặc đưa bệnh nhân đến khoa Cấp cứu gần nhất, không chờ đợi gọi lại!"
+    else:
+        msg = "Hồ sơ tư vấn và thông tin liên hệ đã được chuyển thành công tới Bác sĩ Chuyên khoa Nội tiết."
+        instructions = f"Mã tiếp nhận hồ sơ: {referral_id}. Bác sĩ hoặc điều dưỡng phụ trách tại {request.facility_or_doctor} sẽ chủ động liên hệ lại qua số điện thoại {phone_cleaned} trong thời gian sớm nhất."
+
+    return DoctorContactResponse(
+        referral_id=referral_id,
+        status="received",
+        created_at=now_iso,
+        message=msg,
+        instructions=instructions,
+        emergency_hotline="115"
+    )

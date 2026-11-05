@@ -319,3 +319,43 @@ def test_missing_model_returns_503(monkeypatch, client):
     resp_consult = client.post("/api/consult", json={"message": "Xin chào"})
     assert resp_consult.status_code == 503
     assert "Dịch vụ chưa sẵn sàng" in resp_consult.json()["error"]
+
+
+def test_doctor_directory_and_contact(client):
+    """Kiểm tra danh bạ bác sĩ và tính năng gửi hồ sơ liên hệ bác sĩ chuyên khoa."""
+    # 1. Lấy danh bạ bác sĩ
+    dir_resp = client.get("/api/doctors")
+    assert dir_resp.status_code == 200
+    dir_data = dir_resp.json()
+    assert dir_data["status"] == "success"
+    assert dir_data["total"] >= 3
+
+    # 2. Gửi hồ sơ liên hệ bác sĩ thành công
+    contact_payload = {
+        "consultation_id": "consult-test-uuid",
+        "patient_name": "Trần Văn An",
+        "patient_phone": "0988776655",
+        "facility_or_doctor": "Khoa Nội tiết - Đái tháo đường, Bệnh viện Bạch Mai",
+        "patient_notes": "Tôi muốn hỏi về cách phối hợp khẩu phần ăn và lịch tái khám",
+        "clinical_summary": "Đường huyết lúc đói 125 mg/dL, HbA1c 6.5%",
+        "is_emergency": False
+    }
+    c_resp = client.post("/api/doctor/contact", json=contact_payload)
+    assert c_resp.status_code == 200
+    c_data = c_resp.json()
+    assert c_data["status"] == "received"
+    assert "REF-" in c_data["referral_id"]
+    assert "0988776655" in c_data["instructions"]
+
+    # 3. Ca cấp cứu
+    emerg_payload = {
+        "patient_phone": "0911223344",
+        "is_emergency": True
+    }
+    em_resp = client.post("/api/doctor/contact", json=emerg_payload)
+    assert em_resp.status_code == 200
+    assert "CẤP CỨU" in em_resp.json()["message"]
+
+    # 4. Số điện thoại không hợp lệ
+    inv_resp = client.post("/api/doctor/contact", json={"patient_phone": "123"})
+    assert inv_resp.status_code == 422
