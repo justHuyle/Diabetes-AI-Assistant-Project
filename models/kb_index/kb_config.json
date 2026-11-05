@@ -1,0 +1,16 @@
+{
+  "kb_name": "Diabetes_Clinical_Knowledge_Base",
+  "version": "1.0.0",
+  "selected_chunk_config": "Config_B_Balanced",
+  "chunk_size_chars": 600,
+  "chunk_overlap_chars": 120,
+  "total_chunks_indexed": 24,
+  "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "embedding_dimension": 384,
+  "similarity_metric": "Cosine Similarity (L2 Normalized)",
+  "artifacts": {
+    "index_binary": "kb_production_index.pkl",
+    "chunks_metadata": "kb_chunks_metadata.json",
+    "kb_config": "kb_config.json"
+  }
+}

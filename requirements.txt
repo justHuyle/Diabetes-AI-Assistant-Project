@@ -1,0 +1,36 @@
+# ==============================================================================
+# HỆ ĐA AGENT TƯ VẤN BỆNH NHÂN TIỂU ĐƯỜNG - DEPENDENCIES
+# Đã xác thực tương thích 100% trên Python 3.11 Windows/Linux
+# ==============================================================================
+
+# Framework API & Data Validation
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+
+# Deep Learning Inference & Feature Processing
+onnxruntime>=1.17.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+torch>=2.0.0
+
+# Knowledge Base & Vector Retrieval
+sentence-transformers>=2.7.0
+transformers>=4.40.0
+
+# LLM Integration
+google-genai>=1.0.0
+
+# Testing & Quality Assurance
+pytest>=8.0.0
+
+# ==============================================================================
+# GHI CHÚ TƯƠNG THÍCH PHIÊN BẢN (COMPATIBILITY NOTES):
+# 1. faiss-cpu: Tùy chọn. HybridVectorIndex đã tích hợp cơ chế NumPy fallback
+#    cho phép tính toán Cosine Similarity chuẩn xác 100% mà không bị lỗi biên dịch
+#    C++ trên môi trường Windows.
+# 2. torchvision: TUYỆT ĐỐI KHÔNG cài đặt torchvision vì gây xung đột
+#    operator torchvision::nms với torch CPU hiện hành và không cần thiết cho NLP/Bảng.
+# ==============================================================================

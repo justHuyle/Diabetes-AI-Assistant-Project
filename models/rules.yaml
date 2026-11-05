@@ -1,0 +1,49 @@
+# rules.yaml - Hệ thống luật an toàn y khoa kiểm soát đề xuất lối sống
+# Nguồn dẫn chiếu: Quyết định 5481/QĐ-BYT (Bộ Y tế) và ADA Standards of Care
+
+safety_rules:
+  rule_01_hypo_exercise_veto:
+    id: "RULE_01_HYPO_NO_EXERCISE"
+    description: "Cấm vận động thể lực khi đường huyết dưới 100 mg/dL (đặc biệt nguy hiểm dưới 70 mg/dL)"
+    condition: "glucose < 100"
+    forbidden_exercise: ["MODERATE", "HIGH"]
+    penalty: 50.0
+    source: "QĐ 5481/QĐ-BYT Phần 4, Mục 5.2 (trang 28)"
+
+  rule_02_hyper_exercise_veto:
+    id: "RULE_02_HYPER_NO_EXERCISE"
+    description: "Không tập thể dục cường độ vừa/cao khi đường huyết trên 250 mg/dL (nguy cơ toan ceton)"
+    condition: "glucose > 250"
+    forbidden_exercise: ["MODERATE", "HIGH"]
+    penalty: 50.0
+    source: "QĐ 5481/QĐ-BYT Phần 4, Mục 5.2"
+
+  rule_03_hyper_restrict_carb:
+    id: "RULE_03_HYPER_RESTRICT_CARB"
+    description: "Khi đường huyết trên 180 mg/dL, cấm đề xuất bữa ăn mức tinh bột cao (High Carb)"
+    condition: "glucose > 180"
+    forbidden_carb: ["HIGH"]
+    penalty: 30.0
+    source: "ADA Lifestyle Management & QĐ 5481 Bảng 4"
+
+  rule_04_hypo_require_carb:
+    id: "RULE_04_HYPO_REQUIRE_CARB"
+    description: "Khi đường huyết dưới 80 mg/dL, cấm đề xuất bữa ăn cắt kiệt tinh bột (Low Carb)"
+    condition: "glucose < 80"
+    forbidden_carb: ["LOW"]
+    penalty: 40.0
+    source: "NIDDK Hypoglycemia & Quy tắc 15-15"
+
+  rule_05_mandatory_monitoring:
+    id: "RULE_05_MANDATORY_MONITORING"
+    description: "Bắt buộc kích hoạt nhắc đo đường huyết khi chỉ số rơi vào vùng bất thường (< 70 mg/dL hoặc > 250 mg/dL)"
+    condition: "glucose < 70 or glucose > 250"
+    required_remind: true
+    penalty: 25.0
+    source: "QĐ 5481/QĐ-BYT Phần 10 & NIDDK Emergency"
+
+  rule_06_absolute_no_medication:
+    id: "RULE_06_NO_MEDICATION_IN_RL"
+    description: "Phạm vi tuyệt đối: Không gian hành động của RL chỉ bao gồm lối sống, nghiêm cấm kê đơn hoặc chỉnh liều thuốc/insulin"
+    enforced_by_design: true
+    source: "Phạm vi đồ án PTIT & QĐ 5481/QĐ-BYT Phần 6"
