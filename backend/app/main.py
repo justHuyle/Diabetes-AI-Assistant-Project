@@ -158,6 +158,17 @@ def get_coordinator() -> CoordinatorAgent:
 # DANH MỤC API ENDPOINTS
 # ==============================================================================
 
+@app.get("/", status_code=status.HTTP_200_OK)
+async def root():
+    """Điểm cuối kiểm tra trạng thái gốc của hệ thống."""
+    return {
+        "status": "online",
+        "service": settings.PROJECT_NAME,
+        "version": settings.VERSION,
+        "docs": "/docs",
+        "health": "/api/health"
+    }
+
 @app.post("/api/consult", response_model=ConsultResponse, status_code=status.HTTP_200_OK)
 async def consult(request: ConsultRequest):
     """Điểm cuối tiếp nhận câu hỏi và chỉ số lâm sàng, điều phối 4 agent tư vấn."""
