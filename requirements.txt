@@ -20,6 +20,7 @@ torch>=2.0.0
 # Knowledge Base and Vector Retrieval
 sentence-transformers>=2.7.0
 transformers>=4.40.0
+neo4j>=5.18.0
 
 # LLM Integration (Optional)
 google-genai>=1.0.0

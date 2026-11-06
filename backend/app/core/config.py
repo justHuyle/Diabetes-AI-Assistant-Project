@@ -46,4 +46,9 @@ class Settings:
     # Khóa API Gemini cho LLM (tùy chọn, không có thì fallback extractive KB)
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
 
+    # Cấu hình Cơ sở dữ liệu Đồ thị Neo4j (GraphRAG)
+    NEO4J_URI: str = os.getenv("NEO4J_URI", "bolt://localhost:7687")
+    NEO4J_USER: str = os.getenv("NEO4J_USER", "neo4j")
+    NEO4J_PASSWORD: str = os.getenv("NEO4J_PASSWORD", "12345678")
+
 settings = Settings()

@@ -1,5 +1,6 @@
 // frontend/src/components/ResultsPanel.jsx
 import React, { useState } from 'react';
+import { FormattedText } from './FormattedText';
 
 // Dải tham chiếu đường huyết lâm sàng bằng SVG phẳng
 function GlucoseRangeBar({ glucoseMgDl }) {
@@ -166,8 +167,12 @@ export default function ResultsPanel({ result, isChat = false }) {
         <div className="clinical-alert-box">
           <div className="alert-heading">Cảnh báo cấp cứu y tế: Hạ đường huyết nguy hiểm</div>
           <div className="alert-body">
-            {emergency_alert ||
-              'Nồng độ glucose huyết ở mức đe dọa sinh mạng. Bệnh nhân cần được xử trí cấp cứu theo Quy tắc 15-15 ngay lập tức.'}
+            <FormattedText
+              text={
+                emergency_alert ||
+                'Nồng độ glucose huyết ở mức đe dọa sinh mạng. Bệnh nhân cần được xử trí cấp cứu theo Quy tắc 15-15 ngay lập tức.'
+              }
+            />
           </div>
         </div>
       )}
@@ -256,9 +261,13 @@ export default function ResultsPanel({ result, isChat = false }) {
           <div className="knowledge-section-layout">
             {/* Cột nội dung trích xuất chính */}
             <div className="knowledge-main-content">
-              {knowledge_response.content?.answer ||
-                knowledge_response.content?.message ||
-                'Chưa có nội dung phản hồi từ tài liệu chuẩn.'}
+              <FormattedText
+                text={
+                  knowledge_response.content?.answer ||
+                  knowledge_response.content?.message ||
+                  'Chưa có nội dung phản hồi từ tài liệu chuẩn.'
+                }
+              />
             </div>
 
             {/* Cột chú thích lề phải (sidenotes) */}

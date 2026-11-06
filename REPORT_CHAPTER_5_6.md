@@ -180,20 +180,21 @@ Bốn là, phối hợp với các chuyên gia y tế tiến hành thử nghiệ
 
 ### Bảng kiểm tra đối chiếu hai chiều danh mục tài liệu tham khảo
 
-| Mục tài liệu | Ký hiệu trích dẫn trong văn bản | Vị trí chương xuất hiện | Trạng thái khớp |
-| :--- | :--- | :--- | :---: |
-| **[1] IDF (2019)** | `[IDF, 2019]` | Chương 1 (Mục 1.1) | Khớp 100% |
-| **[2] BV Nội tiết TW (2012)** | `[Bệnh viện Nội tiết Trung ương, 2012]` | Chương 1 (Mục 1.1) | Khớp 100% |
-| **[3] Bộ Y tế (2020)** | `[Bộ Y tế, 2020]`, `[QĐ 5481/QĐ-BYT, 2020]` | Chương 2, 3, 4, 5, 6, 7 | Khớp 100% |
-| **[4] ADA (2026)** | `[ADA, 2026]` | Chương 2, 3, 4, 5, 6, 7 | Khớp 100% |
-| **[5] Tang et al. (2024)** | `[Tang và cộng sự, 2024]` | Chương 2 (Bảng 2.2) | Khớp 100% |
-| **[6] Hochberg et al. (2016)** | `[Hochberg và cộng sự, 2016]` | Chương 2 (Bảng 2.2) | Khớp 100% |
-| **[7] Bothe et al. (2013)** | `[Bothe và cộng sự, 2013]` | Chương 2 (Bảng 2.2) | Khớp 100% |
-| **[8] Coronato et al. (2020)** | `[Coronato và cộng sự, 2020]` | Chương 2 (Bảng 2.2) | Khớp 100% |
-| **[9] WHO (2019)** | `[WHO, 2019]` | Chương 4 (Mục 4.2), Chương 5 (5.3) | Khớp 100% |
-| **[10] NIDDK (2021)** | `[NIDDK, 2021]`, `[NIDDK Guidelines]` | Chương 4 (Bảng 4.3, 4.5), Phụ lục A | Khớp 100% |
+| Mục tài liệu                       | Ký hiệu trích dẫn trong văn bản               | Vị trí chương xuất hiện            | Trạng thái khớp |
+| :------------------------------------ | :-------------------------------------------------- | :--------------------------------------- | :----------------: |
+| **[1] IDF (2019)**              | `[IDF, 2019]`                                     | Chương 1 (Mục 1.1)                    |     Khớp 100%     |
+| **[2] BV Nội tiết TW (2012)** | `[Bệnh viện Nội tiết Trung ương, 2012]`     | Chương 1 (Mục 1.1)                    |     Khớp 100%     |
+| **[3] Bộ Y tế (2020)**        | `[Bộ Y tế, 2020]`, `[QĐ 5481/QĐ-BYT, 2020]` | Chương 2, 3, 4, 5, 6, 7                |     Khớp 100%     |
+| **[4] ADA (2026)**              | `[ADA, 2026]`                                     | Chương 2, 3, 4, 5, 6, 7                |     Khớp 100%     |
+| **[5] Tang et al. (2024)**      | `[Tang và cộng sự, 2024]`                      | Chương 2 (Bảng 2.2)                   |     Khớp 100%     |
+| **[6] Hochberg et al. (2016)**  | `[Hochberg và cộng sự, 2016]`                  | Chương 2 (Bảng 2.2)                   |     Khớp 100%     |
+| **[7] Bothe et al. (2013)**     | `[Bothe và cộng sự, 2013]`                     | Chương 2 (Bảng 2.2)                   |     Khớp 100%     |
+| **[8] Coronato et al. (2020)**  | `[Coronato và cộng sự, 2020]`                  | Chương 2 (Bảng 2.2)                   |     Khớp 100%     |
+| **[9] WHO (2019)**              | `[WHO, 2019]`                                     | Chương 4 (Mục 4.2), Chương 5 (5.3)  |     Khớp 100%     |
+| **[10] NIDDK (2021)**           | `[NIDDK, 2021]`, `[NIDDK Guidelines]`           | Chương 4 (Bảng 4.3, 4.5), Phụ lục A |     Khớp 100%     |
 
 *Ghi nhận các điểm sai lệch và chuẩn hóa:*
+
 1. **Quyết định số 5481/QĐ-BYT:** Tại Chương 3 và 4 thường được viết tắt là `[QĐ 5481/QĐ-BYT]`, đã được quy chuẩn đồng nhất về cơ quan ban hành là Bộ Y tế Việt Nam tại tài liệu tham khảo số `[3]`.
 2. **Hướng dẫn NIDDK:** Tại Chương 4 được gọi dưới dạng tệp `doc_04_niddk_hypoglycemia_emergency.md` và "NIDDK Emergency", đã được chuẩn hóa thống nhất theo tài liệu tham khảo số `[10]`.
 3. **Tài liệu WHO:** Được dẫn chiếu trong phân đoạn tri thức Chương 4 và kịch bản demo Chương 5, đã được chuẩn hóa về tài liệu tham khảo số `[9]`.
@@ -207,14 +208,14 @@ Bốn là, phối hợp với các chuyên gia y tế tiến hành thử nghiệ
 
 Toàn bộ 6 quy tắc an toàn y tế lâm sàng được trích xuất trực tiếp từ tệp cấu hình `models/rules.yaml`:
 
-| STT | Mã quy tắc (`id`) | Điều kiện kích hoạt (`condition`) | Ràng buộc hành vi (`forbidden` / `required`) | Điểm phạt (`penalty`) | Nguồn căn cứ y khoa (`source`) |
-| :---: | :--- | :--- | :--- | :---: | :--- |
-| 1 | `RULE_01_HYPO_NO_EXERCISE` | `glucose < 100` | `forbidden_exercise: ["MODERATE", "HIGH"]` | 50.0 | QĐ 5481/QĐ-BYT Phần 4, Mục 5.2 (trang 28) |
-| 2 | `RULE_02_HYPER_NO_EXERCISE` | `glucose > 250` | `forbidden_exercise: ["MODERATE", "HIGH"]` | 50.0 | QĐ 5481/QĐ-BYT Phần 4, Mục 5.2 |
-| 3 | `RULE_03_HYPER_RESTRICT_CARB` | `glucose > 180` | `forbidden_carb: ["HIGH"]` | 30.0 | ADA Lifestyle Management & QĐ 5481 Bảng 4 |
-| 4 | `RULE_04_HYPO_REQUIRE_CARB` | `glucose < 80` | `forbidden_carb: ["LOW"]` | 40.0 | NIDDK Hypoglycemia & Quy tắc 15-15 |
-| 5 | `RULE_05_MANDATORY_MONITORING` | `glucose < 70 or glucose > 250` | `required_remind: true` | 25.0 | QĐ 5481/QĐ-BYT Phần 10 & NIDDK Emergency |
-| 6 | `RULE_06_NO_MEDICATION_IN_RL` | Mọi trạng thái hệ thống | Cấm tuyệt đối kê đơn/chỉnh liều thuốc trong RL | VETO | Phạm vi đồ án PTIT & QĐ 5481/QĐ-BYT Phần 6 |
+| STT | Mã quy tắc (`id`)            | Điều kiện kích hoạt (`condition`) | Ràng buộc hành vi (`forbidden` / `required`)      | Điểm phạt (`penalty`) | Nguồn căn cứ y khoa (`source`)               |
+| :-: | :------------------------------- | :--------------------------------------- | :------------------------------------------------------- | :------------------------: | :------------------------------------------------ |
+|  1  | `RULE_01_HYPO_NO_EXERCISE`     | `glucose < 100`                        | `forbidden_exercise: ["MODERATE", "HIGH"]`             |            50.0            | QĐ 5481/QĐ-BYT Phần 4, Mục 5.2 (trang 28)     |
+|  2  | `RULE_02_HYPER_NO_EXERCISE`    | `glucose > 250`                        | `forbidden_exercise: ["MODERATE", "HIGH"]`             |            50.0            | QĐ 5481/QĐ-BYT Phần 4, Mục 5.2                |
+|  3  | `RULE_03_HYPER_RESTRICT_CARB`  | `glucose > 180`                        | `forbidden_carb: ["HIGH"]`                             |            30.0            | ADA Lifestyle Management & QĐ 5481 Bảng 4       |
+|  4  | `RULE_04_HYPO_REQUIRE_CARB`    | `glucose < 80`                         | `forbidden_carb: ["LOW"]`                              |            40.0            | NIDDK Hypoglycemia & Quy tắc 15-15               |
+|  5  | `RULE_05_MANDATORY_MONITORING` | `glucose < 70 or glucose > 250`        | `required_remind: true`                                |            25.0            | QĐ 5481/QĐ-BYT Phần 10 & NIDDK Emergency       |
+|  6  | `RULE_06_NO_MEDICATION_IN_RL`  | Mọi trạng thái hệ thống             | Cấm tuyệt đối kê đơn/chỉnh liều thuốc trong RL |            VETO            | Phạm vi đồ án PTIT & QĐ 5481/QĐ-BYT Phần 6 |
 
 ## Phụ lục B: Thống kê bộ câu hỏi kiểm thử Agent tri thức (RAG)
 
@@ -223,13 +224,13 @@ Toàn bộ 6 quy tắc an toàn y tế lâm sàng được trích xuất trực 
 
 **Bảng 5 câu hỏi mẫu đại diện trong tập kiểm thử RAG:**
 
-| Mã | Chủ đề (`category`) | Loại (`type`) | Nội dung câu hỏi (`question`) | Đoạn văn bản căn cứ kỳ vọng (`expected_doc_id` / `source`) | Câu trả lời vàng đối chuẩn (`gold_answer`) |
-| :---: | :--- | :---: | :--- | :--- | :--- |
-| **Q01** | Chẩn đoán đái tháo đường | Factoid | Chỉ số xét nghiệm HbA1c từ bao nhiêu phần trăm trở lên thì được chẩn đoán mắc đái tháo đường? | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S02`<br>(`doc_01_ada_standards_diagnosis.md` - Mục 1) | HbA1c $\ge 6,5\%$ (48 mmol/mol) được chuẩn hóa theo phương pháp NGSP. |
-| **Q02** | Chẩn đoán đái tháo đường | Factoid | Nồng độ glucose huyết tương lúc đói (FPG) để chẩn đoán đái tháo đường là bao nhiêu và cần nhịn ăn ít nhất bao lâu? | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S02`<br>(`doc_01_ada_standards_diagnosis.md` - Mục 1) | FPG $\ge 126\text{ mg/dL}$ (7,0 mmol/L), bệnh nhân cần nhịn ăn ít nhất 8 giờ. |
-| **Q03** | Chẩn đoán đái tháo đường | Factoid | Kết quả xét nghiệm nghiệm pháp dung nạp glucose đường uống 75g (OGTT) sau 2 giờ ở mức nào thì xác định mắc đái tháo đường? | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S02`<br>(`doc_01_ada_standards_diagnosis.md` - Mục 1) | Glucose huyết tương 2 giờ sau nghiệm pháp OGTT $\ge 200\text{ mg/dL}$ (11,1 mmol/L). |
-| **Q04** | Chẩn đoán đái tháo đường | Factoid | Bệnh nhân có những triệu chứng lâm sàng kinh điển nào kèm đường huyết ngẫu nhiên bao nhiêu thì được chẩn đoán đái tháo đường? | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S02`<br>(`doc_01_ada_standards_diagnosis.md` - Mục 1) | Triệu chứng kinh điển (tiểu nhiều, uống nhiều, sút cân không rõ nguyên nhân) kèm glucose ngẫu nhiên $\ge 200\text{ mg/dL}$ (11,1 mmol/L). |
-| **Q05** | Tiền đái tháo đường | Factoid | Khoảng giá trị HbA1c được dùng để xác định tình trạng tiền đái tháo đường (Prediabetes) là bao nhiêu? | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S03`<br>(`doc_01_ada_standards_diagnosis.md` - Mục 2) | HbA1c từ $5,7\%$ đến $6,4\%$ (39 – 47 mmol/mol). |
+|      Mã      | Chủ đề (`category`)          | Loại (`type`) | Nội dung câu hỏi (`question`)                                                                                                                            | Đoạn văn bản căn cứ kỳ vọng (`expected_doc_id` / `source`)                 | Câu trả lời vàng đối chuẩn (`gold_answer`)                                                                                                          |
+| :-----------: | :-------------------------------- | :--------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Q01** | Chẩn đoán đái tháo đường |     Factoid     | Chỉ số xét nghiệm HbA1c từ bao nhiêu phần trăm trở lên thì được chẩn đoán mắc đái tháo đường?                                         | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S02`(`doc_01_ada_standards_diagnosis.md` - Mục 1) | HbA1c $\ge 6,5\%$ (48 mmol/mol) được chuẩn hóa theo phương pháp NGSP.                                                                              |
+| **Q02** | Chẩn đoán đái tháo đường |     Factoid     | Nồng độ glucose huyết tương lúc đói (FPG) để chẩn đoán đái tháo đường là bao nhiêu và cần nhịn ăn ít nhất bao lâu?               | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S02`(`doc_01_ada_standards_diagnosis.md` - Mục 1) | FPG $\ge 126\text{ mg/dL}$ (7,0 mmol/L), bệnh nhân cần nhịn ăn ít nhất 8 giờ.                                                                      |
+| **Q03** | Chẩn đoán đái tháo đường |     Factoid     | Kết quả xét nghiệm nghiệm pháp dung nạp glucose đường uống 75g (OGTT) sau 2 giờ ở mức nào thì xác định mắc đái tháo đường?          | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S02`(`doc_01_ada_standards_diagnosis.md` - Mục 1) | Glucose huyết tương 2 giờ sau nghiệm pháp OGTT $\ge 200\text{ mg/dL}$ (11,1 mmol/L).                                                                 |
+| **Q04** | Chẩn đoán đái tháo đường |     Factoid     | Bệnh nhân có những triệu chứng lâm sàng kinh điển nào kèm đường huyết ngẫu nhiên bao nhiêu thì được chẩn đoán đái tháo đường? | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S02`(`doc_01_ada_standards_diagnosis.md` - Mục 1) | Triệu chứng kinh điển (tiểu nhiều, uống nhiều, sút cân không rõ nguyên nhân) kèm glucose ngẫu nhiên $\ge 200\text{ mg/dL}$ (11,1 mmol/L). |
+| **Q05** | Tiền đái tháo đường        |     Factoid     | Khoảng giá trị HbA1c được dùng để xác định tình trạng tiền đái tháo đường (Prediabetes) là bao nhiêu?                                  | `DOC_01_ADA_STANDARDS_DIAGNOSIS_S03`(`doc_01_ada_standards_diagnosis.md` - Mục 2) | HbA1c từ $5,7\%$ đến $6,4\%$ (39 – 47 mmol/mol).                                                                                                     |
 
 *(Ghi chú: Toàn bộ 30 câu hỏi còn lại từ Q06 đến Q35 được lưu trữ nguyên bản, xem chi tiết tại tệp đính kèm `data/eval/rag_questions_approved.json`).*
 
@@ -237,43 +238,43 @@ Toàn bộ 6 quy tắc an toàn y tế lâm sàng được trích xuất trực 
 
 Các tham số vật lý, sinh hóa và động học chuyển hóa được trích xuất trực tiếp từ mã nguồn thực thi tại `notebooks/N3.ipynb`:
 
-| Nhóm tham số | Ký hiệu / Tên tham số | Giá trị thiết lập cụ thể | Ý nghĩa sinh học và kỹ thuật |
-| :--- | :--- | :--- | :--- |
-| **Không gian hành động** | $|A|$ (Discrete) | 12 hành động kết hợp | 3 mức Carb (`LOW`, `MODERATE`, `HIGH`) $\times$ 2 mức Vận động (`NONE`, `MODERATE`) $\times$ 2 mức Nhắc đo (`False`, `True`). |
-| **Không gian quan sát** | $\mathcal{S}$ (Continuous Box) | Mảng 2 chiều $[G, t]$ | $G \in [40.0, 400.0]\text{ mg/dL}$ (Glucose), $t \in [0.0, 3.0]$ (Thời điểm: Sáng, Trưa, Tối, Đêm). |
-| **Chu kỳ mô phỏng** | `max_steps` | 4 bước / ngày | 1 ngày gồm 4 thời điểm ra quyết định lối sống. |
-| **Khởi tạo nồng độ** | $G_0$ | $U(95.0, 165.0)\text{ mg/dL}$ | Phân bố đều nồng độ đường huyết đầu ngày của người bệnh đái tháo đường. |
-| **Tải lượng tinh bột** | $\Delta_{\text{carb}}$ | `LOW`: $+U(15.0, 25.0)\text{ mg/dL}$<br>`MODERATE`: $+U(35.0, 50.0)\text{ mg/dL}$<br>`HIGH`: $+U(70.0, 95.0)\text{ mg/dL}$ | Mức tăng glucose huyết tương sau bữa ăn tương ứng với các mức nạp Carbohydrate. |
-| **Tiêu thụ vận động** | $\Delta_{\text{ex}}$ | `NONE`: $0.0\text{ mg/dL}$<br>`MODERATE`: $-U(25.0, 42.0)\text{ mg/dL}$ | Mức giảm glucose huyết tương sau 30 phút đi bộ vận động vừa phải. |
-| **Lực kéo nội môi** | $\text{Drift}_{\text{basal}}$ | $-0,15 \times (G_{t-1} - 120.0)\text{ mg/dL}$ | Cơ chế tự cân bằng nội môi kéo đường huyết dần về mức cơ sở $120\text{ mg/dL}$. |
-| **Nhiễu chuyển hóa** | $\epsilon_{\text{noise}}$ | $\epsilon \sim \mathcal{N}(0.0, 25.0)$ ($\sigma = 5.0\text{ mg/dL}$) | Biến thiên sinh học ngẫu nhiên và sai số đo lường. |
-| **Vùng chặn sinh lý** | $[G_{\min}, G_{\max}]$ | $[40.0, 380.0]\text{ mg/dL}$ | Giới hạn cắt biên sinh lý học tránh giá trị phi lý. |
-| **Hàm điểm thưởng** | $R_{\text{clinical}}$ | - $80 \le G \le 140$: $+10.0 - 0.05 \times \|G - 110.0\|$<br>- $140 < G \le 180$: $+2.0$<br>- $70 \le G < 80$: $-5.0$<br>- $G < 70$: $-30.0$<br>- $G > 250$: $-20.0$<br>- $180 < G \le 250$: $-10.0$ | Khuyến khích tối đa hóa thời gian trong vùng mục tiêu an toàn (TIR), trừng phạt nặng tình trạng hạ đường huyết cấp. |
-| **Hình phạt vi phạm luật** | $P_{\text{rule}}$ | - Vi phạm Rule 01 hoặc 02: $-50.0$<br>- Vi phạm Rule 03: $-30.0$<br>- Vi phạm Rule 04: $-40.0$<br>- Vi phạm Rule 05: $-25.0$ | Chế tài ép tác tử RL học chính sách tuân thủ tuyệt đối các quy tắc an toàn y tế lâm sàng. |
+| Nhóm tham số                       | Ký hiệu / Tên tham số        | Giá trị thiết lập cụ thể                                                                                                                                                                           | Ý nghĩa sinh học và kỹ thuật                                                                                                                      |
+| :----------------------------------- | :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Không gian hành động**   | $|A|$ (Discrete)               | 12 hành động kết hợp                                                                                                                                                                                | 3 mức Carb (`LOW`, `MODERATE`, `HIGH`) $\times$ 2 mức Vận động (`NONE`, `MODERATE`) $\times$ 2 mức Nhắc đo (`False`, `True`). |
+| **Không gian quan sát**      | $\mathcal{S}$ (Continuous Box) | Mảng 2 chiều $[G, t]$                                                                                                                                                                                | $G \in [40.0, 400.0]\text{ mg/dL}$ (Glucose), $t \in [0.0, 3.0]$ (Thời điểm: Sáng, Trưa, Tối, Đêm).                                         |
+| **Chu kỳ mô phỏng**         | `max_steps`                    | 4 bước / ngày                                                                                                                                                                                         | 1 ngày gồm 4 thời điểm ra quyết định lối sống.                                                                                                |
+| **Khởi tạo nồng độ**      | $G_0$                          | $U(95.0, 165.0)\text{ mg/dL}$                                                                                                                                                                          | Phân bố đều nồng độ đường huyết đầu ngày của người bệnh đái tháo đường.                                                         |
+| **Tải lượng tinh bột**     | $\Delta_{\text{carb}}$         | `LOW`: $+U(15.0, 25.0)\text{ mg/dL}$`MODERATE`: $+U(35.0, 50.0)\text{ mg/dL}$`HIGH`: $+U(70.0, 95.0)\text{ mg/dL}$                                                                           | Mức tăng glucose huyết tương sau bữa ăn tương ứng với các mức nạp Carbohydrate.                                                           |
+| **Tiêu thụ vận động**     | $\Delta_{\text{ex}}$           | `NONE`: $0.0\text{ mg/dL}$`MODERATE`: $-U(25.0, 42.0)\text{ mg/dL}$                                                                                                                              | Mức giảm glucose huyết tương sau 30 phút đi bộ vận động vừa phải.                                                                          |
+| **Lực kéo nội môi**        | $\text{Drift}_{\text{basal}}$  | $-0,15 \times (G_{t-1} - 120.0)\text{ mg/dL}$                                                                                                                                                          | Cơ chế tự cân bằng nội môi kéo đường huyết dần về mức cơ sở $120\text{ mg/dL}$.                                                      |
+| **Nhiễu chuyển hóa**        | $\epsilon_{\text{noise}}$      | $\epsilon \sim \mathcal{N}(0.0, 25.0)$ ($\sigma = 5.0\text{ mg/dL}$)                                                                                                                                 | Biến thiên sinh học ngẫu nhiên và sai số đo lường.                                                                                            |
+| **Vùng chặn sinh lý**       | $[G_{\min}, G_{\max}]$         | $[40.0, 380.0]\text{ mg/dL}$                                                                                                                                                                           | Giới hạn cắt biên sinh lý học tránh giá trị phi lý.                                                                                           |
+| **Hàm điểm thưởng**       | $R_{\text{clinical}}$          | - $80 \le G \le 140$: $+10.0 - 0.05 \times \|G - 110.0\|$- $140 < G \le 180$: $+2.0$- $70 \le G < 80$: $-5.0$- $G < 70$: $-30.0$- $G > 250$: $-20.0$- $180 < G \le 250$: $-10.0$ | Khuyến khích tối đa hóa thời gian trong vùng mục tiêu an toàn (TIR), trừng phạt nặng tình trạng hạ đường huyết cấp.                |
+| **Hình phạt vi phạm luật** | $P_{\text{rule}}$              | - Vi phạm Rule 01 hoặc 02: $-50.0$- Vi phạm Rule 03: $-30.0$- Vi phạm Rule 04: $-40.0$- Vi phạm Rule 05: $-25.0$                                                                            | Chế tài ép tác tử RL học chính sách tuân thủ tuyệt đối các quy tắc an toàn y tế lâm sàng.                                            |
 
 ## Phụ lục D: Phiên bản thư viện và môi trường thực thi thực tế
 
 Danh mục các công nghệ, thư viện và môi trường phần mềm được trích xuất trực tiếp từ môi trường triển khai thực tế (`requirements.txt`, `package.json`, môi trường ảo Python 3.11):
 
-| Thành phần hệ thống | Thư viện / Công cụ | Phiên bản cài đặt | Vai trò kỹ thuật trong hệ thống |
-| :--- | :--- | :---: | :--- |
-| **Ngôn ngữ nền tảng** | Python | 3.11.9 | Môi trường lập trình backend và tính toán khoa học |
-| **Giao diện lập trình** | FastAPI | 0.162.0 | Framework xây dựng hệ thống RESTful API bất đồng bộ |
-| **Máy chủ ứng dụng** | Uvicorn | 0.54.0 | ASGI web server vận hành backend API |
-| **Xác thực dữ liệu** | Pydantic | 2.12.5 | Định nghĩa cấu trúc schema và kiểm thực thông điệp liên agent |
-| **Học sâu (Inference)** | ONNX Runtime | 1.22.1 | Thực thi mô hình mạng MLP dự báo nguy cơ đái tháo đường |
-| **Học sâu (Training)** | PyTorch (`torch`) | 2.14.0+cpu | Huấn luyện mạng nơ-ron đa tầng MLP với BCE có trọng số |
-| **Học máy & Dữ liệu** | Scikit-Learn | 1.9.0 | Tiền xử lý, chuẩn hóa StandardScaler và quét ngưỡng phân loại |
-| **Mô hình nhúng RAG** | Sentence-Transformers | 6.2.0 | Tạo vector ngữ nghĩa (`paraphrase-multilingual-MiniLM-L12-v2`) |
-| **Biến đổi ngôn ngữ** | Transformers | 5.22.1 | Hỗ trợ đường ống xử lý ngôn ngữ tự nhiên |
-| **Mô hình tạo sinh** | Google GenAI SDK | 1.28.0 | Tích hợp Gemini API phục vụ tạo sinh câu trả lời có trích dẫn |
-| **Toán học & RL** | NumPy | 2.4.6 | Thao tác ma trận, biểu diễn Q-table và tính toán động học RL |
-| **Cấu hình luật y tế** | PyYAML | 6.0.3 | Phân tích cú pháp tệp luật an toàn `rules.yaml` |
-| **Kiểm thử tự động** | Pytest | 9.2.0 | Bộ kiểm thử tự động unit test và integration test |
-| **Trực quan hóa số liệu**| Matplotlib | 3.10.1 | Sinh biểu đồ đối chuẩn ablation study và phân rã độ trễ |
-| **Tự động hóa giao diện**| Selenium | 4.32.0 | Điều khiển trình duyệt tự động chụp ảnh màn hình các kịch bản |
-| **Công cụ đóng gói UI** | Vite | 8.3.6 | Frontend tooling và bundler tốc độ cao |
-| **Giao diện người dùng** | React & React-DOM | 19.3.1 | Thư viện xây dựng giao diện tương tác người dùng |
+| Thành phần hệ thống              | Thư viện / Công cụ | Phiên bản cài đặt | Vai trò kỹ thuật trong hệ thống                                         |
+| :----------------------------------- | :--------------------- | :--------------------: | :--------------------------------------------------------------------------- |
+| **Ngôn ngữ nền tảng**      | Python                 |         3.11.9         | Môi trường lập trình backend và tính toán khoa học                  |
+| **Giao diện lập trình**     | FastAPI                |        0.162.0        | Framework xây dựng hệ thống RESTful API bất đồng bộ                  |
+| **Máy chủ ứng dụng**       | Uvicorn                |         0.54.0         | ASGI web server vận hành backend API                                       |
+| **Xác thực dữ liệu**       | Pydantic               |         2.12.5         | Định nghĩa cấu trúc schema và kiểm thực thông điệp liên agent    |
+| **Học sâu (Inference)**      | ONNX Runtime           |         1.22.1         | Thực thi mô hình mạng MLP dự báo nguy cơ đái tháo đường         |
+| **Học sâu (Training)**       | PyTorch (`torch`)    |       2.14.0+cpu       | Huấn luyện mạng nơ-ron đa tầng MLP với BCE có trọng số             |
+| **Học máy & Dữ liệu**      | Scikit-Learn           |         1.9.0         | Tiền xử lý, chuẩn hóa StandardScaler và quét ngưỡng phân loại     |
+| **Mô hình nhúng RAG**       | Sentence-Transformers  |         6.2.0         | Tạo vector ngữ nghĩa (`paraphrase-multilingual-MiniLM-L12-v2`)          |
+| **Biến đổi ngôn ngữ**     | Transformers           |         5.22.1         | Hỗ trợ đường ống xử lý ngôn ngữ tự nhiên                         |
+| **Mô hình tạo sinh**        | Google GenAI SDK       |         1.28.0         | Tích hợp Gemini API phục vụ tạo sinh câu trả lời có trích dẫn     |
+| **Toán học & RL**            | NumPy                  |         2.4.6         | Thao tác ma trận, biểu diễn Q-table và tính toán động học RL       |
+| **Cấu hình luật y tế**     | PyYAML                 |         6.0.3         | Phân tích cú pháp tệp luật an toàn `rules.yaml`                     |
+| **Kiểm thử tự động**      | Pytest                 |         9.2.0         | Bộ kiểm thử tự động unit test và integration test                     |
+| **Trực quan hóa số liệu**  | Matplotlib             |         3.10.1         | Sinh biểu đồ đối chuẩn ablation study và phân rã độ trễ          |
+| **Tự động hóa giao diện** | Selenium               |         4.32.0         | Điều khiển trình duyệt tự động chụp ảnh màn hình các kịch bản |
+| **Công cụ đóng gói UI**   | Vite                   |         8.3.6         | Frontend tooling và bundler tốc độ cao                                   |
+| **Giao diện người dùng**   | React & React-DOM      |         19.3.1         | Thư viện xây dựng giao diện tương tác người dùng                  |
 
 ---
 

@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ResultsPanel from './ResultsPanel';
 import ErrorState from './ErrorState';
 import DoctorContactModal from './DoctorContactModal';
+import { FormattedText } from './FormattedText';
 
 export default function ChatPanel({
   messages = [],
@@ -206,11 +207,7 @@ export default function ChatPanel({
                     {isChitchat ? (
                       <div className="chitchat-bubble-content">
                         <div className="chitchat-text-body">
-                          {chitchatText.split('\n\n').map((paragraph, pIdx) => (
-                            <p key={pIdx} style={{ margin: '0 0 10px 0' }}>
-                              {paragraph}
-                            </p>
-                          ))}
+                          <FormattedText text={chitchatText} />
                         </div>
                         <div className="chitchat-guide-footer">
                           <span className="hint-icon">💡</span>
